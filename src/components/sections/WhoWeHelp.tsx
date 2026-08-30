@@ -43,7 +43,7 @@ export function WhoWeHelp() {
               >
                 <h3 className="text-h3 font-display font-bold">{tile.label}</h3>
                 <p className="text-sm text-paper/70 mt-2 max-w-sm">{tile.desc}</p>
-                <span className="mono-label text-signal mt-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                <span className="mono-label text-signal mt-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-[opacity,transform] duration-200 ease-out">
                   VIEW →
                 </span>
               </Link>

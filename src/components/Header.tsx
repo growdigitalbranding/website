@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -32,13 +33,13 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-30 transition-[background-color,backdrop-filter] duration-300 ${
+      className={`sticky top-0 z-30 transition-colors duration-200 ${
         scrolled ? "bg-paper/88 backdrop-blur-md border-b border-mist" : ""
       }`}
     >
       <div className="mx-auto max-w-[1440px] px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display font-extrabold text-lg tracking-tight">
-          GROW
+        <Link href="/" aria-label="Grow Digital Branding — home" className="flex items-center">
+          <Logo className="h-11 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

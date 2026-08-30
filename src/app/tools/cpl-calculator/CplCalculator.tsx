@@ -65,8 +65,8 @@ export function CplCalculator() {
           <p className="mono-label text-graphite mb-2">MARKETING COST AS % OF REVENUE</p>
           <div className="h-3 rounded-full bg-mist overflow-hidden">
             <div
-              className="h-full bg-signal transition-[width] duration-500 ease-out"
-              style={{ width: `${barPct}%` }}
+              className="h-full w-full origin-left bg-signal transition-transform duration-300 ease-out motion-reduce:transition-none"
+              style={{ transform: `scaleX(${barPct / 100})` }}
             />
           </div>
           <p className="font-mono text-sm mt-2">{result.marketingPctOfRevenue.toFixed(1)}%</p>

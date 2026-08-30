@@ -127,9 +127,16 @@ export function LoopPath() {
             key={s.id}
             cx={i % 2 === 0 ? 74 : 92}
             cy={200 + i * 120}
-            r={progress > (i + 1) / 6 ? 1.2 : 0}
+            r={1.2}
             fill="var(--signal)"
-            className="transition-[r] duration-500"
+            // Scale, not `r` — animating the radius attribute repaints; a
+            // transform stays on the GPU.
+            style={{
+              transformBox: "fill-box",
+              transformOrigin: "center",
+              transform: progress > (i + 1) / 6 ? "scale(1)" : "scale(0)",
+            }}
+            className="transition-transform duration-300 ease-out"
           />
         ))}
       </svg>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 export function LenisProvider({ children }: { children: ReactNode }) {
@@ -29,5 +30,8 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     };
   }, [reduced]);
 
-  return <>{children}</>;
+  // reducedMotion="user" drops transform animations but keeps opacity, so
+  // reveals stay legible instead of vanishing. CSS alone can't do this for
+  // Framer Motion — it writes inline styles the media query never sees.
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

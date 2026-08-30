@@ -110,24 +110,11 @@ body {
   animation: marquee 40s linear infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes pulse-node {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
+/* Only pause on real hover devices — on touch this would never resume. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.6;
-  }
-}
-
-.node-pulse {
-  animation: pulse-node 1.8s var(--ease-in-out-quad) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

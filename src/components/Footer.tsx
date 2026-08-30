@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 const COLUMNS = [
   {
@@ -65,7 +66,7 @@ export function Footer() {
       <div className="border-t border-mist">
         <div className="mx-auto max-w-[1440px] px-6 py-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-sm text-graphite">
           <div>
-            <p className="font-display font-extrabold text-ink mb-1">GROW</p>
+            <Logo className="h-12 w-auto mb-2" />
             <p>Coimbatore, Tamil Nadu, India</p>
             <p>
               <a href="tel:+910000000000" className="hover:text-signal">

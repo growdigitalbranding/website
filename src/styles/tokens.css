@@ -1,0 +1,20 @@
+:root {
+  /* Instrument Paper — color tokens */
+  --paper: #eff0ec;
+  --paper-2: #e4e6e0;
+  --mist: #d3d6cd;
+  --ink: #14171a;
+  --graphite: #464d57; /* darkened from spec #5C6470 to clear 4.5:1 on --paper-2 */
+  --signal: #1b2aff;
+  --pulse: #ff8a3d;
+  --flag: #c8102e;
+
+  /* Motion timing */
+  --duration-fast: 180ms;
+  --duration-base: 420ms;
+  --duration-slow: 720ms;
+  --duration-hero: 1400ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-signal: cubic-bezier(0.65, 0, 0.35, 1);
+}

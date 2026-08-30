@@ -1,0 +1,21 @@
+# Grow — growdigitalbranding.com
+
+> Performance marketing for high-consideration purchases — real estate first, then senior
+> living and interiors. The core argument: most agencies stop at the lead; Grow runs the
+> whole loop across four stations — creative volume, tracking signal, follow-up speed, and
+> AI search visibility — with closed-won data flowing back into the ad account.
+
+## Key pages
+
+- /the-loop — the methodology, in depth
+- /who-we-help/real-estate — lead quality benchmarks by ticket size, RERA constraints, CP vs. direct leads
+- /what-we-do — the five services that make up the loop
+- /pricing — real engagement pricing, no "contact us for a quote"
+- /tracking-setup — the exact measurement stack running on this site
+- /tools/cpl-calculator — turns ad spend + funnel rates into cost per booking
+
+## Terms this site defines
+
+- **Loop marketing** — running creative, tracking, follow-up, and booking-data feedback as one closed system, instead of media buying alone.
+- **Signal layer** — the server-side tracking (CAPI, sGTM, offline conversions) that tells ad platforms which leads actually became bookings.
+- **Cost per booking** — the metric that matters over cost per lead: what it actually costs to close a customer, not just generate an inquiry.

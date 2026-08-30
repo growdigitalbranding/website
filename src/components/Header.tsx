@@ -1,0 +1,104 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const NAV = [
+  { href: "/the-loop", label: "The Loop" },
+  { href: "/what-we-do", label: "What we do" },
+  { href: "/who-we-help/real-estate", label: "Who we help" },
+  { href: "/work", label: "Work" },
+  { href: "/insights", label: "Insights" },
+];
+
+export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <header
+      className={`sticky top-0 z-30 transition-[background-color,backdrop-filter] duration-300 ${
+        scrolled ? "bg-paper/88 backdrop-blur-md border-b border-mist" : ""
+      }`}
+    >
+      <div className="mx-auto max-w-[1440px] px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="font-display font-extrabold text-lg tracking-tight">
+          GROW
+        </Link>
+
+        <nav className="hidden lg:flex items-center gap-8">
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="mono-label text-graphite hover:text-ink transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-4">
+          <Link
+            href="/contact"
+            className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal text-paper text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            Book a call
+          </Link>
+          <button
+            type="button"
+            className="lg:hidden w-11 h-11 flex items-center justify-center"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <div className="lg:hidden fixed inset-0 top-16 z-40 bg-paper flex flex-col">
+          <nav className="flex flex-col p-6 gap-1">
+            {NAV.map((item, i) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-4 py-4 border-b border-mist"
+                style={{ animationDelay: `${i * 40}ms` }}
+              >
+                <span className="font-mono text-xs text-graphite">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-h3 font-display">{item.label}</span>
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal text-paper font-medium"
+            >
+              Book a call
+            </Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}

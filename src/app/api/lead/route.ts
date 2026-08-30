@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   }
 
   // TODO: wire to n8n webhook (WhatsApp ack + Slack ping) and Postgres once
-  // NODE_INFRA is provisioned — see spec §7 "Speed-to-lead". Logging for now
+  // NODE_INFRA is provisioned. See spec §7 "Speed-to-lead". Logging for now
   // so the form is functionally complete end-to-end.
   console.log("[lead]", parsed.data);
 

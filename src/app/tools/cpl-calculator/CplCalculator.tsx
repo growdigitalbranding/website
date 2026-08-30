@@ -58,7 +58,7 @@ export function CplCalculator() {
           <p className="font-mono text-2xl text-signal">
             {result.costPerBooking > 0
               ? `₹${Math.round(result.costPerBooking).toLocaleString("en-IN")}`
-              : "—"}
+              : "n/a"}
           </p>
         </div>
         <div>

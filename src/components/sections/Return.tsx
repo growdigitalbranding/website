@@ -7,7 +7,7 @@ export function Return() {
           Then the closed deals go back into the ad account.
         </h2>
         <p className="max-w-xl text-lg mt-6 text-paper/70">
-          Most reporting ends at cost per lead. Ours ends at cost per booking — because
+          Most reporting ends at cost per lead. Ours ends at cost per booking, because
           booking data flows back into targeting every week. The account gets smarter about
           your actual buyer, not your form-filler.
         </p>

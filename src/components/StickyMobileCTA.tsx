@@ -1,23 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
+import { useScrolledPast } from "@/lib/motion/useScrolledPast";
 
 export function StickyMobileCTA() {
-  const [visible, setVisible] = useState(false);
+  const visible = useScrolledPast({ progress: 0.6 });
   const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      setVisible(max > 0 && window.scrollY / max > 0.6);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   if (dismissed || !visible) return null;
 

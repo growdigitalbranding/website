@@ -23,14 +23,13 @@ export default function Page() {
           "before/after" hero shot.
         </p>
         <p className="text-lg text-graphite">
-          The sales cycle is long — often 60–120 days from first inquiry to signed contract —
-          which makes the follow-up loop less about speed and more about consistent, useful
+          The sales cycle is long, often 60-120 days from first inquiry to signed contract, which makes the follow-up loop less about speed and more about consistent, useful
           nurture: showing progress on live projects, answering budget questions honestly
           upfront, and qualifying out tyre-kicker consultations before they consume a designer's
           calendar.
         </p>
         <p className="text-lg text-graphite">
-          Signal layer work matters just as much here — most interior design accounts we've
+          Signal layer work matters just as much here. Most interior design accounts we've
           audited had zero server-side tracking, meaning every consultation booking looked
           identical to the platform regardless of whether it turned into a ₹2L project or a
           no-show.

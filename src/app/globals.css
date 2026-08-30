@@ -111,7 +111,7 @@ body {
   animation: marquee 40s linear infinite;
 }
 
-/* Only pause on real hover devices — on touch this would never resume. */
+/* Only pause on real hover devices. On touch this would never resume. */
 @media (hover: hover) and (pointer: fine) {
   .marquee-track:hover {
     animation-play-state: paused;

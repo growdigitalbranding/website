@@ -2,7 +2,7 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const STEPS = [
   { number: "01", title: "Audit", timing: "week 1", desc: "Full teardown of tracking, creative, and follow-up." },
-  { number: "02", title: "Rebuild", timing: "weeks 2–3", desc: "Signal layer fixed, campaign structure rebuilt, creative pipeline started." },
+  { number: "02", title: "Rebuild", timing: "weeks 2-3", desc: "Signal layer fixed, campaign structure rebuilt, creative pipeline started." },
   { number: "03", title: "Run", timing: "ongoing", desc: "Weekly creative refresh, daily monitoring, follow-up discipline enforced." },
   { number: "04", title: "Report on bookings", timing: "monthly", desc: "Cost per booking, not cost per lead. Offline conversions pushed back weekly." },
 ];

@@ -72,7 +72,7 @@ export function Footer() {
               <a href="tel:+910000000000" className="hover:text-signal">
                 +91 00000 00000
               </a>{" "}
-              <span className="text-xs">(placeholder — update)</span>
+              <span className="text-xs">(placeholder, update)</span>
             </p>
           </div>
           <nav className="flex flex-wrap gap-6">

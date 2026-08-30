@@ -1,4 +1,16 @@
+import type { ReactNode } from "react";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { CreativeGrid } from "@/components/artefacts/CreativeGrid";
+import { SignalFlow } from "@/components/artefacts/SignalFlow";
+import { WhatsAppThread } from "@/components/artefacts/WhatsAppThread";
+import { AnswerBlock } from "@/components/artefacts/AnswerBlock";
+
+const ARTEFACTS: Record<string, ReactNode> = {
+  "creative-engine": <CreativeGrid />,
+  "signal-layer": <SignalFlow />,
+  "follow-up-loop": <WhatsAppThread />,
+  "answer-visibility": <AnswerBlock />,
+};
 
 const STATIONS = [
   {
@@ -7,9 +19,9 @@ const STATIONS = [
     title: "Creative Engine",
     thesis: "With broad targeting, the ad is the targeting now.",
     deliverables: [
-      "15–20 distinct creative angles produced every month",
+      "15-20 distinct creative angles produced every month",
       "Fatigue monitoring with a refresh trigger at frequency 2.8",
-      "A shoot cadence — so you're never re-rendering the same stock render",
+      "A shoot cadence, so you're never re-rendering the same stock render",
     ],
     ground: "paper",
   },
@@ -69,15 +81,18 @@ export function Stations() {
               <h3 className="text-h2 font-display font-bold max-w-md">{station.thesis}</h3>
             </div>
 
-            <RevealOnScroll>
-              <ul className="flex flex-col gap-6">
-                {station.deliverables.map((d) => (
-                  <li key={d} className="border-t border-mist pt-6 text-lg">
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </RevealOnScroll>
+            <div>
+              <RevealOnScroll>
+                <ul className="flex flex-col gap-6">
+                  {station.deliverables.map((d) => (
+                    <li key={d} className="border-t border-mist pt-6 text-lg">
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              </RevealOnScroll>
+              <div className="mt-12">{ARTEFACTS[station.id]}</div>
+            </div>
           </div>
         </section>
       ))}

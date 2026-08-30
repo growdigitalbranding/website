@@ -40,7 +40,7 @@ export function TrackingHealthCheck() {
         </p>
         <p className="text-graphite">
           {score >= 4
-            ? "Solid foundation — the gaps left are likely worth a targeted fix, not a full rebuild."
+            ? "Solid foundation. The gaps left are likely worth a targeted fix, not a full rebuild."
             : score >= 2
             ? "Enough gaps that your platform is likely optimising toward the wrong signal some of the time."
             : "This is exactly the state most accounts are in before an audit. Worth a proper look."}

@@ -13,12 +13,12 @@ export default function Page() {
       title="Campaign architecture that stops competing with itself"
       subtitle="Advantage+ and PMax do the structural buying work now. The value is in structure, budget discipline, and not letting three ad sets bid against each other for the same buyer."
       whoFor={[
-        "Builders running 1–4 live projects on Meta and Google",
+        "Builders running 1-4 live projects on Meta and Google",
         "Teams whose account has grown into 6+ overlapping campaigns with no one auditing structure",
         "Anyone whose CPL keeps rising despite fresh creative",
       ]}
       included={[
-        "A campaign architecture audit — structure, budget allocation, audience overlap",
+        "A campaign architecture audit. Structure, budget allocation, audience overlap",
         "Consolidation into a clean tier structure sized to your actual budget",
         "Bid strategy and budget pacing tuned to your sales cycle length, not platform defaults",
         "Weekly account monitoring, not a monthly check-in",

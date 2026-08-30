@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           us via the details in the footer.
         </p>
         <p className="text-sm">
-          This is placeholder legal copy — replace with counsel-reviewed text before
+          This is placeholder legal copy. Replace with counsel-reviewed text before
           launch.
         </p>
       </article>

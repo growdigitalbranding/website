@@ -13,7 +13,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="CONTACT"
         title="Three fields. That's it."
-        subtitle="Everything else gets asked on the call — budget, current agency, timeline. We reply on WhatsApp inside one working hour."
+        subtitle="Everything else gets asked on the call. Budget, current agency, timeline. We reply on WhatsApp inside one working hour."
       />
       <FinalCTA />
     </>

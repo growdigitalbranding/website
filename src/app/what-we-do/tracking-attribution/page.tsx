@@ -3,7 +3,7 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = {
   title: "Tracking & Attribution",
-  description: "CAPI, server-side GTM, offline conversions — the signal layer.",
+  description: "CAPI, server-side GTM, offline conversions. The signal layer.",
 };
 
 export default function Page() {
@@ -24,11 +24,11 @@ export default function Page() {
         "Consent Mode v2 implementation that doesn't tank your event volume",
       ]}
       tooling={["Meta Conversions API", "Server-side GTM", "GA4", "Google Enhanced Conversions", "n8n"]}
-      miniCase="A Coimbatore plotted-development account had zero server-side events — 100% browser pixel, no dedup, consent banner blocking half of Chrome traffic. After CAPI + sGTM + weekly offline conversion upload, cost per booking dropped 58% over two months with flat spend."
+      miniCase="A Coimbatore plotted-development account had zero server-side events. 100% browser pixel, no dedup, consent banner blocking half of Chrome traffic. After CAPI + sGTM + weekly offline conversion upload, cost per booking dropped 58% over two months with flat spend."
       objection={{
         question: "What happens to the tracking setup if we leave?",
         answer:
-          "You keep it. Every container, dataset, and CRM webhook is provisioned under your own Meta Business Manager and Google account from day one — not ours. We hand over full admin on request, no lock-in.",
+          "You keep it. Every container, dataset, and CRM webhook is provisioned under your own Meta Business Manager and Google account from day one. Not ours. We hand over full admin on request, no lock-in.",
       }}
     />
   );

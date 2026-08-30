@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { useScrolledPast } from "@/lib/motion/useScrolledPast";
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -14,15 +15,8 @@ const NAV = [
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useScrolledPast({ pixels: 40 });
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -38,7 +32,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1440px] px-6 h-16 flex items-center justify-between">
-        <Link href="/" aria-label="Grow Digital Branding — home" className="flex items-center">
+        <Link href="/" aria-label="Grow Digital Branding, home" className="flex items-center">
           <Logo className="h-11 w-auto" />
         </Link>
 

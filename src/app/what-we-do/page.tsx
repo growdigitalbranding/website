@@ -24,7 +24,7 @@ const SERVICES = [
     href: "/what-we-do/tracking-attribution",
     number: "02",
     title: "Tracking & attribution",
-    desc: "CAPI, server-side GTM, offline conversions — the signal layer.",
+    desc: "CAPI, server-side GTM, offline conversions. The signal layer.",
   },
   {
     href: "/what-we-do/follow-up-systems",

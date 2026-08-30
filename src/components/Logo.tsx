@@ -1,5 +1,5 @@
 /**
- * Brand mark, inlined as SVG so it inherits the site's loaded webfonts — an
+ * Brand mark, inlined as SVG so it inherits the site's loaded webfonts. An
  * external <img src="*.svg"> can reach neither the page's fonts nor its CSS
  * variables. `textLength` pins each line's width, so the mark keeps its
  * proportions even if a font is still swapping in.

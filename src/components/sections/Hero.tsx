@@ -23,7 +23,7 @@ export function Hero() {
           className="max-w-xl text-lg mt-8 text-graphite hero-in"
           style={{ animationDelay: "740ms" }}
         >
-          Creative volume, clean signal, and follow-up that actually closes — built as one
+          Creative volume, clean signal, and follow-up that actually closes. Built as one
           system for high-consideration purchases. Real estate first.
         </p>
 

@@ -1,5 +1,5 @@
 :root {
-  /* Instrument Paper — color tokens */
+  /* Instrument Paper colour tokens */
   --paper: #eff0ec;
   --paper-2: #e4e6e0;
   --mist: #d3d6cd;
@@ -8,7 +8,7 @@
   /* Brand green, split into two roles by contrast.
      --signal        text, links, focus rings, borders, station numbers.
                      5.0:1 on --paper, 4.6:1 on the darker --paper-2 band,
-                     and 3.1:1 on --ink — so it clears AA as type on both
+                     and 3.1:1 on --ink. So it clears AA as type on both
                      light grounds and as a UI outline on any of the three.
      --signal-bright the logo lime. 1.8:1 on --paper, so it must NEVER carry
                      text on a light ground. Use it as a fill (with --ink

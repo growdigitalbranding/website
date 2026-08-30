@@ -11,11 +11,11 @@ import { organizationJsonLd } from "@/lib/schema/jsonld";
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
   title: {
-    default: "Grow — Performance marketing for builders and developers",
-    template: "%s — Grow",
+    default: "Grow | Performance marketing for builders and developers",
+    template: "%s | Grow",
   },
   description:
-    "Most agencies stop at the lead. Grow runs the whole loop — creative volume, clean signal, and follow-up that actually closes. Real estate first.",
+    "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
 };
 
 export default function RootLayout({

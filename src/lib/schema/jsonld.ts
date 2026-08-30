@@ -4,7 +4,7 @@ export const organizationJsonLd = {
   name: "Grow",
   url: "https://growdigitalbranding.com",
   description:
-    "Performance marketing for high-consideration purchases — real estate first, then senior living and interiors.",
+    "Performance marketing for high-consideration purchases. Real estate first, then senior living and interiors.",
   areaServed: ["Tamil Nadu", "Karnataka"],
   address: {
     "@type": "PostalAddress",

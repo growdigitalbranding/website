@@ -24,7 +24,7 @@ export default function AboutPage() {
           the loop.
         </p>
         <p className="text-lg text-graphite">
-          We work with a small number of accounts at a time on purpose — the creative volume and
+          We work with a small number of accounts at a time on purpose. The creative volume and
           tracking discipline this system needs doesn't scale to fifty clients per account
           manager. If our roster is full when you call, we'll tell you and give you a real
           timeline, not a placeholder.

@@ -54,7 +54,7 @@ export function CreativeFatigueEstimator() {
             </p>
           </>
         ) : (
-          <p className="font-mono text-2xl text-flag">Already past 2.8 — refresh now</p>
+          <p className="font-mono text-2xl text-flag">Already past 2.8. Refresh now</p>
         )}
       </div>
     </>

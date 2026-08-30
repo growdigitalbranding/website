@@ -13,7 +13,7 @@ export default function CplCalculatorPage() {
       <PageHero
         eyebrow="TOOLS / CPL CALCULATOR"
         title="What's your real cost per booking?"
-        subtitle="Cost per lead hides the number that matters. Enter your funnel rates below — the result updates live, no email required."
+        subtitle="Cost per lead hides the number that matters. Enter your funnel rates below. The result updates live, no email required."
       />
       <div className="mx-auto max-w-[1440px] px-6 pb-16">
         <CplCalculator />

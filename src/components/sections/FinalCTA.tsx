@@ -42,7 +42,7 @@ export function FinalCTA() {
 
           {status === "success" ? (
             <div className="border border-mist rounded-2xl p-8 bg-paper-2">
-              <p className="text-lg font-medium mb-2">Got it — thanks.</p>
+              <p className="text-lg font-medium mb-2">Got it. Thanks.</p>
               <p className="text-graphite">
                 We reply on WhatsApp inside one working hour. Usually much less.
               </p>

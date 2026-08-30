@@ -11,7 +11,7 @@ const VERTICALS = [
   {
     href: "/who-we-help/real-estate",
     title: "Real Estate",
-    desc: "Builders and developers doing ₹40L–₹5Cr ticket sizes in Tamil Nadu and Karnataka.",
+    desc: "Builders and developers doing ₹40L-₹5Cr ticket sizes in Tamil Nadu and Karnataka.",
   },
   {
     href: "/who-we-help/senior-living",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { useMediaQuery } from "@/lib/motion/useMediaQuery";
 
@@ -25,42 +26,31 @@ const PACKET_STAGES = [
 /**
  * The site's signature element: one continuous path threading down the page,
  * turning to --pulse at "The Return" and curving back up the left gutter.
- * Draw progress is bound to overall scroll depth via stroke-dashoffset.
+ *
+ * Scroll drives the stroke offsets imperatively through Motion values, so the
+ * per-frame work never touches React state. Only the packet label and the
+ * station nodes re-render, and those change a handful of times per page.
  */
 export function LoopPath() {
-  const pathRef = useRef<SVGPathElement>(null);
-  const pulsePathRef = useRef<SVGPathElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const signalRef = useRef<SVGPathElement>(null);
+  const pulseRef = useRef<SVGPathElement>(null);
+  const mobileRef = useRef<SVGPathElement>(null);
   const isMobile = useMediaQuery("(max-width: 767px)");
   const reduced = useReducedMotion();
-  const progress = reduced ? 1 : scrollProgress;
 
-  useEffect(() => {
-    if (reduced) return;
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - doc.clientHeight;
-        setScrollProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
-      });
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, [reduced]);
+  const [stageIndex, setStageIndex] = useState(0);
+  const [nodesLit, setNodesLit] = useState(0);
 
-  useEffect(() => {
-    // The outbound (signal) leg draws over the first 70% of the page; the
-    // return (pulse) leg draws over the last 30%. The 0.15 floor is the slice
-    // the hero load sequence shows before any scrolling happens.
+  const { scrollYProgress } = useScroll();
+
+  // The outbound (signal) leg draws over the first 70% of the page; the return
+  // (pulse) leg draws over the last 30%. The 0.15 floor is the slice the hero
+  // load sequence shows before any scrolling happens.
+  const paint = (progress: number) => {
     const legs: [SVGPathElement | null, number][] = [
-      [pathRef.current, Math.min(1, 0.15 + progress / 0.7)],
-      [pulsePathRef.current, Math.max(0, (progress - 0.7) / 0.3)],
+      [signalRef.current, Math.min(1, 0.15 + progress / 0.7)],
+      [mobileRef.current, Math.min(1, 0.15 + progress / 0.7)],
+      [pulseRef.current, Math.max(0, (progress - 0.7) / 0.3)],
     ];
     for (const [el, drawn] of legs) {
       if (!el) continue;
@@ -70,12 +60,34 @@ export function LoopPath() {
       el.style.strokeDashoffset = `${length * (1 - drawn)}`;
       el.style.opacity = drawn <= 0 ? "0" : "1";
     }
-  }, [progress, isMobile]);
+  };
 
-  const stageIndex = Math.min(
-    PACKET_STAGES.length - 1,
-    Math.floor(progress * PACKET_STAGES.length)
-  );
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (reduced) return;
+    paint(progress);
+    setStageIndex((prev) => {
+      const next = Math.min(
+        PACKET_STAGES.length - 1,
+        Math.floor(progress * PACKET_STAGES.length)
+      );
+      return prev === next ? prev : next;
+    });
+    setNodesLit((prev) => {
+      const next = STATIONS.filter((_, i) => progress > (i + 1) / 6).length;
+      return prev === next ? prev : next;
+    });
+  });
+
+  // Paint the initial frame, and the fully-drawn loop under reduced motion.
+  useEffect(() => {
+    paint(reduced ? 1 : scrollYProgress.get());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduced, isMobile]);
+
+  // Under reduced motion the loop is shown complete rather than scroll-drawn,
+  // so derive the end state instead of storing it.
+  const stage = reduced ? PACKET_STAGES.length - 1 : stageIndex;
+  const lit = reduced ? STATIONS.length : nodesLit;
 
   if (isMobile) {
     return (
@@ -86,7 +98,7 @@ export function LoopPath() {
           className="fixed inset-0 h-full w-full pointer-events-none z-[1] opacity-60"
         >
           <path
-            ref={pathRef}
+            ref={mobileRef}
             d="M 5 0 V 800"
             stroke="var(--signal-bright)"
             strokeWidth={2}
@@ -94,7 +106,7 @@ export function LoopPath() {
             fill="none"
           />
         </svg>
-        <PacketReadout stage={PACKET_STAGES[stageIndex]} />
+        <PacketReadout stage={PACKET_STAGES[stage]} />
       </>
     );
   }
@@ -107,7 +119,7 @@ export function LoopPath() {
         className="fixed inset-0 h-full w-full pointer-events-none z-[1] opacity-60"
       >
         <path
-          ref={pathRef}
+          ref={signalRef}
           d="M 88 0 C 88 90, 74 130, 74 200 S 92 300, 92 380 S 74 470, 74 550 S 90 640, 90 710 L 90 730"
           stroke="var(--signal-bright)"
           strokeWidth={2}
@@ -115,7 +127,7 @@ export function LoopPath() {
           fill="none"
         />
         <path
-          ref={pulsePathRef}
+          ref={pulseRef}
           d="M 90 730 C 90 775, 3 775, 3 700 L 3 40 C 3 8, 40 0, 88 0"
           stroke="var(--pulse)"
           strokeWidth={2}
@@ -129,18 +141,18 @@ export function LoopPath() {
             cy={200 + i * 120}
             r={1.2}
             fill="var(--signal-bright)"
-            // Scale, not `r` — animating the radius attribute repaints; a
+            // Scale, not `r`. Animating the radius attribute repaints; a
             // transform stays on the GPU.
             style={{
               transformBox: "fill-box",
               transformOrigin: "center",
-              transform: progress > (i + 1) / 6 ? "scale(1)" : "scale(0)",
+              transform: i < lit ? "scale(1)" : "scale(0)",
             }}
             className="transition-transform duration-300 ease-out"
           />
         ))}
       </svg>
-      <PacketReadout stage={PACKET_STAGES[stageIndex]} />
+      <PacketReadout stage={PACKET_STAGES[stage]} />
     </>
   );
 }

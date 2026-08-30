@@ -13,7 +13,7 @@ export default function TrackingHealthCheckPage() {
       <PageHero
         eyebrow="TOOLS / TRACKING HEALTH CHECK"
         title="Five questions. One honest score."
-        subtitle="If you can't answer 'yes' with certainty, treat it as a no — most accounts we audit overestimate their own setup."
+        subtitle="If you can't answer 'yes' with certainty, treat it as a no. Most accounts we audit overestimate their own setup."
       />
       <div className="mx-auto max-w-2xl px-6 pb-16">
         <TrackingHealthCheck />

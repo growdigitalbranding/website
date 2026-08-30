@@ -13,7 +13,7 @@ const FAQS = [
   {
     question: "What if we already have an agency?",
     answer:
-      "Most of our clients did. We start with a paid audit — tracking setup, account structure, creative fatigue, follow-up speed — and hand it to you whether or not you switch. If the audit doesn't surface at least ₹50k/month in avoidable waste, we tell you to stay put.",
+      "Most of our clients did. We start with a paid audit covering tracking setup, account structure, creative fatigue and follow-up speed, then hand it to you whether or not you switch. If the audit doesn't surface at least ₹50k/month in avoidable waste, we tell you to stay put.",
   },
   {
     question: "What's the minimum ad budget you'll work with?",
@@ -23,12 +23,12 @@ const FAQS = [
   {
     question: "How fast do results show up?",
     answer:
-      "Tracking and structure fixes show up in CPL within 2–3 weeks. Booking-level movement — the number that actually matters — takes a full sales cycle, typically 30–60 days for the ticket sizes we work with. Anyone promising booking results in week one is lying or measuring the wrong thing.",
+      "Tracking and structure fixes show up in CPL within 2-3 weeks. Booking-level movement, the number that actually matters, takes a full sales cycle, typically 30-60 days for the ticket sizes we work with. Anyone promising booking results in week one is lying or measuring the wrong thing.",
   },
   {
     question: "Do you take a project fee or a percentage?",
     answer:
-      "Flat monthly retainer, tiered by ad spend under management — see /pricing for actual numbers. We don't take a percentage of spend, because that pays us more when we spend your money worse.",
+      "Flat monthly retainer, tiered by ad spend under management. See /pricing for actual numbers. We don't take a percentage of spend, because that pays us more when we spend your money worse.",
   },
   {
     question: "What happens to the tracking setup if we leave?",

@@ -32,6 +32,6 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
   // reducedMotion="user" drops transform animations but keeps opacity, so
   // reveals stay legible instead of vanishing. CSS alone can't do this for
-  // Framer Motion — it writes inline styles the media query never sees.
+  // Framer Motion. It writes inline styles the media query never sees.
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

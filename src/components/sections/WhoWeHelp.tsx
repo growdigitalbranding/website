@@ -5,7 +5,7 @@ const TILES = [
   {
     href: "/who-we-help/real-estate",
     label: "Real Estate",
-    desc: "Project launches, sustenance campaigns, and site-visit economics for ₹40L–₹5Cr inventory.",
+    desc: "Project launches, sustenance campaigns, and site-visit economics for ₹40L-₹5Cr inventory.",
     wide: true,
   },
   {

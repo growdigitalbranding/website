@@ -17,20 +17,20 @@ export default function Page() {
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-10">
         <p className="text-lg text-graphite">
           Senior living has one of the longest and most emotionally loaded sales cycles in
-          high-consideration marketing — the adult children researching the decision are often a
+          high-consideration marketing. The adult children researching the decision are often a
           different demographic, on a different platform, with a different objection set than
           the resident themselves. Creative that speaks only to the resident misses half the
           buying unit; creative that speaks only to the children can feel presumptuous about a
           parent's autonomy.
         </p>
         <p className="text-lg text-graphite">
-          Our approach runs two creative tracks against the same campaign — one addressed to
+          Our approach runs two creative tracks against the same campaign. One addressed to
           adult children researching options for a parent, one addressed to prospective
-          residents evaluating independence and community directly — and lets engagement data
+          residents evaluating independence and community directly, and lets engagement data
           tell us which is working for which audience segment, rather than guessing.
         </p>
         <p className="text-lg text-graphite">
-          Follow-up here isn't speed-to-lead in the same aggressive sense as real estate — a
+          Follow-up here isn't speed-to-lead in the same aggressive sense as real estate. A
           60-second WhatsApp ping can read as pushy on a decision this sensitive. We tune the
           qualification flow and cadence specifically for this vertical, still automated, but
           paced differently.

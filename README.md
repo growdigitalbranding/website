@@ -43,3 +43,19 @@ interactivity.
 
 Color, timing, and easing tokens live in `src/styles/tokens.css`, mapped into Tailwind via
 `@theme inline` in `src/app/globals.css` (e.g. `bg-paper`, `text-signal`, `font-mono`).
+
+### The two greens
+
+The brand lime is too light to carry text on a light ground (1.8:1 against `--paper`), so the
+accent is split into two tokens with **non-interchangeable** roles:
+
+| Token | Value | Use it for | Never |
+|---|---|---|---|
+| `--signal` | `#147700` | Type, links, focus rings, borders, station numbers. 5.0:1 on `--paper`, 4.6:1 on `--paper-2`, 3.1:1 on `--ink`. | — |
+| `--signal-bright` | `#8DC63F` | Button/bar **fills** (always with `text-ink`, 8.8:1), accents on dark grounds, the loop stroke. | As text on `--paper` or `--paper-2` — it fails AA badly |
+
+`--pulse` (`#FF8A3D`) stays semantic: it marks only the return leg of the loop. `--flag`
+(`#C8102E`) is reserved for negative deltas and errors.
+
+Re-run the contrast check after changing any of these — every pairing above is AA or better,
+and the split only works if that stays true.

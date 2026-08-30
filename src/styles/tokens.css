@@ -5,7 +5,16 @@
   --mist: #d3d6cd;
   --ink: #14171a;
   --graphite: #464d57; /* darkened from spec #5C6470 to clear 4.5:1 on --paper-2 */
-  --signal: #1b2aff;
+  /* Brand green, split into two roles by contrast.
+     --signal        text, links, focus rings, borders, station numbers.
+                     5.0:1 on --paper, 4.6:1 on the darker --paper-2 band,
+                     and 3.1:1 on --ink — so it clears AA as type on both
+                     light grounds and as a UI outline on any of the three.
+     --signal-bright the logo lime. 1.8:1 on --paper, so it must NEVER carry
+                     text on a light ground. Use it as a fill (with --ink
+                     text, 8.8:1), as an accent on dark, or as a stroke. */
+  --signal: #147700;
+  --signal-bright: #8dc63f;
   --pulse: #ff8a3d;
   --flag: #c8102e;
 

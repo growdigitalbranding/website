@@ -57,7 +57,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal text-paper text-sm font-medium hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal-bright text-ink text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Book a call
           </Link>
@@ -93,7 +93,7 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal text-paper font-medium"
+              className="mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium"
             >
               Book a call
             </Link>

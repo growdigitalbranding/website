@@ -30,7 +30,7 @@ export function CTABand() {
         </p>
         <a
           href="/contact"
-          className="inline-flex items-center h-12 px-7 rounded-full bg-signal text-paper font-medium hover:opacity-90 transition-opacity w-fit"
+          className="inline-flex items-center h-12 px-7 rounded-full bg-signal-bright text-ink font-medium hover:opacity-90 transition-opacity w-fit"
         >
           Book a 30-min call
         </a>

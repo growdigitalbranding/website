@@ -88,7 +88,7 @@ export function LoopPath() {
           <path
             ref={pathRef}
             d="M 5 0 V 800"
-            stroke="var(--signal)"
+            stroke="var(--signal-bright)"
             strokeWidth={2}
             vectorEffect="non-scaling-stroke"
             fill="none"
@@ -109,7 +109,7 @@ export function LoopPath() {
         <path
           ref={pathRef}
           d="M 88 0 C 88 90, 74 130, 74 200 S 92 300, 92 380 S 74 470, 74 550 S 90 640, 90 710 L 90 730"
-          stroke="var(--signal)"
+          stroke="var(--signal-bright)"
           strokeWidth={2}
           vectorEffect="non-scaling-stroke"
           fill="none"
@@ -128,7 +128,7 @@ export function LoopPath() {
             cx={i % 2 === 0 ? 74 : 92}
             cy={200 + i * 120}
             r={1.2}
-            fill="var(--signal)"
+            fill="var(--signal-bright)"
             // Scale, not `r` — animating the radius attribute repaints; a
             // transform stays on the GPU.
             style={{

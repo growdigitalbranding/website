@@ -22,7 +22,7 @@ export function StickyMobileCTA() {
   if (dismissed || !visible) return null;
 
   return (
-    <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 h-14 bg-signal text-paper flex items-center justify-between px-4">
+    <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 h-14 bg-signal-bright text-ink flex items-center justify-between px-4">
       <Link href="/contact" className="font-medium flex-1">
         Book a 30-min call →
       </Link>

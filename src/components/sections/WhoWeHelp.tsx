@@ -26,7 +26,6 @@ export function WhoWeHelp() {
   return (
     <section className="py-20 md:py-28 bg-paper-2">
       <div className="mx-auto max-w-[1440px] px-6">
-        <p className="mono-label text-graphite mb-3">WHO WE HELP</p>
         <h2 className="text-h2 font-display font-bold mb-12 max-w-xl">
           Built for high-consideration purchases.
         </h2>

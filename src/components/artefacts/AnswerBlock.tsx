@@ -13,7 +13,7 @@ const PARTS: { text: string; brand?: boolean }[] = [
 export function AnswerBlock() {
   return (
     <figure className="m-0">
-      <div className="rounded-xl border border-mist bg-paper p-5">
+      <div className="rounded-2xl border border-mist bg-paper p-5">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite mb-3">
           Assistant answer
         </p>

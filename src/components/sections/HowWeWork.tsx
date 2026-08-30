@@ -11,7 +11,6 @@ export function HowWeWork() {
   return (
     <section className="py-20 md:py-28 bg-paper">
       <div className="mx-auto max-w-[1440px] px-6">
-        <p className="mono-label text-graphite mb-3">HOW WE WORK</p>
         <h2 className="text-h2 font-display font-bold mb-12 max-w-xl">
           Four steps. No mystery in between.
         </h2>

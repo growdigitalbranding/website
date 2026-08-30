@@ -20,7 +20,7 @@ export function TrackingHealthCheck() {
         {QUESTIONS.map((q, i) => (
           <label
             key={q}
-            className="flex items-start gap-3 border border-mist rounded-xl p-4 cursor-pointer"
+            className="flex items-start gap-3 border border-mist rounded-2xl p-4 cursor-pointer"
           >
             <input
               type="checkbox"

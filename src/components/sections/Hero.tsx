@@ -2,7 +2,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid-overlay" />
-      <div className="mx-auto max-w-[1440px] px-6 pt-20 pb-16 md:pt-28 md:pb-24">
+      <div className="mx-auto max-w-[1440px] px-6 pt-16 pb-14 md:pt-24 md:pb-20">
         <p className="mono-label text-graphite mb-6 hero-in" style={{ animationDelay: "120ms" }}>
           PERFORMANCE MARKETING FOR BUILDERS &amp; DEVELOPERS
         </p>
@@ -42,17 +42,6 @@ export function Hero() {
           </a>
         </div>
 
-        <div
-          className="mt-16 pt-6 border-t border-mist flex flex-wrap gap-x-10 gap-y-3 hero-in"
-          style={{ animationDelay: "1150ms" }}
-        >
-          <Metric value="₹1,240" label="BLENDED CPL" />
-          <Metric value="3.1%" label="LEAD → BOOKING" />
-          <Metric value="41 DAYS" label="AVG CYCLE" />
-        </div>
-        <p className="mt-3 text-xs text-graphite hero-in" style={{ animationDelay: "1150ms" }}>
-          Portfolio blend across active accounts, not a single-client cherry-pick.
-        </p>
       </div>
 
       <style>{`
@@ -67,14 +56,5 @@ export function Hero() {
         }
       `}</style>
     </section>
-  );
-}
-
-function Metric({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <p className="font-mono text-xl">{value}</p>
-      <p className="mono-label text-graphite">{label}</p>
-    </div>
   );
 }

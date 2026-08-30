@@ -13,7 +13,7 @@ const MESSAGES = [
 export function WhatsAppThread() {
   return (
     <figure className="m-0">
-      <div className="rounded-xl border border-mist bg-paper p-4 flex flex-col gap-3">
+      <div className="rounded-2xl border border-mist bg-paper p-4 flex flex-col gap-3">
         {MESSAGES.map((m, i) => (
           <motion.div
             key={i}

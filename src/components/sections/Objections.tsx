@@ -49,7 +49,6 @@ export function Objections() {
         }}
       />
       <div className="mx-auto max-w-[1440px] px-6">
-        <p className="mono-label text-graphite mb-3">OBJECTIONS</p>
         <h2 className="text-h2 font-display font-bold mb-12 max-w-xl">
           The questions builders actually ask.
         </h2>

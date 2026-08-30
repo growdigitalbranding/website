@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { ProofStrip } from "@/components/sections/ProofStrip";
 import { ClientStrip } from "@/components/sections/ClientStrip";
 import { ProblemScrub } from "@/components/motion/PinnedScrub";
 import { Stations } from "@/components/sections/Stations";
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ProofStrip />
       <ClientStrip />
       <div id="the-problem">
         <ProblemScrub />

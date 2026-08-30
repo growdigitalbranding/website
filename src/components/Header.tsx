@@ -62,7 +62,7 @@ export function Header() {
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
           </button>
         </div>
       </div>

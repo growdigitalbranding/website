@@ -10,7 +10,7 @@ export function PageHero({
   subtitle?: ReactNode;
 }) {
   return (
-    <section className="paper-noise relative">
+    <section className="relative">
       <div className="grid-overlay" />
       <div className="mx-auto max-w-[1440px] px-6 pt-16 pb-14 md:pt-24 md:pb-20">
         <p className="mono-label text-graphite mb-5">{eyebrow}</p>

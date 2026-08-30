@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="relative paper-noise overflow-hidden">
+    <section className="relative overflow-hidden">
       <div className="grid-overlay" />
       <div className="mx-auto max-w-[1440px] px-6 pt-20 pb-16 md:pt-28 md:pb-24">
         <p className="mono-label text-graphite mb-6 hero-in" style={{ animationDelay: "120ms" }}>

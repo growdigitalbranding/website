@@ -27,7 +27,7 @@ export function Marquee({ items }: { items: ReactNode[] }) {
         aria-label={paused ? "Play logo marquee" : "Pause logo marquee"}
         className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full border border-mist bg-paper text-graphite hover:text-ink"
       >
-        {paused ? <Play size={14} /> : <Pause size={14} />}
+        {paused ? <Play size={14} strokeWidth={1.5} /> : <Pause size={14} strokeWidth={1.5} />}
       </button>
     </div>
   );

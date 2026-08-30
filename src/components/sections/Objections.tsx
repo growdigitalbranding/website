@@ -68,6 +68,7 @@ export function Objections() {
                   <span className="text-lg font-medium font-display">{faq.question}</span>
                   <ChevronDown
                     size={20}
+                    strokeWidth={1.5}
                     className={`shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-signal" : "text-graphite"}`}
                   />
                 </button>

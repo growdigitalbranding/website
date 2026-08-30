@@ -34,6 +34,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <LenisProvider>
+          <div className="grain" aria-hidden="true" />
           <LoopPath />
           <Header />
           <main className="flex-1 relative z-[2]">{children}</main>

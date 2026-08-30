@@ -22,7 +22,7 @@ export function StickyMobileCTA() {
         aria-label="Dismiss"
         className="w-11 h-11 flex items-center justify-center shrink-0"
       >
-        <X size={18} />
+        <X size={18} strokeWidth={1.5} />
       </button>
     </div>
   );

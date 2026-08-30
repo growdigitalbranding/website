@@ -59,7 +59,7 @@ export function ProblemScrub() {
   }
 
   return (
-    <div ref={containerRef} className="relative h-screen bg-ink overflow-hidden">
+    <div ref={containerRef} className="relative min-h-[100dvh] bg-ink overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="max-w-3xl text-center">
           <p className="mono-label text-pulse mb-6">THE PROBLEM</p>

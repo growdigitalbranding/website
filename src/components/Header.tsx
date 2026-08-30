@@ -53,7 +53,7 @@ export function Header() {
             href="/contact"
             className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal-bright text-ink text-sm font-medium hover:opacity-90 transition-opacity"
           >
-            Book a call
+            Book a 30-min call
           </Link>
           <button
             type="button"
@@ -89,7 +89,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium"
             >
-              Book a call
+              Book a 30-min call
             </Link>
           </nav>
         </div>

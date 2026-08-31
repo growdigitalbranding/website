@@ -32,7 +32,17 @@ export function FloatingNav() {
 
   return (
     <>
-      {shown && <div className="scroll-edge" aria-hidden="true" />}
+      {/* Always mounted and faded, not conditionally rendered. Mounting it
+          popped a gradient band in on the frame the nav started moving, which
+          is the one moment the eye is already there. */}
+      <div
+        className="scroll-edge"
+        aria-hidden="true"
+        style={{
+          opacity: shown ? 1 : 0,
+          transition: "opacity 280ms var(--ease-out)",
+        }}
+      />
       <motion.div
         initial={false}
         animate={
@@ -40,7 +50,10 @@ export function FloatingNav() {
             ? { y: 0, scale: 1, opacity: 1, pointerEvents: "auto" }
             : { y: -16, scale: 0.96, opacity: 0, pointerEvents: "none" }
         }
-        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        // Critically damped, no bounce: nothing threw this, so nothing should
+        // overshoot. 280ms rather than 400 — chrome that reappears on every
+        // scroll past the hero cannot afford to feel like an event.
+        transition={{ type: "spring", bounce: 0, duration: 0.28 }}
         style={{ transformOrigin: "top center" }}
         className="fixed top-3 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-[1100px]"
       >
@@ -62,7 +75,7 @@ export function FloatingNav() {
                 key={n.href}
                 href={n.href}
                 tabIndex={shown ? undefined : -1}
-                className="nav-link text-ink font-medium uppercase tracking-wider text-[0.8rem]"
+                className="nav-link press text-ink font-medium uppercase tracking-wider text-[0.8rem]"
               >
                 {n.label}
               </Link>

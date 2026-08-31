@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useMotionTemplate, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { useMediaQuery } from "@/lib/motion/useMediaQuery";
 
@@ -90,13 +90,21 @@ function Row({
   portrait?: boolean;
   fine: boolean;
 }) {
+  // Motion's `x` shorthand is not hardware accelerated: it writes through
+  // requestAnimationFrame on the main thread. A full transform string is. With
+  // 63 tiles moving on scroll while the page is still loading fonts and
+  // images, that is the difference between smooth and stuttering.
+  const transform = useMotionTemplate`translate3d(${x ?? 0}px, 0, 0)`;
   // Tripled for seamless travel in either direction.
   const track = [...tiles, ...tiles, ...tiles];
   const w = portrait ? 260 : 300;
   const h = portrait ? 325 : 300;
 
   return (
-    <motion.div style={{ x }} className="flex gap-3 w-max will-change-transform">
+    <motion.div
+      style={x ? { transform } : undefined}
+      className="flex gap-3 w-max will-change-transform"
+    >
       {track.map((t, i) => (
         <figure
           key={`${t.id}-${i}`}

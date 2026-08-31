@@ -62,7 +62,7 @@ export function Objections() {
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between gap-4 py-6 text-left"
+                  className="faq-row w-full flex items-center justify-between gap-4 py-6 text-left"
                 >
                   <span className="text-lg font-medium font-display">{faq.question}</span>
                   <ChevronDown

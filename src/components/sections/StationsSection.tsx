@@ -45,8 +45,10 @@ export function StationsSection() {
       </FadeIn>
 
       <div className="max-w-5xl mx-auto">
+        {/* 60ms stagger, not 100: five rows at 100ms leave the last one waiting
+            half a second after the first, which reads as the page being slow. */}
         {STATIONS.map((s, i) => (
-          <FadeIn key={s.n} delay={i * 0.1}>
+          <FadeIn key={s.n} delay={i * 0.06}>
             <div
               className="station-row flex items-start gap-6 sm:gap-10 py-8 sm:py-10 md:py-12"
               style={{

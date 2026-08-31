@@ -24,7 +24,7 @@ export function AnswerBlock() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: i * 0.5, ease: [0.23, 1, 0.32, 1] }}
               className={part.brand ? "text-signal font-medium" : undefined}
             >
               {part.text}

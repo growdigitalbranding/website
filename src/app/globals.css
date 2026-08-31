@@ -118,14 +118,20 @@ body {
   }
 }
 
+/* Reduced motion means gentler, not none. Killing every transition also kills
+   the opacity and colour changes that carry meaning, which leaves state changes
+   snapping between two frames with nothing to explain them. Movement goes;
+   fades and colour stay. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+    transition-property: opacity, color, background-color, border-color, fill,
+      stroke, box-shadow !important;
+    transition-duration: 200ms !important;
   }
 }
 
@@ -162,7 +168,7 @@ body {
 /* Semi-transparent shadow, never a solid border. */
 .primary-cta {
   box-shadow: 0 1px 2px rgba(20, 23, 26, 0.12), 0 8px 24px rgba(20, 119, 0, 0.18);
-  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .primary-cta:hover {
@@ -170,16 +176,14 @@ body {
     box-shadow: 0 2px 4px rgba(20, 23, 26, 0.14), 0 14px 34px rgba(20, 119, 0, 0.26);
   }
 }
-.primary-cta:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(20, 23, 26, 0.12);
-  transition-duration: 90ms;
-}
 
 .ghost-cta {
   border: 1px solid rgba(20, 23, 26, 0.2);
   color: var(--ink);
-  transition: color 180ms ease-out, border-color 180ms ease-out, background-color 180ms ease-out;
+  /* transform is in the list because .ghost-cta:active scales it. Without it
+     the press and the release both snap between two frames. */
+  transition: color 180ms var(--ease-out), border-color 180ms var(--ease-out),
+    background-color 180ms var(--ease-out), transform 160ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .ghost-cta:hover {
@@ -192,7 +196,7 @@ body {
 /* Nav underline grows from the left rather than fading. */
 .nav-link {
   position: relative;
-  transition: color 200ms ease-out;
+  transition: color 200ms var(--ease-out);
 }
 .nav-link::after {
   content: "";
@@ -204,7 +208,7 @@ body {
   background: var(--signal);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 180ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover { color: var(--signal); }
@@ -216,7 +220,7 @@ body {
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--mist);
-  transition: border-color 180ms ease-out;
+  transition: border-color 180ms var(--ease-out);
   outline: none;
 }
 .field-input:focus {
@@ -225,10 +229,10 @@ body {
 
 /* Station rows: number lifts and the row shifts. No fill, no scale. */
 .station-row {
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 200ms var(--ease-out);
 }
 .station-num {
-  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 200ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .station-row:hover { transform: translateX(8px); }
@@ -329,8 +333,9 @@ body {
   mask-image: linear-gradient(to bottom, #000 40%, transparent);
 }
 
-/* Response: feedback belongs on the press, and it has to be instant. 100ms is
-   the outer bound before directness falls off. */
+/* Response: feedback belongs on the press, and it has to be instant. The press
+   is fast because the system is answering; nothing here is a decision the user
+   is still making. */
 .primary-cta:active,
 .ghost-cta:active,
 .press:active {
@@ -338,14 +343,12 @@ body {
   transition-duration: 90ms;
 }
 .press {
-  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 160ms var(--ease-out);
 }
 
 /* Tiles lift toward the cursor rather than only revealing a caption. */
 .tile {
-  transition:
-    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   box-shadow: var(--e1), var(--edge-light);
 }
 @media (hover: hover) and (pointer: fine) {
@@ -372,4 +375,15 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .tile:hover { transform: none; }
+}
+
+/* A full-bleed row cannot scale on press: at this width 3% moves its edges by
+   about 15px, which reads as the layout shifting rather than the button
+   answering. It tints instead. */
+.faq-row {
+  transition: background-color 160ms var(--ease-out);
+}
+.faq-row:active {
+  background-color: rgba(20, 23, 26, 0.04);
+  transition-duration: 60ms;
 }

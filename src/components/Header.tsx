@@ -41,7 +41,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="mono-label text-graphite hover:text-ink transition-colors"
+              className="mono-label press text-graphite hover:text-ink transition-colors"
             >
               {item.label}
             </Link>
@@ -51,7 +51,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal-bright text-ink text-sm font-medium hover:opacity-90 transition-opacity"
+            className="primary-cta hidden sm:inline-flex items-center h-11 px-5 rounded-full bg-signal-bright text-ink text-sm font-medium"
           >
             Book a 30-min call
           </Link>
@@ -87,7 +87,7 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium"
+              className="primary-cta mt-6 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium"
             >
               Book a 30-min call
             </Link>

@@ -30,7 +30,7 @@ export function Hero() {
         <div className="flex flex-wrap gap-4 mt-10 hero-scale" style={{ animationDelay: "860ms" }}>
           <a
             href="/contact"
-            className="inline-flex items-center h-12 px-7 rounded-full bg-signal-bright text-ink font-medium hover:opacity-90 transition-opacity"
+            className="primary-cta inline-flex items-center h-12 px-7 rounded-full bg-signal-bright text-ink font-medium"
           >
             Book a 30-min call
           </a>

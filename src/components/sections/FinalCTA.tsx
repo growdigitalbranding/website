@@ -65,7 +65,7 @@ export function FinalCTA() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-2 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium hover:opacity-90 transition-opacity disabled:opacity-60"
+                className="primary-cta mt-2 inline-flex items-center justify-center h-12 rounded-full bg-signal-bright text-ink font-medium disabled:opacity-60"
               >
                 {status === "loading" ? "Sending…" : "Book a 30-min call"}
               </button>

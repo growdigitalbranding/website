@@ -146,9 +146,13 @@ export function LoopPath() {
             style={{
               transformBox: "fill-box",
               transformOrigin: "center",
-              transform: i < lit ? "scale(1)" : "scale(0)",
+              // Not scale(0): an element that appears out of nothing reads as
+              // a pop rather than a node lighting up. It keeps a shape and
+              // fades.
+              transform: i < lit ? "scale(1)" : "scale(0.4)",
+              opacity: i < lit ? 1 : 0,
             }}
-            className="transition-transform duration-300 ease-out"
+            className="transition-[transform,opacity] duration-300 ease-out"
           />
         ))}
       </svg>

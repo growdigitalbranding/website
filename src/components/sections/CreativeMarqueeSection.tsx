@@ -100,7 +100,7 @@ function Row({
       {track.map((t, i) => (
         <figure
           key={`${t.id}-${i}`}
-          className="group relative m-0 shrink-0 rounded-xl overflow-hidden border border-mist bg-paper-2"
+          className="tile group relative m-0 shrink-0 rounded-xl overflow-hidden border border-ink/[0.07] bg-paper-2"
           style={{ width: w, height: h }}
         >
           {HAS_ASSETS ? (
@@ -114,7 +114,11 @@ function Row({
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="w-full h-full flex items-end p-3 bg-mist/50">
+            // Still a --mist block naming the file, per the asset note, but
+            // built as a spec frame rather than an empty div: crop marks, a
+            // faint hatch, and the angle it is reserved for. No stock imagery.
+            <div className="slot w-full h-full flex flex-col justify-between p-4">
+              <span className="mono-label text-graphite/70">{t.angle}</span>
               <span className="mono-label text-graphite">
                 {t.id}.webp · {portrait ? "4:5" : "1:1"}
               </span>

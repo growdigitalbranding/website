@@ -37,7 +37,7 @@ export function StationsSection() {
     >
       <FadeIn y={40}>
         <h2
-          className="font-display font-extrabold lowercase text-center leading-none tracking-tight text-paper mb-16 sm:mb-20 md:mb-28"
+          className="font-display font-extrabold lowercase text-center leading-none track-display text-paper mb-16 sm:mb-20 md:mb-28"
           style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
         >
           what we run

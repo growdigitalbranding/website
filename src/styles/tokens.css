@@ -27,3 +27,34 @@
   --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
   --ease-signal: cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+/* --- Depth, light and optical type ---------------------------------------
+   The palette above is a flat one: three greys a hair apart, hairline borders,
+   no light source. On a page whose image slots are still placeholders that
+   reads as unfinished rather than restrained. These tokens give the paper a
+   direction of light and a real elevation scale, without adding a colour. */
+:root {
+  /* Elevation. Two shadows per level: a tight contact shadow that anchors the
+     edge, and a wide ambient one that gives the surface its height. Both are
+     tinted with the ink hue rather than pure black, so they sit on paper
+     instead of dirtying it. */
+  --e1: 0 1px 2px rgba(20, 23, 26, 0.05), 0 2px 8px rgba(20, 23, 26, 0.04);
+  --e2: 0 1px 2px rgba(20, 23, 26, 0.06), 0 8px 24px rgba(20, 23, 26, 0.06);
+  --e3: 0 2px 4px rgba(20, 23, 26, 0.06), 0 18px 50px rgba(20, 23, 26, 0.09);
+
+  /* The light comes from above, so every raised surface catches it on its top
+     edge and loses it at the bottom. One inset pair, used everywhere. */
+  --edge-light: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --edge-dark: inset 0 -1px 0 rgba(20, 23, 26, 0.05);
+
+  /* Optical tracking. Letter-spacing is size-specific: large type reads too
+     loose at the tracking that small type needs, so it tightens as it grows. */
+  --track-display: -0.045em;
+  --track-h2: -0.03em;
+  --track-body: 0em;
+  --track-mono: 0.14em;
+
+  /* Spring feel, in Apple's two parameters rather than mass/stiffness. */
+  --response-fast: 0.22s;
+  --response-base: 0.4s;
+}

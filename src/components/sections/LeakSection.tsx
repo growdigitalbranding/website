@@ -56,7 +56,7 @@ export function LeakSection() {
       <div className="relative z-10 flex flex-col items-center gap-10 sm:gap-14 md:gap-16 w-full">
         <FadeIn y={40} delay={0}>
           <h2
-            className="display-grad font-display font-extrabold lowercase leading-none tracking-tight text-center"
+            className="display-grad font-display font-extrabold lowercase leading-none track-display text-center"
             style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
           >
             the leak

@@ -80,7 +80,7 @@ export function ProofSection() {
     >
       <FadeIn y={40}>
         <h2
-          className="display-grad font-display font-extrabold lowercase text-center leading-none tracking-tight mb-16 sm:mb-20"
+          className="display-grad font-display font-extrabold lowercase text-center leading-none track-display mb-16 sm:mb-20"
           style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
         >
           proof
@@ -115,7 +115,7 @@ function CaseCard({ data, index, total }: { data: Case; index: number; total: nu
           scale: reduced ? 1 : scale,
           top: `${index * 28}px`,
         }}
-        className="relative w-full rounded-[32px] sm:rounded-[40px] md:rounded-[48px] border border-mist bg-paper-2 p-4 sm:p-6 md:p-8"
+        className="surface-raised relative w-full rounded-[32px] sm:rounded-[40px] md:rounded-[48px] p-4 sm:p-6 md:p-8"
       >
         <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex items-start gap-4 sm:gap-6 min-w-0">
@@ -175,7 +175,7 @@ function CaseCard({ data, index, total }: { data: Case; index: number; total: nu
 function Shot({ id, h }: { id: string; h: string }) {
   return (
     <div
-      className="rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden border border-mist bg-mist/50 flex items-end p-3"
+      className="slot relative rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden flex items-end p-4"
       style={{ height: h }}
     >
       {HAS_ASSETS ? (

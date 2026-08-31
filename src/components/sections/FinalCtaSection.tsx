@@ -65,7 +65,7 @@ export function FinalCtaSection() {
 
         <FadeIn y={40} delay={0.05}>
           <h2
-            className="display-grad font-display font-extrabold lowercase leading-none tracking-tight"
+            className="display-grad font-display font-extrabold lowercase leading-none track-display"
             style={{ fontSize: "clamp(2.5rem, 8vw, 96px)" }}
           >
             let&apos;s close the loop

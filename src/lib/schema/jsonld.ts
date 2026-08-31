@@ -1,3 +1,5 @@
+import { EMAIL, PHONE } from "@/lib/contact";
+
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -6,6 +8,12 @@ export const organizationJsonLd = {
   description:
     "Performance marketing for high-consideration purchases. Real estate first, then senior living and interiors.",
   areaServed: ["Tamil Nadu", "Karnataka"],
+  // Station 04 is Answer Visibility, and entity consistency is the first
+  // thing it asks for: an assistant can only cite a contact it can find in
+  // structured form. These come from the same constants the site renders, so
+  // the markup and the page can never disagree.
+  telephone: PHONE,
+  email: EMAIL,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Coimbatore",

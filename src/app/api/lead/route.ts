@@ -1,19 +1,20 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
  * Lead intake.
  *
- * The contract this endpoint has to honour: the form tells the visitor "we
- * reply on WhatsApp inside one working hour". So a 200 here is a promise that
- * a human will see this lead. It must never be returned unless the lead
- * actually left this server.
+ * Order matters here. The lead is written to the database FIRST, then
+ * forwarded to Make. Previously Make was the only destination, so any outage
+ * on their side lost the enquiry permanently. Now the database is the system
+ * of record and Make is a notification: the scenario can fail, be
+ * misconfigured, or be swapped out, and the lead is still in the dashboard for
+ * someone to work.
  *
- * The previous version logged to the console and returned ok:true regardless,
- * which meant every submission showed a success message while the lead went
- * nowhere. On a lead generation agency's own site that is the worst possible
- * failure, because it is silent on both ends: the visitor believes they are
- * booked, and nobody is told they are not.
+ * That also changes what a 200 means. It is returned once the lead is stored
+ * durably, because at that point the promise the form makes — that a human
+ * will see this — is one we can keep. Only a failure to store is a 502.
  */
 
 const leadSchema = z.object({
@@ -23,9 +24,6 @@ const leadSchema = z.object({
     .trim()
     .regex(/^[0-9+\s-]{7,16}$/, "Enter a valid phone number"),
   project: z.string().trim().min(1).max(200),
-  // Which form this came from, so Make can route homepage and contact-page
-  // leads differently. Optional: an older client that does not send it still
-  // works.
   source: z.string().trim().max(64).optional(),
 });
 
@@ -43,7 +41,7 @@ async function postToMake(url: string, payload: unknown, attempt = 1): Promise<R
     });
     // 4xx means the scenario rejected the shape of the payload. Retrying sends
     // the identical body and gets the identical answer, so it only delays the
-    // visitor's error message.
+    // visitor's response.
     if (!res.ok && res.status >= 500 && attempt === 1) {
       return postToMake(url, payload, 2);
     }
@@ -65,41 +63,86 @@ export async function POST(request: Request) {
     );
   }
 
-  const webhook = process.env.MAKE_WEBHOOK_URL;
-
-  const payload = {
+  const lead = {
     ...parsed.data,
     source: parsed.data.source ?? "unknown",
-    submittedAt: new Date().toISOString(),
+    submitted_at: new Date().toISOString(),
   };
 
-  // A missing webhook is a deployment error, not a visitor error. Fail loudly
-  // rather than accepting a lead there is nowhere to put.
+  const db = createAdminClient();
+
+  if (!db) {
+    console.error("[lead] Supabase is not configured. Lead not stored:", lead);
+    return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+  }
+
+  const { data: stored, error: insertError } = await db
+    .from("leads")
+    .insert(lead)
+    .select("id")
+    .single();
+
+  if (insertError || !stored) {
+    // This log is the only remaining copy of the enquiry, so it carries the
+    // whole lead rather than just the error.
+    console.error("[lead] Insert failed. Lead not stored:", lead, insertError);
+    return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+  }
+
+  // Stored. From here the visitor is answered regardless of what Make does.
+  await forwardToMake(db, stored.id, lead);
+
+  return NextResponse.json({ ok: true });
+}
+
+type Db = NonNullable<ReturnType<typeof createAdminClient>>;
+
+/**
+ * Notify Make and record the outcome on the lead, so the dashboard can show
+ * which enquiries reached the automation and which are sitting there needing a
+ * manual nudge.
+ *
+ * The URL comes from the settings table, which an admin edits in the
+ * dashboard, and falls back to the env var so an existing deployment keeps
+ * working with nothing changed.
+ */
+async function forwardToMake(
+  db: Db,
+  leadId: string,
+  lead: Record<string, unknown>
+) {
+  const { data: setting } = await db
+    .from("settings")
+    .select("value")
+    .eq("key", "make_webhook_url")
+    .maybeSingle();
+
+  const webhook = setting?.value?.trim() || process.env.MAKE_WEBHOOK_URL?.trim();
+
+  const fail = async (message: string) => {
+    console.error(`[lead] ${leadId}: ${message}`);
+    await db
+      .from("leads")
+      .update({ delivery_status: "failed", delivery_error: message })
+      .eq("id", leadId);
+  };
+
   if (!webhook) {
-    console.error("[lead] MAKE_WEBHOOK_URL is not set. Lead not delivered:", payload);
-    return NextResponse.json(
-      { ok: false, error: "delivery_failed" },
-      { status: 502 }
-    );
+    await fail("No Make webhook configured");
+    return;
   }
 
   try {
-    const res = await postToMake(webhook, payload);
-
+    const res = await postToMake(webhook, { ...lead, leadId });
     if (!res.ok) {
-      // Log the whole lead, not just the status. This log is the only copy
-      // that exists once delivery has failed, so it is what lets someone
-      // recover the enquiry by hand.
-      console.error(
-        `[lead] Make webhook returned ${res.status}. Lead not delivered:`,
-        payload
-      );
-      return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+      await fail(`Make returned ${res.status}`);
+      return;
     }
-
-    return NextResponse.json({ ok: true });
+    await db
+      .from("leads")
+      .update({ delivery_status: "delivered", delivery_error: null })
+      .eq("id", leadId);
   } catch (err) {
-    console.error("[lead] Make webhook unreachable. Lead not delivered:", payload, err);
-    return NextResponse.json({ ok: false, error: "delivery_failed" }, { status: 502 });
+    await fail(err instanceof Error ? err.message : "Webhook unreachable");
   }
 }

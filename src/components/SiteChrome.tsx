@@ -15,6 +15,11 @@ export function SiteChrome({ slot }: { slot: "top" | "bottom" }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // The dashboard is a different product with a different job. Giving it the
+  // marketing nav, the scroll-drawn loop gutter and the packet readout would
+  // put "Book a 30-min call" above a list of people who already did.
+  if (pathname.startsWith("/admin")) return null;
+
   if (slot === "top") {
     if (isHome) return null;
     return (

@@ -1,14 +1,20 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { MotionConfig } from "framer-motion";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 export function LenisProvider({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
+  const pathname = usePathname();
+  // Smooth scroll is a narrative device for the marketing pages. On a working
+  // list it fights the user: hitting End or dragging the scrollbar to find a
+  // lead should land immediately, not glide.
+  const isAdmin = pathname.startsWith("/admin");
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || isAdmin) return;
     let lenis: import("lenis").default | undefined;
     let raf = 0;
     let cancelled = false;
@@ -28,7 +34,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       cancelAnimationFrame(raf);
       lenis?.destroy();
     };
-  }, [reduced]);
+  }, [reduced, isAdmin]);
 
   // reducedMotion="user" drops transform animations but keeps opacity, so
   // reveals stay legible instead of vanishing. CSS alone can't do this for

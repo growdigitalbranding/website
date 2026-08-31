@@ -3,6 +3,7 @@ import "./globals.css";
 import { bricolage, interTight, jetbrainsMono } from "@/lib/fonts";
 import { LenisProvider } from "@/components/motion/LenisProvider";
 import { SiteChrome } from "@/components/SiteChrome";
+import { Grain } from "@/components/Grain";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { organizationJsonLd } from "@/lib/schema/jsonld";
 
@@ -32,7 +33,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <LenisProvider>
-          <div className="grain" aria-hidden="true" />
+          <Grain />
           <SiteChrome slot="top" />
           <main className="flex-1 relative z-[2]">{children}</main>
           <SiteChrome slot="bottom" />

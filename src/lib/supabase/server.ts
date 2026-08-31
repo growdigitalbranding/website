@@ -6,6 +6,16 @@ import { cookies } from "next/headers";
  * signed-in user. Every query it makes is subject to RLS, which is what keeps
  * a telecaller out of the settings table.
  */
+export function isSupabaseConfigured() {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
+}
+
+/**
+ * Throws if the environment is not configured. Callers that can run before
+ * setup is finished must check isSupabaseConfigured() first.
+ */
 export async function createClient() {
   const cookieStore = await cookies();
 

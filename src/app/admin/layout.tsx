@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { SignOutButton } from "./SignOutButton";
 import type { Profile } from "@/lib/supabase/types";
 
@@ -12,6 +12,19 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  // /admin/setup lives inside this layout and exists precisely for the case
+  // where Supabase is not configured yet. Constructing a client here first
+  // threw before that page could render, so the one screen meant to explain
+  // the missing configuration was the one screen the missing configuration
+  // broke. Bail out to a bare shell instead: there is no session to read.
+  if (!isSupabaseConfigured()) {
+    return (
+      <div className="min-h-screen bg-paper-2">
+        <main className="mx-auto max-w-6xl px-5 sm:px-8 py-8">{children}</main>
+      </div>
+    );
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

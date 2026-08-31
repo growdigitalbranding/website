@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { EMAIL, PHONE, WHATSAPP_URL } from "@/lib/contact";
+import { getGtmContainerId } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -16,6 +17,12 @@ export const metadata: Metadata = {
  * existed. It also claimed GA4, Meta CAPI, Google Ads and a cookie banner,
  * none of which are on the site. A policy that overstates collection is as
  * wrong as one that understates it.
+ *
+ * The analytics paragraph reads the live Tag Manager setting rather than being
+ * hardcoded. Tracking can now be switched on from the dashboard without a
+ * deploy, and a static "we do not run analytics" would quietly become a false
+ * statement the moment someone did — in the document where being wrong matters
+ * most. This way the page cannot disagree with the site.
  */
 
 const UPDATED = "31 August 2026";
@@ -29,7 +36,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const gtm = await getGtmContainerId();
+
   return (
     <>
       <PageHero
@@ -63,12 +72,23 @@ export default function PrivacyPage() {
             nothing. These notes are attached to your enquiry and are covered by every right
             listed below.
           </p>
-          <p>
-            We do not run analytics, advertising pixels or tracking cookies on this site.
-            There is no Google Analytics, no Meta pixel and no tag manager, which is why you
-            have not been asked to accept cookies. If that changes, this policy will be
-            updated before the tracking goes live, not after.
-          </p>
+          {gtm ? (
+            <p>
+              <strong className="text-ink">Analytics and advertising data.</strong> We use
+              Google Tag Manager to load measurement tools such as Google Analytics, the
+              Meta Conversions API and Google Ads. These record how the site was reached and
+              which pages were viewed, so we can tell which of our own marketing is working.
+              Consent is set to denied by default, so these tools run without marketing or
+              analytics cookies unless you allow them.
+            </p>
+          ) : (
+            <p>
+              We do not run analytics, advertising pixels or tracking cookies on this site.
+              There is no Google Analytics, no Meta pixel and no tag manager, which is why
+              you have not been asked to accept cookies. If that changes, this page changes
+              with it.
+            </p>
+          )}
         </Section>
 
         <Section title="Why we collect it">
@@ -92,6 +112,13 @@ export default function PrivacyPage() {
             bound by their own data processing terms. Depending on the hosting region, your
             data may be processed on servers outside India.
           </p>
+          {gtm && (
+            <p>
+              Measurement data is additionally processed by Google and Meta under their own
+              data processing terms, on servers outside India. It is not linked to your
+              enquiry record.
+            </p>
+          )}
           <p>
             Inside Grow, access is restricted to team members who need it to respond to you.
             Every account is individually authenticated, and the record shows who changed

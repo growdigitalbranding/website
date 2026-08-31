@@ -6,6 +6,8 @@ import { SiteChrome } from "@/components/SiteChrome";
 import { Grain } from "@/components/Grain";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { organizationJsonLd } from "@/lib/schema/jsonld";
+import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
+import { getGtmContainerId } from "@/lib/settings";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
@@ -17,21 +19,28 @@ export const metadata: Metadata = {
     "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Cached and tagged, so this does not make every page dynamic. Null until a
+  // container is set in the dashboard, in which case nothing is rendered and
+  // no third-party script loads at all.
+  const gtm = await getGtmContainerId();
+
   return (
     <html
       lang="en"
       className={`${bricolage.variable} ${interTight.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
+        <AnalyticsNoScript containerId={gtm} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <Analytics containerId={gtm} />
         <LenisProvider>
           <Grain />
           <SiteChrome slot="top" />

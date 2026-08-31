@@ -1,8 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
+import { SETTINGS_TAG } from "@/lib/settings";
 
 const schema = z.object({
   // A Make webhook is always https. Accepting http would let a
@@ -101,4 +102,75 @@ export async function testWebhook() {
       error: err instanceof Error ? `Could not reach it: ${err.message}` : "Could not reach it",
     };
   }
+}
+
+
+/**
+ * A GTM container ID, and deliberately nothing else.
+ *
+ * The obvious version of this feature is a textarea you paste script tags
+ * into. That is stored XSS on every page of a site that collects phone
+ * numbers: one compromised admin account, and every visitor's browser runs
+ * whatever was pasted. GTM exists precisely so that every other tag — GA4,
+ * the Meta pixel, Google Ads, conversion tracking — lives inside the
+ * container instead, editable without a deploy and without this field ever
+ * carrying code.
+ */
+const gtmSchema = z.object({
+  containerId: z
+    .string()
+    .trim()
+    .toUpperCase()
+    .regex(
+      /^GTM-[A-Z0-9]{4,10}$/,
+      "That is not a container ID. It looks like GTM-ABC1234 — paste the ID, not the script."
+    )
+    .or(z.literal("")),
+});
+
+export async function saveGtmContainerId(formData: FormData) {
+  const parsed = gtmSchema.safeParse({ containerId: formData.get("containerId") });
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid container ID" };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "Not signed in" };
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (profile?.role !== "admin") {
+    return { error: "Only an admin can change tracking" };
+  }
+
+  const { error } = await supabase.from("settings").upsert(
+    {
+      key: "gtm_container_id",
+      value: parsed.data.containerId,
+      updated_at: new Date().toISOString(),
+      updated_by: user.id,
+    },
+    { onConflict: "key" }
+  );
+
+  if (error) return { error: error.message };
+
+  // The marketing pages are statically cached, so without this the container
+  // would not appear until the next deploy or the hourly revalidate.
+  //
+  // updateTag rather than revalidateTag: this is a Server Action, and it
+  // expires the entry immediately instead of serving stale content while it
+  // refreshes. An admin who just saved a container ID and then checks whether
+  // it is live needs to see their own write, not the previous value.
+  updateTag(SETTINGS_TAG);
+  revalidatePath("/admin/settings");
+  revalidatePath("/privacy");
+  return { ok: true };
 }

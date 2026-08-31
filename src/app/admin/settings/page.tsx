@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { WebhookForm } from "./WebhookForm";
+import { GtmForm } from "./GtmForm";
 
 export const dynamic = "force-dynamic";
 
@@ -22,16 +23,21 @@ export default async function SettingsPage() {
   // makes the refusal legible.
   if (profile?.role !== "admin") redirect("/admin");
 
-  const { data: setting } = await supabase
+  const { data: rows } = await supabase
     .from("settings")
-    .select("value, updated_at")
-    .eq("key", "make_webhook_url")
-    .maybeSingle();
+    .select("key, value, updated_at")
+    .in("key", ["make_webhook_url", "gtm_container_id"]);
+
+  const byKey = new Map((rows ?? []).map((r) => [r.key, r]));
+  const setting = byKey.get("make_webhook_url");
+  const gtm = byKey.get("gtm_container_id");
 
   return (
     <div className="max-w-2xl">
       <p className="mono-label text-graphite mb-1">Settings</p>
-      <h1 className="font-display font-bold text-2xl mb-6">Lead delivery</h1>
+      <h1 className="font-display font-bold text-2xl mb-8">Settings</h1>
+
+      <h2 className="font-display font-bold text-xl mb-6">Lead delivery</h2>
 
       <div className="surface rounded-3xl p-6 sm:p-8">
         <h2 className="font-medium mb-2">Make webhook</h2>
@@ -52,6 +58,20 @@ export default async function SettingsPage() {
         scenario. It is readable by admins only, and never sent to the browser on any
         other page.
       </p>
+
+      <h2 className="font-display font-bold text-xl mt-12 mb-6">Tracking</h2>
+
+      <div className="surface rounded-3xl p-6 sm:p-8">
+        <h3 className="font-medium mb-2">Google Tag Manager</h3>
+        <p className="text-sm text-graphite mb-6">
+          Paste your container ID to load GTM across the marketing site. Leave it empty and
+          no third-party script loads at all.
+        </p>
+        <GtmForm
+          initialId={gtm?.value ?? ""}
+          updatedAt={gtm?.updated_at ?? null}
+        />
+      </div>
     </div>
   );
 }

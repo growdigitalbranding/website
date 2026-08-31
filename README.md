@@ -21,23 +21,41 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000).
 
-## What's built vs. what's next
+## Homepage structure
 
-Phases 0–2 (foundation, homepage, conversion spine) are live: the full homepage with the
-signature Loop path, all four station sections, the Return, proof, objections, and a working
-3-field contact form. `/what-we-do`, `/who-we-help`, `/pricing`, `/about`, `/the-loop`, and the
-three `/tools` calculators are built with real (if concise) copy and, where relevant, working
-interactivity.
+Seven sections, built to the loop spec:
 
-**Not yet wired:**
-- `/api/lead` logs submissions server-side but isn't connected to n8n/WhatsApp/Slack or a
-  database yet (see the `TODO` in `src/app/api/lead/route.ts`) — provision Postgres + the n8n
-  webhook and wire it in.
-- `/work` and `/insights` are placeholder indexes — the case-study and MDX article pipelines
-  (Phases 4–5) aren't built.
-- Off-site entity footprint (Phase 7) is inherently not a code task.
-- Client logos in the homepage marquee and the phone number in the footer are placeholders —
-  swap before launch.
+1. **Hero** — own navbar, two-part headline, the open loop glyph, metric strip
+2. **Creative marquee** — two scroll-driven rows of ad creatives
+3. **The leak** — four corner artefacts, character-reveal paragraph
+4. **Stations** — the one dark block, five rows, `↩` return row in `--pulse`
+5. **Proof** — sticky-stacking case cards, metric bar above the images
+6. **Objections** — retained from the earlier build; the FAQPage schema source
+7. **Final CTA** — the loop glyph again, closed, plus the three-field form
+
+The glyph opening in the hero and closing in the final CTA is the page's spine.
+`LoopGlyph` takes a `closed` prop; nothing else differs between the two.
+
+## Assets still needed
+
+Placeholders render as `--mist` blocks labelled with the exact filename, never
+stock imagery. Drop the files in and flip the flag at the top of the component:
+
+| Where | Files | Flag |
+|---|---|---|
+| `/public/creatives/` | `c-01.webp` … `c-21.webp` (11 at 4:5, 10 at 1:1) | `HAS_ASSETS` in `CreativeMarqueeSection.tsx` |
+| `/public/proof/` | `villas-`, `plots-`, `senior-` `01..03.webp` | `HAS_ASSETS` in `ProofSection.tsx` |
+
+Every figure on the page is placeholder until replaced with numbers you can
+evidence from a dashboard screenshot.
+
+## Not yet wired
+
+- `/api/lead` logs submissions but has no n8n/WhatsApp/Postgres connection, so
+  the "inside one working hour" promise is not yet real.
+- `/work` and `/insights` are placeholder indexes.
+- The final CTA's confirmation card links to real pages but the calendar embed
+  and checklist download are not provisioned.
 
 ## Design tokens
 

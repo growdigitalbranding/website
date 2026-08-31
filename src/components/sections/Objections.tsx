@@ -41,7 +41,7 @@ export function Objections() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-20 md:py-28 bg-paper-2">
+    <section className="relative z-20 py-20 md:py-28 bg-paper-2">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

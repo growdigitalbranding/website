@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { bricolage, interTight, jetbrainsMono } from "@/lib/fonts";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { LenisProvider } from "@/components/motion/LenisProvider";
-import { LoopPath } from "@/components/motion/LoopPath";
+import { SiteChrome } from "@/components/SiteChrome";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { organizationJsonLd } from "@/lib/schema/jsonld";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
   title: {
-    default: "Grow | Performance marketing for builders and developers",
+    default: "Grow Digital Branding | Performance marketing for builders",
     template: "%s | Grow",
   },
   description:
@@ -35,10 +33,9 @@ export default function RootLayout({
         />
         <LenisProvider>
           <div className="grain" aria-hidden="true" />
-          <LoopPath />
-          <Header />
+          <SiteChrome slot="top" />
           <main className="flex-1 relative z-[2]">{children}</main>
-          <Footer />
+          <SiteChrome slot="bottom" />
           <StickyMobileCTA />
         </LenisProvider>
       </body>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PHONE, EMAIL, WHATSAPP_URL } from "@/lib/contact";
 
 const COLUMNS = [
   {
@@ -56,17 +57,17 @@ export function FooterSection() {
           <ul className="flex flex-col gap-2.5 text-sm text-paper/85">
             <li>Coimbatore, Tamil Nadu</li>
             <li>
-              <a href="tel:+910000000000" className="hover:text-paper transition-colors">
+              <a href={`tel:${PHONE}`} className="hover:text-paper transition-colors">
                 +91 00000 00000
               </a>
             </li>
             <li>
-              <a href="mailto:hello@growdigitalbranding.com" className="hover:text-paper transition-colors">
+              <a href={`mailto:${EMAIL}`} className="hover:text-paper transition-colors">
                 hello@growdigitalbranding.com
               </a>
             </li>
             <li>
-              <a href="https://wa.me/910000000000" className="hover:text-paper transition-colors">
+              <a href={WHATSAPP_URL} className="hover:text-paper transition-colors">
                 WhatsApp
               </a>
             </li>

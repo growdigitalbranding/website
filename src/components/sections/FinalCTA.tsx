@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { whatsappUrlWith } from "@/lib/contact";
 
 export function FinalCTA() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -16,6 +17,7 @@ export function FinalCTA() {
       name: form.get("name"),
       whatsapp: form.get("whatsapp"),
       project: form.get("project"),
+      source: "contact-page",
     };
 
     try {
@@ -25,11 +27,16 @@ export function FinalCTA() {
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error ?? "Something went wrong");
+      if (!res.ok || !data.ok) {
+        throw new Error(
+          data.error === "delivery_failed" ? "delivery_failed" : data.error ?? "Something went wrong"
+        );
+      }
       setStatus("success");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      const message = err instanceof Error ? err.message : "";
+      setError(message === "Something went wrong" || message === "" ? "delivery_failed" : message);
     }
   }
 
@@ -60,7 +67,30 @@ export function FinalCTA() {
               />
               <Field label="Project name" name="project" autoComplete="off" required />
 
-              {status === "error" && <p className="text-flag text-sm">{error}</p>}
+              {status === "error" && (
+                <div role="alert" className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm">
+                  {error === "delivery_failed" ? (
+                    <>
+                      <p className="text-flag font-medium mb-1">
+                        We could not submit that. Your enquiry has not reached us.
+                      </p>
+                      <p className="text-graphite">
+                        Message us on WhatsApp instead and we will pick it up straight away:{" "}
+                        <a
+                          href={whatsappUrlWith(
+                            "Hi, I tried the form on your site and it did not go through. I would like to book a call."
+                          )}
+                          className="text-signal underline underline-offset-2"
+                        >
+                          open WhatsApp
+                        </a>
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-flag">{error}</p>
+                  )}
+                </div>
+              )}
 
               <button
                 type="submit"

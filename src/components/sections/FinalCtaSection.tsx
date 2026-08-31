@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoopGlyph } from "@/components/loop/LoopGlyph";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
+import { WHATSAPP_URL, whatsappUrlWith } from "@/lib/contact";
 
 export function FinalCtaSection() {
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -43,14 +44,26 @@ export function FinalCtaSection() {
           name: f.get("name"),
           whatsapp: f.get("whatsapp"),
           project: f.get("project"),
+          source: "homepage",
         }),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error ?? "Something went wrong");
+      if (!res.ok || !data.ok) {
+        // delivery_failed means the lead did not reach us. Saying "something
+        // went wrong" and leaving the visitor to try again is how an enquiry
+        // gets lost quietly, so this case gets its own message and a route
+        // that does not depend on the thing that just broke.
+        throw new Error(
+          data.error === "delivery_failed" ? "delivery_failed" : data.error ?? "Something went wrong"
+        );
+      }
       setStatus("done");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      const message = err instanceof Error ? err.message : "";
+      // A network failure never reaches the server either, so it is the same
+      // situation as a delivery failure from the visitor's point of view.
+      setError(message === "Something went wrong" || message === "" ? "delivery_failed" : message);
     }
   }
 
@@ -108,7 +121,7 @@ export function FinalCtaSection() {
                     </Link>
                   </li>
                   <li>
-                    <a href="https://wa.me/910000000000" className="text-signal hover:underline">
+                    <a href={WHATSAPP_URL} className="text-signal hover:underline">
                       Message us on WhatsApp now →
                     </a>
                   </li>
@@ -136,7 +149,30 @@ export function FinalCtaSection() {
                 />
                 <Field label="Project name" name="project" autoComplete="off" />
 
-                {status === "error" && <p className="text-flag text-sm">{error}</p>}
+                {status === "error" && (
+                  <div role="alert" className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm">
+                    {error === "delivery_failed" ? (
+                      <>
+                        <p className="text-flag font-medium mb-1">
+                          We could not submit that. Your enquiry has not reached us.
+                        </p>
+                        <p className="text-graphite">
+                          Message us on WhatsApp instead and we will pick it up straight away:{" "}
+                          <a
+                            href={whatsappUrlWith(
+                              "Hi, I tried the form on your site and it did not go through. I would like to book a call."
+                            )}
+                            className="text-signal underline underline-offset-2"
+                          >
+                            open WhatsApp
+                          </a>
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-flag">{error}</p>
+                    )}
+                  </div>
+                )}
 
                 <div className="flex flex-col items-center gap-4 mt-4">
                   <PrimaryCta

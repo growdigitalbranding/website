@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { PHONE } from "@/lib/contact";
 
 const COLUMNS = [
   {
@@ -69,7 +70,7 @@ export function Footer() {
             <Logo className="h-12 w-auto mb-2" />
             <p>Coimbatore, Tamil Nadu, India</p>
             <p>
-              <a href="tel:+910000000000" className="hover:text-signal">
+              <a href={`tel:${PHONE}`} className="hover:text-signal">
                 +91 00000 00000
               </a>{" "}
               <span className="text-xs">(placeholder, update)</span>

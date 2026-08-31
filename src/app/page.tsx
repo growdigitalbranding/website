@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ProofStrip } from "@/components/sections/ProofStrip";
 import { CreativeMarqueeSection } from "@/components/sections/CreativeMarqueeSection";
 import { LeakSection } from "@/components/sections/LeakSection";
 import { StationsSection } from "@/components/sections/StationsSection";
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <ProofStrip />
       <CreativeMarqueeSection />
       <LeakSection />
       <StationsSection />

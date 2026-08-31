@@ -4,7 +4,6 @@ import Link from "next/link";
 import { LoopGlyph } from "@/components/loop/LoopGlyph";
 import { Magnet } from "@/components/loop/Magnet";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
-import { CountUp } from "@/components/motion/CountUp";
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -14,11 +13,6 @@ const NAV = [
   { href: "/contact", label: "Contact" },
 ];
 
-const METRICS = [
-  { to: 1240, prefix: "₹", label: "Blended CPL" },
-  { to: 3.1, suffix: "%", decimals: 1, label: "Lead → booking" },
-  { to: 41, label: "Days avg cycle" },
-];
 
 export function HeroSection() {
   return (
@@ -89,28 +83,6 @@ export function HeroSection() {
       </FadeIn>
 
       <div>
-        <FadeIn y={16} delay={0.55} className="px-6 md:px-10 pb-8 sm:pb-10">
-          <dl className="flex justify-center gap-8 sm:gap-12">
-            {METRICS.map((m, i) => (
-              <div
-                key={m.label}
-                className={`text-center ${i > 0 ? "border-l border-mist pl-8 sm:pl-12" : ""}`}
-              >
-                <dd className="font-display text-2xl sm:text-3xl text-ink font-mono">
-                  <CountUp
-                    to={m.to}
-                    prefix={m.prefix ?? ""}
-                    suffix={m.suffix ?? ""}
-                    decimals={m.decimals ?? 0}
-                  />
-                </dd>
-                <dt className="mono-label mt-1">{m.label}</dt>
-              </div>
-            ))}
-          </dl>
-          <p className="mono-label text-center mt-3">Portfolio blend, last 12 months</p>
-        </FadeIn>
-
         <div className="flex justify-between items-end gap-6 px-6 md:px-10 pb-7 sm:pb-8 md:pb-10">
           <FadeIn y={20} delay={0.45}>
             <p

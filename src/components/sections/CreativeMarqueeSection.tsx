@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import { useMediaQuery } from "@/lib/motion/useMediaQuery";
 
@@ -46,56 +47,19 @@ const ROW_2: Tile[] = [
 
 export function CreativeMarqueeSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const row1 = useRef<HTMLDivElement>(null);
-  const row2 = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
   const reduced = useReducedMotion();
   const fine = useMediaQuery("(pointer: fine)");
 
-  // Park the rows off their start so both directions have travel available.
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || reduced) return;
+  // Scroll drives the rows through Motion values, so nothing runs on the React
+  // render path per frame. A raw scroll listener here re-lays-out inside the
+  // handler and is the pattern that costs mid-range devices frames.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
 
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
-      rootMargin: "200px",
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [reduced]);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || reduced || !inView) return;
-
-    // Capture the nodes so cleanup acts on the same elements the effect used.
-    const a = row1.current;
-    const b = row2.current;
-
-    // will-change only while the section is actually on screen.
-    if (a) a.style.willChange = "transform";
-    if (b) b.style.willChange = "transform";
-
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        const offset = (window.scrollY - top + window.innerHeight) * 0.3;
-        const x = offset - 200;
-        if (a) a.style.transform = `translate3d(${x}px,0,0)`;
-        if (b) b.style.transform = `translate3d(${-x}px,0,0)`;
-      });
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-      if (a) a.style.willChange = "auto";
-      if (b) b.style.willChange = "auto";
-    };
-  }, [inView, reduced]);
+  const x = useTransform(scrollYProgress, [0, 1], [-260, 260]);
+  const xInverse = useTransform(scrollYProgress, [0, 1], [260, -260]);
 
   return (
     <section
@@ -108,20 +72,20 @@ export function CreativeMarqueeSection() {
       </p>
 
       <div className="flex flex-col gap-3">
-        <Row trackRef={row1} tiles={ROW_1} portrait fine={fine} />
-        <Row trackRef={row2} tiles={ROW_2} fine={fine} />
+        <Row x={reduced ? undefined : x} tiles={ROW_1} portrait fine={fine} />
+        <Row x={reduced ? undefined : xInverse} tiles={ROW_2} fine={fine} />
       </div>
     </section>
   );
 }
 
 function Row({
-  trackRef,
+  x,
   tiles,
   portrait = false,
   fine,
 }: {
-  trackRef: React.RefObject<HTMLDivElement | null>;
+  x?: MotionValue<number>;
   tiles: Tile[];
   portrait?: boolean;
   fine: boolean;
@@ -132,7 +96,7 @@ function Row({
   const h = portrait ? 325 : 300;
 
   return (
-    <div ref={trackRef} className="flex gap-3 w-max">
+    <motion.div style={{ x }} className="flex gap-3 w-max will-change-transform">
       {track.map((t, i) => (
         <figure
           key={`${t.id}-${i}`}
@@ -165,6 +129,6 @@ function Row({
           )}
         </figure>
       ))}
-    </div>
+    </motion.div>
   );
 }

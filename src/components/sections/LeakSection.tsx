@@ -14,7 +14,7 @@ export function LeakSection() {
   return (
     <section
       id="the-leak"
-      className="relative min-h-screen flex flex-col items-center justify-center bg-paper-2 px-5 sm:px-8 md:px-10 py-20 overflow-hidden"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-center bg-paper-2 px-5 sm:px-8 md:px-10 py-20 overflow-hidden"
     >
       <FadeIn
         x={-80}

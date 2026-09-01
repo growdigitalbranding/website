@@ -15,7 +15,12 @@
                      text, 8.8:1), as an accent on dark, or as a stroke. */
   --signal: #147700;
   --signal-bright: #8dc63f;
+  /* --pulse is the return accent, and it was specified for the dark stations
+     band where it reads 7.7:1 on --ink. On the light configurator it measures
+     1.86:1, which is a real AA failure, so light grounds get a darkened
+     sibling at the same hue: 4.8:1 on --paper-2 and 5.3:1 on --paper. */
   --pulse: #ff8a3d;
+  --pulse-ink: #a34700;
   --flag: #c8102e;
 
   /* Motion timing */

@@ -158,8 +158,10 @@ export function ConfiguratorSection() {
         {/* The Return sits apart, on --pulse, because it is the payoff rather
             than a fifth station. */}
         {STATIONS.filter((s) => s.isReturn).map((s) => (
-          <div key={s.n} className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(255,138,61,0.4)" }}>
-            <p className="mono-label mb-2" style={{ color: "var(--pulse)" }}>
+          <div key={s.n} className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(163,71,0,0.35)" }}>
+            {/* --pulse-ink, not --pulse: this label sits on --paper-2 where
+                the bright pulse measures 1.86:1. Same hue, AA-compliant. */}
+            <p className="mono-label mb-2" style={{ color: "var(--pulse-ink)" }}>
               {s.n} {s.name}
             </p>
             <p className="text-graphite font-light text-sm sm:text-base leading-relaxed max-w-3xl">

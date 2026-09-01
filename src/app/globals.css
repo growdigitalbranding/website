@@ -504,3 +504,30 @@ body {
     letter-spacing: 0.1em;
   }
 }
+
+/* Same token name, resolved for the ground it sits on. */
+@theme inline {
+  --color-pulse-ink: var(--pulse-ink);
+}
+
+/* The selected chip's fill lives on a pseudo-element so it can sweep in
+   without repainting background-color. That means the label's contrast
+   depends on something the browser may legitimately not paint: in
+   forced-colors mode, author backgrounds on pseudo-elements are discarded,
+   which would leave --paper text on a --paper-2 ground at 1.1:1. Give the
+   element itself real system colours there. */
+@media (forced-colors: active) {
+  .config-chip {
+    border: 1px solid ButtonBorder;
+    color: ButtonText;
+  }
+  .config-chip.is-selected {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+    forced-color-adjust: none;
+  }
+  .config-chip::before {
+    display: none;
+  }
+}

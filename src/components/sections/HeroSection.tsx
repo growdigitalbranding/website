@@ -6,6 +6,17 @@ import { Magnet } from "@/components/loop/Magnet";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
 
+/** The four axes, with the terms a builder would recognise as theirs in --ink. */
+const POSITIONING = [
+  ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
+  ["Affordable", "Premium", "Luxury", "Ultra-Luxury"],
+  ["Pre-Launch", "Launch", "Ongoing", "Ready to Move"],
+  ["Branding", "Lead Gen", "Follow-Up", "Retargeting", "Conversion"],
+].map((parts) => ({
+  plain: parts.join(" "),
+  parts: parts.map((text) => ({ text, key: true })),
+}));
+
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
   { href: "/what-we-do", label: "What we do" },
@@ -58,9 +69,29 @@ export function HeroSection() {
         </div>
       </FadeIn>
 
-      <FadeIn y={12} delay={0.1} className="relative z-[1] px-6 md:px-10 mt-16 sm:mt-20">
-        <p className="mono-label">Performance marketing for builders &amp; developers</p>
-      </FadeIn>
+      {/* Four stacked lines replace the single eyebrow: the axes a builder
+          self-identifies on, before the headline makes its claim. Lines 2 and
+          3 are hidden below sm — at that width they are four more rows of
+          uppercase mono between the reader and the H1. */}
+      <div className="relative z-[1] px-6 md:px-10 mt-14 sm:mt-16">
+        {POSITIONING.map((line, i) => (
+          <FadeIn
+            key={line.plain}
+            y={8}
+            delay={0.1 + i * 0.07}
+            className={i === 1 || i === 2 ? "hidden sm:block" : undefined}
+          >
+            <p className="mono-label text-graphite" style={{ lineHeight: 1.9 }}>
+              {line.parts.map((part, j) => (
+                <span key={part.text}>
+                  {j > 0 && <span className="text-graphite/50"> &middot; </span>}
+                  <span className={part.key ? "text-ink" : undefined}>{part.text}</span>
+                </span>
+              ))}
+            </p>
+          </FadeIn>
+        ))}
+      </div>
 
       {/* overflow-hidden clipped both axes, and the second line enters from 44px
           below its own box. At mobile sizes that offset put it entirely outside

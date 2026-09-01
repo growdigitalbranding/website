@@ -417,3 +417,80 @@ body {
   background-color: rgba(20, 23, 26, 0.04);
   transition-duration: 60ms;
 }
+
+/* --- Configurator chips -------------------------------------------------- */
+
+/* The selected fill sweeps in from the left via a pseudo-element rather than
+   animating background-color, which would be a paint on every frame. */
+.config-chip {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(20, 23, 26, 0.18);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  min-height: 44px;
+  white-space: nowrap;
+  transition: color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.config-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms var(--ease-out);
+}
+.config-chip.is-selected {
+  color: var(--paper);
+  border-color: transparent;
+}
+.config-chip.is-selected::before {
+  transform: scaleX(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .config-chip:not(.is-selected):hover {
+    border-color: rgba(20, 119, 0, 0.4);
+    color: var(--signal);
+  }
+}
+.config-chip:active {
+  transform: scale(0.97);
+  transition-duration: 90ms;
+}
+
+/* Edge masks tell the eye there is more track off-screen. Mobile only: on
+   desktop the chips wrap and there is nothing to scroll. */
+.config-track {
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.config-track::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 767px) {
+  .config-track {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .config-chip {
+    scroll-snap-align: start;
+  }
+}
+
+/* Creative format ticker. 60s so it reads as ambient rather than as motion
+   demanding attention. Paused via animation-play-state from a real control,
+   not hover, because WCAG 2.2.2 needs a keyboard- and touch-reachable one. */
+.ticker-track {
+  animation: marquee 60s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}

@@ -6,16 +6,27 @@ import { Magnet } from "@/components/loop/Magnet";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
 
-/** The four axes, with the terms a builder would recognise as theirs in --ink. */
+/**
+ * The four axes, with the terms a builder would recognise as theirs.
+ *
+ * Each line carries a shorter mobile variant. Hiding lines 2 and 3 below sm
+ * was not enough on its own: at 390px the full lines 1 and 4 each wrapped to
+ * two rows, so the block still cost 92px against a 71px headline and the
+ * hierarchy read upside down. Three terms fit on one row and carry the same
+ * signal.
+ */
 const POSITIONING = [
-  ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
-  ["Affordable", "Premium", "Luxury", "Ultra-Luxury"],
-  ["Pre-Launch", "Launch", "Ongoing", "Ready to Move"],
-  ["Branding", "Lead Gen", "Follow-Up", "Retargeting", "Conversion"],
-].map((parts) => ({
-  plain: parts.join(" "),
-  parts: parts.map((text) => ({ text, key: true })),
-}));
+  {
+    full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
+    short: ["Plots", "Apartments", "Villas"],
+  },
+  { full: ["Affordable", "Premium", "Luxury", "Ultra-Luxury"] },
+  { full: ["Pre-Launch", "Launch", "Ongoing", "Ready to Move"] },
+  {
+    full: ["Branding", "Lead Gen", "Follow-Up", "Retargeting", "Conversion"],
+    short: ["Branding", "Lead Gen", "Conversion"],
+  },
+];
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -25,6 +36,19 @@ const NAV = [
   { href: "/contact", label: "Contact" },
 ];
 
+
+function Terms({ parts }: { parts: string[] }) {
+  return (
+    <>
+      {parts.map((text, j) => (
+        <span key={text}>
+          {j > 0 && <span className="text-graphite/50"> &middot; </span>}
+          <span className="text-ink">{text}</span>
+        </span>
+      ))}
+    </>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -73,21 +97,25 @@ export function HeroSection() {
           self-identifies on, before the headline makes its claim. Lines 2 and
           3 are hidden below sm — at that width they are four more rows of
           uppercase mono between the reader and the H1. */}
-      <div className="relative z-[1] px-6 md:px-10 mt-14 sm:mt-16">
+      <div className="relative z-[1] px-6 md:px-10 mt-12 sm:mt-16">
         {POSITIONING.map((line, i) => (
           <FadeIn
-            key={line.plain}
+            key={line.full[0]}
             y={8}
             delay={0.1 + i * 0.07}
             className={i === 1 || i === 2 ? "hidden sm:block" : undefined}
           >
-            <p className="mono-label text-graphite" style={{ lineHeight: 1.9 }}>
-              {line.parts.map((part, j) => (
-                <span key={part.text}>
-                  {j > 0 && <span className="text-graphite/50"> &middot; </span>}
-                  <span className={part.key ? "text-ink" : undefined}>{part.text}</span>
+            {/* Tighter leading below sm: 1.9 on a wrapped line is generous on
+                desktop and wasteful on a 664px screen. */}
+            <p className="mono-label positioning-line text-graphite leading-[1.55] sm:leading-[1.9]">
+              {line.short && (
+                <span className="sm:hidden">
+                  <Terms parts={line.short} />
                 </span>
-              ))}
+              )}
+              <span className={line.short ? "hidden sm:inline" : undefined}>
+                <Terms parts={line.full} />
+              </span>
             </p>
           </FadeIn>
         ))}

@@ -494,3 +494,13 @@ body {
     animation: none;
   }
 }
+
+/* The hero positioning lines run to the edge of the smallest phones. At 375px
+   "BRANDING · LEAD GEN · CONVERSION" misses one row by 12px, and 0.14em is
+   generous tracking for a line already constrained by its container. Tighten
+   it rather than weakening the words to fit. */
+@media (max-width: 400px) {
+  .positioning-line {
+    letter-spacing: 0.1em;
+  }
+}

@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { MegaMenu } from "@/components/MegaMenu";
 
+/** mega:true renders a panel trigger; the rest are plain links. */
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
-  { href: "/what-we-do", label: "What we do" },
+  { href: "/what-we-do", label: "What we do", mega: true },
+  { href: "/who-we-help", label: "Who we help", mega: true },
   { href: "/work", label: "Work" },
   { href: "/insights", label: "Insights" },
-  { href: "/contact", label: "Contact" },
 ];
 
 /**
@@ -69,17 +71,23 @@ export function FloatingNav() {
           >
             Grow
           </Link>
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {NAV.slice(0, 4).map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                tabIndex={shown ? undefined : -1}
-                className="nav-link press text-ink font-medium uppercase tracking-wider text-[0.8rem]"
-              >
-                {n.label}
-              </Link>
-            ))}
+          {/* lg, not md: five items plus two panel triggers is too much for a
+              768px bar, and the panels themselves need the width. */}
+          <div className="hidden lg:flex items-center gap-6">
+            {NAV.map((n) =>
+              n.mega ? (
+                <MegaMenu key={n.href} label={n.label} href={n.href} />
+              ) : (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  tabIndex={shown ? undefined : -1}
+                  className="nav-link press text-ink font-medium uppercase tracking-wider text-[0.8rem]"
+                >
+                  {n.label}
+                </Link>
+              )
+            )}
           </div>
           <Link
             href="/contact"

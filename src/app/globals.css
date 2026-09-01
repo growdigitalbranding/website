@@ -19,6 +19,36 @@
 
 html {
   scroll-behavior: auto;
+
+  /* WCAG 2.2 AA 2.4.11, Focus Not Obscured (Minimum).
+     Measured by tabbing the live page: the floating nav sits 12px from the
+     top and is 49px tall, and the mobile CTA bar is 56px at the bottom, so a
+     keyboard user tabbing through content had focused links scrolled to
+     exactly where those bars cover them. scroll-padding tells the browser to
+     stop short of both when it scrolls something into view.
+
+     It fixes anchor links in the same move: #the-leak and #what-we-run used
+     to land under the nav. */
+  scroll-padding-top: 76px;
+  scroll-padding-bottom: 76px;
+}
+
+/* The bottom bar is lg:hidden, so above that breakpoint the padding is only
+   needed for the nav. */
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-bottom: 0;
+  }
+}
+
+/* scroll-padding cannot rescue the very end of the document: at maximum
+   scroll there is nowhere further to scroll, so the last footer links sat
+   underneath the mobile CTA bar with no way to reveal them. Reserving the
+   bar's height as real page padding is what actually clears them. */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 56px;
+  }
 }
 
 body {

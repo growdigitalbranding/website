@@ -1,11 +1,20 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { whatsappUrlWith } from "@/lib/contact";
 
 export function FinalCTA() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+
+  // WCAG: a role="alert" is announced, but sighted keyboard users are left
+  // wherever they were — usually past the message, on the submit button they
+  // just pressed. Moving focus to the alert puts the explanation and the
+  // WhatsApp fallback next in the tab order rather than behind them.
+  const errorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (status === "error") errorRef.current?.focus();
+  }, [status]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,7 +77,12 @@ export function FinalCTA() {
               <Field label="Project name" name="project" autoComplete="off" required />
 
               {status === "error" && (
-                <div role="alert" className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm">
+                <div
+                    ref={errorRef}
+                    role="alert"
+                    tabIndex={-1}
+                    className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-flag/40"
+                  >
                   {error === "delivery_failed" ? (
                     <>
                       <p className="text-flag font-medium mb-1">

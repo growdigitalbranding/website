@@ -60,7 +60,10 @@ export function PrimaryCta({
     "px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base disabled:opacity-60";
   if (type === "submit") {
     return (
-      <button type="submit" className={cls} disabled={disabled}>
+      // aria-busy so a screen reader announces the wait. The visible label
+      // already changes to "Sending…", but that is a silent change for anyone
+      // not looking at it.
+      <button type="submit" className={cls} disabled={disabled} aria-busy={disabled}>
         {label}
       </button>
     );

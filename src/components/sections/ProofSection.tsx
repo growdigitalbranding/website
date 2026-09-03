@@ -10,7 +10,17 @@ import { useReducedMotion } from "@/lib/motion/useReducedMotion";
  * partial upload works: a case with two of its three shots renders two, and
  * one with none still renders the --mist slots naming what belongs there.
  * The old all-or-nothing flag meant uploading six of nine changed nothing.
+ *
+ * CLEARED is the second gate. A file on disk is not automatically evidence.
+ * The nine boards uploaded on 03 Sep are design layouts, not account exports:
+ * five still carry unfilled tokens ([LEADS], [CPL], `Rs XX,XXX`), and the
+ * four that do carry numbers disagree with each other (482 leads is claimed
+ * for three different campaigns, in two different years). Publishing those
+ * under a heading that says `proof`, beside metrics that contradict them,
+ * is worse than publishing nothing. Add an id here once its numbers come
+ * from an account you can open on a call.
  */
+const CLEARED = new Set<string>([]);
 
 type Metric = { label: string; value: string; tone?: "signal" | "flag" };
 
@@ -74,8 +84,9 @@ const CASES: Case[] = [
 
 export function ProofSection({ available = [] }: { available?: string[] }) {
   // Filenames without extension, so the lookup is extension-agnostic.
-  const have = new Set(available.map((f) => f.replace(/\.[^.]+$/, "")));
-  const ext = new Map(available.map((f) => [f.replace(/\.[^.]+$/, ""), f]));
+  const publishable = available.filter((f) => CLEARED.has(f.replace(/\.[^.]+$/, "")));
+  const have = new Set(publishable.map((f) => f.replace(/\.[^.]+$/, "")));
+  const ext = new Map(publishable.map((f) => [f.replace(/\.[^.]+$/, ""), f]));
   return (
     <section
       id="proof"
@@ -197,7 +208,7 @@ function Shot({ id, file, h }: { id: string; file?: string; h: string }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={`/proof/${file}`}
-          alt={`Dashboard screenshot from the ${id.split("-")[0]} account`}
+          alt={`Campaign performance report for the ${id.split("-")[0]} account`}
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"

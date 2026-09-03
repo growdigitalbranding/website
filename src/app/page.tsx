@@ -1,3 +1,4 @@
+import { listAssets } from "@/lib/assets";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CreativeMarqueeSection } from "@/components/sections/CreativeMarqueeSection";
 import { LeakSection } from "@/components/sections/LeakSection";
@@ -11,10 +12,14 @@ import { Objections } from "@/components/sections/Objections";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 
 export default function HomePage() {
+  // Read at build time, so uploading any subset of the images just works.
+  const proof = listAssets("proof");
+  const creatives = listAssets("creatives");
+
   return (
     <>
       <HeroSection />
-      <CreativeMarqueeSection />
+      <CreativeMarqueeSection available={creatives} />
       <LeakSection />
       {/* Stations stays on --ink. The addendum asked for it to move to paper
           on the grounds that it sits directly above the dark funnel ribbon,
@@ -25,7 +30,7 @@ export default function HomePage() {
       <FunnelRibbonSection />
       <PillarsSection />
       <SegmentStripSection />
-      <ProofSection />
+      <ProofSection available={proof} />
       {/* Retained against the revised order, which omits it. This section is
           the homepage's only FAQPage schema source and answers six real
           objections before a call. Removing working AEO content looked more

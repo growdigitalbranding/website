@@ -6,11 +6,11 @@ import { FadeIn, CaseButton } from "@/components/loop/ui";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 /**
- * Case screenshots are not in the repo yet. Per the asset note, a missing
- * asset renders as a --mist block naming what belongs there, never a stock
- * photo. Drop the files into /public/proof and set HAS_ASSETS true.
+ * Which screenshots exist is detected at build time and passed in, so a
+ * partial upload works: a case with two of its three shots renders two, and
+ * one with none still renders the --mist slots naming what belongs there.
+ * The old all-or-nothing flag meant uploading six of nine changed nothing.
  */
-const HAS_ASSETS = false;
 
 type Metric = { label: string; value: string; tone?: "signal" | "flag" };
 
@@ -72,7 +72,10 @@ const CASES: Case[] = [
   },
 ];
 
-export function ProofSection() {
+export function ProofSection({ available = [] }: { available?: string[] }) {
+  // Filenames without extension, so the lookup is extension-agnostic.
+  const have = new Set(available.map((f) => f.replace(/\.[^.]+$/, "")));
+  const ext = new Map(available.map((f) => [f.replace(/\.[^.]+$/, ""), f]));
   return (
     <section
       id="proof"
@@ -89,14 +92,26 @@ export function ProofSection() {
 
       <div className="max-w-6xl mx-auto">
         {CASES.map((c, i) => (
-          <CaseCard key={c.n} data={c} index={i} total={CASES.length} />
+          <CaseCard key={c.n} data={c} index={i} total={CASES.length} have={have} ext={ext} />
         ))}
       </div>
     </section>
   );
 }
 
-function CaseCard({ data, index, total }: { data: Case; index: number; total: number }) {
+function CaseCard({
+  data,
+  index,
+  total,
+  have,
+  ext,
+}: {
+  data: Case;
+  index: number;
+  total: number;
+  have: Set<string>;
+  ext: Map<string, string>;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -162,31 +177,33 @@ function CaseCard({ data, index, total }: { data: Case; index: number; total: nu
 
         <div className="grid grid-cols-1 sm:grid-cols-[40%_60%] gap-3">
           <div className="flex flex-col gap-3">
-            <Shot id={data.images[0]} h="clamp(130px, 16vw, 230px)" />
-            <Shot id={data.images[1]} h="clamp(160px, 22vw, 340px)" />
+            <Shot id={data.images[0]} file={ext.get(data.images[0])} h="clamp(130px, 16vw, 230px)" />
+            <Shot id={data.images[1]} file={ext.get(data.images[1])} h="clamp(160px, 22vw, 340px)" />
           </div>
-          <Shot id={data.images[2]} h="clamp(300px, 38vw, 583px)" />
+          <Shot id={data.images[2]} file={ext.get(data.images[2])} h="clamp(300px, 38vw, 583px)" />
         </div>
       </motion.article>
     </div>
   );
 }
 
-function Shot({ id, h }: { id: string; h: string }) {
+function Shot({ id, file, h }: { id: string; file?: string; h: string }) {
   return (
     <div
-      className="slot relative rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden flex items-end p-4"
+      className={`relative rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden flex items-end p-4 ${file ? "border border-ink/[0.07]" : "slot"}`}
       style={{ height: h }}
     >
-      {HAS_ASSETS ? (
+      {file ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={`/proof/${id}.webp`}
-          alt={`${id} dashboard screenshot`}
+          src={`/proof/${file}`}
+          alt={`Dashboard screenshot from the ${id.split("-")[0]} account`}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
       ) : (
-        <span className="mono-label text-graphite">{id}.webp</span>
+        <span className="mono-label text-graphite">{id}</span>
       )}
     </div>
   );

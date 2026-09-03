@@ -10,11 +10,12 @@ import { useMediaQuery } from "@/lib/motion/useMediaQuery";
  * it reads as an ad library rather than a portfolio carousel. This section is
  * the argument for Station 01.
  *
- * The creatives are not in the repo yet. Per the asset note, a missing asset
- * renders as a --mist block naming what belongs there, never a stock photo.
- * Drop c-01.webp ... c-21.webp into /public/creatives and set HAS_ASSETS true.
+ * Which creatives exist is detected at build time. Whatever is present is
+ * used and cycled to fill both rows; only if none exist do the --mist slots
+ * show. That means a partial upload reads as finished rather than patchy —
+ * six real creatives cycling look intentional, six real ones beside fifteen
+ * grey boxes do not.
  */
-const HAS_ASSETS = false;
 
 type Tile = { id: string; angle: string; result: string };
 
@@ -45,7 +46,20 @@ const ROW_2: Tile[] = [
   { id: "c-21", angle: "Clubhouse", result: "₹1,150 CPL" },
 ];
 
-export function CreativeMarqueeSection() {
+export function CreativeMarqueeSection({ available = [] }: { available?: string[] }) {
+  // Map c-01 -> the real filename, whatever its extension.
+  const byId = new Map(available.map((f) => [f.replace(/\.[^.]+$/, ""), f]));
+  const withFile = (tiles: Tile[]) => tiles.map((t) => ({ ...t, file: byId.get(t.id) }));
+  const real = [...ROW_1, ...ROW_2].filter((t) => byId.has(t.id));
+
+  // With a partial set, cycle only what exists so neither row shows a gap.
+  const row1 = real.length
+    ? withFile(real.filter((_, i) => i % 2 === 0).length ? real.filter((_, i) => i % 2 === 0) : real)
+    : withFile(ROW_1);
+  const row2 = real.length
+    ? withFile(real.filter((_, i) => i % 2 === 1).length ? real.filter((_, i) => i % 2 === 1) : real)
+    : withFile(ROW_2);
+
   const sectionRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const fine = useMediaQuery("(pointer: fine)");
@@ -72,8 +86,8 @@ export function CreativeMarqueeSection() {
       </p>
 
       <div className="flex flex-col gap-3">
-        <Row x={reduced ? undefined : x} tiles={ROW_1} portrait fine={fine} />
-        <Row x={reduced ? undefined : xInverse} tiles={ROW_2} fine={fine} />
+        <Row x={reduced ? undefined : x} tiles={row1} portrait fine={fine} />
+        <Row x={reduced ? undefined : xInverse} tiles={row2} fine={fine} />
       </div>
     </section>
   );
@@ -86,7 +100,7 @@ function Row({
   fine,
 }: {
   x?: MotionValue<number>;
-  tiles: Tile[];
+  tiles: (Tile & { file?: string })[];
   portrait?: boolean;
   fine: boolean;
 }) {
@@ -111,14 +125,15 @@ function Row({
           className="tile group relative m-0 shrink-0 rounded-xl overflow-hidden border border-ink/[0.07] bg-paper-2"
           style={{ width: w, height: h }}
         >
-          {HAS_ASSETS ? (
+          {t.file ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={`/creatives/${t.id}.webp`}
+              src={`/creatives/${t.file}`}
               alt={`${t.angle} ad creative`}
               width={w}
               height={h}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           ) : (

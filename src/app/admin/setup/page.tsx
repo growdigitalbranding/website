@@ -81,7 +81,7 @@ export default function SetupPage() {
       <p className="text-sm text-graphite mb-8">
         These two are baked into the build and frozen afterwards, so they must exist{" "}
         <strong className="text-ink">before</strong> <span className="font-mono">next build</span>{" "}
-        runs. Setting them and restarting is not enough — it needs a rebuild.
+        runs. Setting them and restarting is not enough. It needs a rebuild.
       </p>
 
       <h2 className="mono-label text-graphite mb-3">Needed while the app runs</h2>

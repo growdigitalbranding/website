@@ -36,8 +36,8 @@ export function GtmForm({
       </label>
 
       <p className="text-sm text-graphite">
-        The ID only, not the script. Everything else — GA4, the Meta pixel, Google Ads,
-        conversion tags — goes inside the container in the GTM interface, where you can
+        The ID only, not the script. Everything else (GA4, the Meta pixel, Google Ads,
+        conversion tags) goes inside the container in the GTM interface, where you can
         change it without a deploy.
       </p>
 
@@ -49,7 +49,7 @@ export function GtmForm({
           <p className="text-graphite">
             There is no cookie banner on the site yet. Consent Mode v2 is set to denied by
             default, so tags will load in a cookieless mode and will not set marketing
-            cookies until consent is granted — but you need a banner before running
+            cookies until consent is granted, but you need a banner before running
             anything that relies on consent. The privacy policy updates itself to declare
             analytics the moment a container is saved.
           </p>

@@ -22,7 +22,7 @@ import { faqJsonLd } from "@/lib/schema/jsonld";
 export const metadata: Metadata = {
   title: "What we do",
   description:
-    "The full capability directory: eight property types, five price positions, eight project stages, forty services across five pillars, ten buyer segments and six geographies — each with what actually changes about the marketing.",
+    "The full capability directory: eight property types, five price positions, eight project stages, forty services across five pillars, ten buyer segments and six geographies, each with what actually changes about the marketing.",
 };
 
 /**
@@ -66,7 +66,7 @@ const FAQS = [
   {
     question: "Can you run a pre-launch campaign?",
     answer:
-      "Yes, and the measurement has to be set up before spend starts. Attribution cannot be retrofitted onto a launch — the launch data is simply lost. At pre-launch the job is waitlist capture rather than enquiry volume, so the creative is teaser-led and the follow-up nurtures rather than sells.",
+      "Yes, and the measurement has to be set up before spend starts. Attribution cannot be retrofitted onto a launch. The launch data is simply lost. At pre-launch the job is waitlist capture rather than enquiry volume, so the creative is teaser-led and the follow-up nurtures rather than sells.",
   },
   {
     question: "Do you only do lead generation, or branding too?",
@@ -160,7 +160,7 @@ export default function WhatWeDoPage() {
       <PageHero
         eyebrow="WHAT WE DO"
         title="The full directory."
-        subtitle="Every property type, position, stage and service we market — with what actually changes about the work in each case. The homepage argues; this page documents."
+        subtitle="Every property type, position, stage and service we market, with what actually changes about the work in each case. The homepage argues; this page documents."
       />
 
       <div className="mx-auto max-w-[1440px] px-6 pb-20 grid lg:grid-cols-[220px_1fr] gap-10 lg:gap-16">
@@ -170,7 +170,7 @@ export default function WhatWeDoPage() {
           <Block
             id="property-types"
             title="Property types"
-            intro="Eight categories. The difference between them is not the audience size, it is the decision cycle — and that changes the whole loop."
+            intro="Eight categories. The difference between them is not the audience size, it is the decision cycle, and that changes the whole loop."
           >
             <ul className="grid sm:grid-cols-2 gap-x-10">
               {PROPERTY_TYPES.map((t) => (
@@ -206,7 +206,7 @@ export default function WhatWeDoPage() {
           <Block
             id="services"
             title="Services"
-            intro="Forty services across five pillars. Content and creative is not a sixth pillar — it is the input to all five."
+            intro="Forty services across five pillars. Content and creative is not a sixth pillar. It is the input to all five."
           >
             {PILLARS.map((p) => (
               <div key={p.n} id={`pillar-${p.n}`} className="scroll-mt-28 mb-10">

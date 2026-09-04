@@ -43,11 +43,11 @@ export function FunnelRibbonSection() {
       ref={ref}
       id="the-funnel"
       className="bg-ink rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px]"
-      style={scrubbed ? { height: "250vh" } : undefined}
+      style={scrubbed ? { height: "250dvh" } : undefined}
       aria-labelledby="funnel-heading"
     >
       <div
-        className={`${scrubbed ? "sticky top-0 h-screen flex flex-col justify-center" : ""} py-24 sm:py-32 px-5 sm:px-8 md:px-10`}
+        className={`${scrubbed ? "sticky top-0 h-[100dvh] flex flex-col justify-center" : ""} py-24 sm:py-32 px-5 sm:px-8 md:px-10`}
       >
         <FadeIn y={30}>
           <h2

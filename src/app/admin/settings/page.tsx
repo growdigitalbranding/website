@@ -43,7 +43,7 @@ export default async function SettingsPage() {
         <h2 className="font-medium mb-2">Make webhook</h2>
         <p className="text-sm text-graphite mb-6">
           Every enquiry is saved here first, then forwarded to this URL. If Make is
-          unreachable the lead is still in your inbox — delivery failing can no longer
+          unreachable the lead is still in your inbox. Delivery failing can no longer
           lose one. In Make: open your scenario, click the Custom webhook module, then
           Copy address to clipboard.
         </p>

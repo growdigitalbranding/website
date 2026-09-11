@@ -1,18 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { LoopGlyph } from "@/components/loop/LoopGlyph";
-import { Magnet } from "@/components/loop/Magnet";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
+import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 /**
- * One axis, not four. The old hero opened with seventeen taxonomy terms across
- * four lines, which is a qualification menu standing between the reader and
- * the claim. Property type is the axis a builder self-identifies on fastest,
- * so it survives, demoted to a strip at the foot of the fold where it answers
- * "is this for me" at the point of decision.
+ * The same hundred leads, run two ways.
+ *
+ * The fold used to be a claim in large type. A builder arriving cold has read
+ * that claim on every agency site in the market, so it did no work. This is the
+ * argument as a mechanism he operates himself: one switch, five bands, and a
+ * top band that never moves. Cost per lead is identical on both settings and
+ * the bookings are not, which is the whole thesis and needs no adjective.
+ *
+ * The rates are illustrative and say so on screen. They are arithmetic on a
+ * fixed cohort rather than a claim about any account, and the structural point
+ * survives whatever the real numbers turn out to be. Swapping them for measured
+ * ones is an edit to STAGES and the removal of one line.
  */
+
+type Stage = { label: string; before: number; after: number };
+
+const STAGES: Stage[] = [
+  { label: "Leads bought", before: 100, after: 100 },
+  { label: "Reached inside an hour", before: 58, after: 86 },
+  { label: "Qualified", before: 31, after: 47 },
+  { label: "Site visit booked", before: 11, after: 22 },
+  { label: "Showed up", before: 3, after: 7 },
+];
+
 const SEGMENTS = {
   full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
   short: ["Plots", "Apartments", "Villas"],
@@ -26,14 +45,13 @@ const NAV = [
   { href: "/contact", label: "Contact" },
 ];
 
-
 function Terms({ parts }: { parts: string[] }) {
   return (
     <>
       {parts.map((text, j) => (
         <span key={text}>
-          {j > 0 && <span className="text-graphite/50"> &middot; </span>}
-          <span className="text-ink">{text}</span>
+          {j > 0 && <span className="text-paper/30"> &middot; </span>}
+          <span className="text-paper/75">{text}</span>
         </span>
       ))}
     </>
@@ -41,25 +59,33 @@ function Terms({ parts }: { parts: string[] }) {
 }
 
 export function HeroSection() {
-  return (
-    <section
-      className="relative flex flex-col min-h-[100dvh] bg-paper"
-      style={{ overflowX: "clip" }}
-    >
-      {/* The paper had no light source: one flat value corner to corner, which
-          is what made a page of hairlines and large type read as unfinished.
-          A wash from above and a vignette give it a direction, with no new
-          colour in the palette. */}
-      <div className="ambient" aria-hidden="true" />
-      <div className="vignette" aria-hidden="true" />
+  const [on, setOn] = useState(false);
+  const reduced = useReducedMotion();
 
+  // One demonstration on load, then it waits. Without it the switch reads as
+  // decoration and most visitors never touch it. Under reduced motion nothing
+  // moves on its own: the control is still there to press.
+  useEffect(() => {
+    if (reduced) return;
+    const a = setTimeout(() => setOn(true), 1700);
+    const b = setTimeout(() => setOn(false), 4100);
+    return () => {
+      clearTimeout(a);
+      clearTimeout(b);
+    };
+  }, [reduced]);
+
+  const key = on ? "after" : "before";
+
+  return (
+    <section className="relative flex flex-col min-h-[100dvh] bg-ink text-paper" style={{ overflowX: "clip" }}>
       <FloatingNav />
 
       <FadeIn y={-20} delay={0} className="relative z-[1] px-6 md:px-10 pt-6 md:pt-8">
         <div className="flex items-center justify-between gap-6">
           <Link
             href="/"
-            className="press font-display font-extrabold uppercase track-h2 text-xl md:text-2xl text-ink"
+            className="press font-display font-extrabold uppercase track-h2 text-xl md:text-2xl text-paper"
           >
             Grow
           </Link>
@@ -68,7 +94,7 @@ export function HeroSection() {
               <Link
                 key={n.href}
                 href={n.href}
-                className="nav-link text-ink font-medium uppercase tracking-wider text-sm md:text-base lg:text-[1.05rem]"
+                className="nav-link text-paper/80 font-medium uppercase tracking-wider text-sm md:text-base lg:text-[1.05rem]"
               >
                 {n.label}
               </Link>
@@ -76,94 +102,135 @@ export function HeroSection() {
           </nav>
           <Link
             href="/contact"
-            className="nav-link md:hidden text-ink font-medium uppercase tracking-wider text-sm"
+            className="nav-link md:hidden text-paper/80 font-medium uppercase tracking-wider text-sm"
           >
             Contact
           </Link>
         </div>
       </FadeIn>
 
-      {/* The fold is one centred block rather than four stacked bands. The
-          claim and the CTA sit together in the optical centre; the glyph moves
-          out of the vertical run and becomes a mark beside the type, so it
-          stops spending 280px of the fold on decoration. */}
-      <div className="relative z-[1] flex-1 flex items-center px-6 md:px-10 py-8">
-        <div className="w-full max-w-[1400px] mx-auto grid gap-10 md:gap-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <div className="min-w-0">
-            {/* The counter-claim sets up the headline, so it stays. It is no
-                longer inside the h1: the h1 is now the proposition itself,
-                which is what a search result and a screen reader should get. */}
-            <FadeIn y={16} delay={0.1}>
-              <p
-                className="font-display font-medium lowercase track-h2 text-graphite leading-none mb-3 md:mb-5"
-                style={{ fontSize: "clamp(1rem, 2.1vw, 1.75rem)" }}
-              >
-                most agencies hand you leads and stop.
-              </p>
+      <div className="relative z-[1] flex-1 grid lg:grid-cols-[0.95fr_1.05fr] items-center gap-8 lg:gap-14 px-6 md:px-10 py-6 md:py-8">
+        <div className="min-w-0 max-w-[42ch]">
+          <FadeIn y={14} delay={0.06}>
+            <p className="mono-label mb-4 md:mb-5" style={{ color: "var(--signal-bright)" }}>
+              Every hundred leads you buy
+            </p>
+          </FadeIn>
+
+          <h1
+            className="font-display font-extrabold lowercase track-display leading-[0.93] text-paper overflow-x-clip overflow-y-visible"
+            style={{ fontSize: "clamp(2.2rem, min(5.6vw, 8.2vh), 5rem)" }}
+          >
+            <FadeIn y={28} delay={0.14}>
+              <span className="block">watch where</span>
             </FadeIn>
+            <FadeIn y={28} delay={0.22}>
+              <span className="block">the money</span>
+            </FadeIn>
+            <FadeIn y={28} delay={0.3}>
+              <span className="block" style={{ color: "var(--pulse)" }}>
+                actually goes.
+              </span>
+            </FadeIn>
+          </h1>
 
-            {/* Three fixed lines, not a fluid wrap. Two lines broke as "from ad
-                to site / visit" at 390px, orphaning a word; three short ones
-                fit every width and the step reads as the chain the sentence
-                describes.
-
-                overflow-x-clip, never overflow-hidden: the rise enters from
-                below its own box, and clipping y would hide it outright at
-                mobile sizes where the offset exceeds the line box. */}
-            <h1
-              className="display-grad font-display font-extrabold lowercase track-display leading-[0.94] overflow-x-clip overflow-y-visible"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}
+          <FadeIn y={16} delay={0.4}>
+            <p
+              className="text-paper/65 leading-[1.55] mt-5 md:mt-6 max-w-[44ch]"
+              style={{ fontSize: "clamp(0.95rem,1.5vw,1.3rem)" }}
             >
-              <FadeIn y={34} delay={0.22}>
-                <span className="block">from ad</span>
-              </FadeIn>
-              <FadeIn y={34} delay={0.3}>
-                <span className="block">to site visit</span>
-              </FadeIn>
-              <FadeIn y={34} delay={0.38}>
-                <span className="block">to booking.</span>
-              </FadeIn>
-            </h1>
+              Your cost per lead is the top band. Everything underneath it is the part
+              nobody reports on, and the part that decides what a booking costs you.
+            </p>
+          </FadeIn>
 
-            {/* Promoted out of the floor. This is the line that says who we
-                are, who we serve and where, so it is sized to be read rather
-                than found. */}
-            <FadeIn y={18} delay={0.44}>
-              <p
-                className="text-graphite leading-[1.5] mt-5 md:mt-7 max-w-[46ch]"
-                style={{ fontSize: "clamp(0.95rem, 1.55vw, 1.45rem)" }}
-              >
-                We own the whole chain for real estate developers in Tamil Nadu and
-                Karnataka. Creative volume, clean tracking, and follow-up that actually
-                closes.
-              </p>
-            </FadeIn>
-
-            <FadeIn y={18} delay={0.54}>
-              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <PrimaryCta />
-                <span className="mono-label text-graphite">
-                  We reply on WhatsApp inside one working hour
-                </span>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Hidden below md: at phone widths the fold is already carrying the
-              headline, the proposition and the CTA, and a 130px mark below all
-              of it pushes the CTA under the fold. */}
-          <FadeIn y={24} delay={0.66} className="hidden md:block">
-            <Magnet padding={150} strength={3}>
-              <LoopGlyph drawOnMount className="h-auto w-[170px] lg:w-[210px]" />
-            </Magnet>
+          <FadeIn y={16} delay={0.48}>
+            <div className="mt-7 md:mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <PrimaryCta label="Find your leak" />
+              <span className="mono-label text-paper/55">Free, 30 minutes, no deck</span>
+            </div>
           </FadeIn>
         </div>
+
+        <FadeIn y={24} delay={0.56} className="min-w-0">
+          <div className="flex items-center gap-3 mb-5 md:mb-7">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={on}
+              aria-label="Compare leads handed over with the follow-up loop run"
+              onClick={() => setOn((v) => !v)}
+              className="press relative h-9 w-[74px] shrink-0 rounded-full transition-colors duration-300"
+              style={{ background: on ? "var(--signal)" : "rgba(239,240,236,0.18)" }}
+            >
+              <motion.span
+                animate={{ left: on ? 42 : 4 }}
+                transition={
+                  reduced
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 420, damping: 32 }
+                }
+                className="absolute top-1 h-7 w-7 rounded-full bg-paper"
+              />
+            </button>
+            <span className="mono-label text-paper/75 leading-[1.6]">
+              {on ? "With the follow-up loop" : "Leads handed over, as usual"}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-1.5 sm:gap-2">
+            {STAGES.map((s, i) => {
+              const v = s[key];
+              const lost = i > 0 ? STAGES[i - 1][key] - v : 0;
+              return (
+                <div key={s.label}>
+                  {i > 0 && (
+                    <div className="flex justify-center">
+                      <motion.span
+                        key={key + i}
+                        initial={reduced ? false : { opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35 }}
+                        className="font-mono text-[10px] sm:text-[11px] mb-1 sm:mb-1.5"
+                        style={{ color: "var(--pulse)" }}
+                      >
+                        &minus;{lost} lost here
+                      </motion.span>
+                    </div>
+                  )}
+                  <motion.div
+                    animate={{ width: `${Math.max(v, 16)}%` }}
+                    transition={
+                      reduced ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 18 }
+                    }
+                    data-band
+                    className="mx-auto rounded-lg flex items-center justify-center"
+                    style={{
+                      height: "clamp(2.1rem, 4.8vh, 3.4rem)",
+                      background: on ? "var(--signal)" : "rgba(239,240,236,0.22)",
+                    }}
+                  >
+                    <span className="font-mono text-sm sm:text-base md:text-lg text-paper">{v}</span>
+                  </motion.div>
+                  <p className="mono-label text-center mt-1.5 sm:mt-2 text-paper/60 leading-[1.5]">
+                    {s.label}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Said in the fold rather than a footnote: these are not measured
+              numbers and the page should not imply they are. */}
+          <p className="mono-label text-paper/40 mt-5 md:mt-7 leading-[1.9] max-w-[46ch]">
+            Illustrative rates, not an average across accounts. The audit gives you yours.
+          </p>
+        </FadeIn>
       </div>
 
-      {/* The qualifier strip, at the foot of the fold rather than the head. */}
-      <FadeIn y={12} delay={0.76} className="relative z-[1]">
-        <div className="px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 pt-4 border-t border-mist/70 mx-6 md:mx-10">
-          <p className="mono-label positioning-line text-graphite leading-[1.55]">
+      <FadeIn y={12} delay={0.7} className="relative z-[1]">
+        <div className="px-6 md:px-10 pb-6 sm:pb-7 md:pb-9 pt-4 border-t border-paper/10 mx-6 md:mx-10">
+          <p className="mono-label positioning-line leading-[1.55]">
             <span className="sm:hidden">
               <Terms parts={SEGMENTS.short} />
             </span>

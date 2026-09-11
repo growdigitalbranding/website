@@ -140,10 +140,14 @@ function Row({
             // Still a --mist block naming the file, per the asset note, but
             // built as a spec frame rather than an empty div: crop marks, a
             // faint hatch, and the angle it is reserved for. No stock imagery.
+            //
+            // The ratio quoted is the source to supply, not this tile's own
+            // shape. The two rows are 4:5 and 1:1 and a partial set cycles
+            // through both, so one 3:4 original has to survive either crop.
             <div className="slot w-full h-full flex flex-col justify-between p-4">
               <span className="mono-label text-graphite/70">{t.angle}</span>
               <span className="mono-label text-graphite">
-                {t.id}.webp · {portrait ? "4:5" : "1:1"}
+                {t.id}.webp · 3:4
               </span>
             </div>
           )}

@@ -82,7 +82,7 @@ export function CreativeMarqueeSection({ available = [] }: { available?: string[
       aria-label="Creative library"
     >
       <p className="mono-label text-center px-6 mb-10">
-        72 distinct creative angles shipped in the last 90 days
+        Creative concepts. Nineteen angles on the same buyer decision.
       </p>
 
       <div className="flex flex-col gap-3">
@@ -154,8 +154,7 @@ function Row({
 
           {fine && (
             <figcaption className="absolute inset-0 flex flex-col justify-end gap-1 p-4 bg-ink/[0.88] opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out">
-              <span className="mono-label text-paper">{t.angle}</span>
-              <span className="font-mono text-lg text-signal-bright">{t.result}</span>
+              <span className="font-mono text-lg text-paper">{t.angle}</span>
             </figcaption>
           )}
         </figure>

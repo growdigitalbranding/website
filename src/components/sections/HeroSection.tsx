@@ -32,6 +32,11 @@ const STAGES: Stage[] = [
   { label: "Showed up", before: 3, after: 7 },
 ];
 
+// Derived, never typed in: the end-to-end multiple has to agree with the last
+// band, or the fold contradicts itself the moment these rates are replaced.
+const LAST = STAGES[STAGES.length - 1];
+const TOTAL_UPLIFT = `${(LAST.after / LAST.before).toFixed(1)}x the bookings`;
+
 const SEGMENTS = {
   full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
   short: ["Plots", "Apartments", "Villas"],
@@ -174,14 +179,30 @@ export function HeroSection() {
               />
             </button>
             <span className="mono-label text-paper/75 leading-[1.6]">
-              {on ? "With the follow-up loop" : "Leads handed over, as usual"}
+              {on ? (
+                <>
+                  With the follow-up loop
+                  <span className="block sm:inline" style={{ color: "var(--signal-bright)" }}>
+                    <span className="hidden sm:inline text-paper/30"> &middot; </span>
+                    {TOTAL_UPLIFT}
+                  </span>
+                </>
+              ) : (
+                "Leads handed over, as usual"
+              )}
             </span>
           </div>
 
-          <div className="flex flex-col gap-1.5 sm:gap-2">
+          {/* Right gutter, not decoration: the bars are centred, so the widest
+              one put its uplift badge 32px past the section edge at 390px and
+              the clip hid it. The gutter is what the badge is centred within. */}
+          <div className="flex flex-col gap-1.5 sm:gap-2 pr-12 sm:pr-16">
             {STAGES.map((s, i) => {
               const v = s[key];
               const lost = i > 0 ? STAGES[i - 1][key] - v : 0;
+              // Against the same stage when the leads are simply handed over.
+              const uplift =
+                s.before > 0 ? Math.round(((s.after - s.before) / s.before) * 100) : 0;
               return (
                 <div key={s.label}>
                   {i > 0 && (
@@ -204,13 +225,26 @@ export function HeroSection() {
                       reduced ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 18 }
                     }
                     data-band
-                    className="mx-auto rounded-lg flex items-center justify-center"
+                    className="relative mx-auto rounded-lg flex items-center justify-center"
                     style={{
                       height: "clamp(2.1rem, 4.8vh, 3.4rem)",
                       background: on ? "var(--signal)" : "rgba(239,240,236,0.22)",
                     }}
                   >
                     <span className="font-mono text-sm sm:text-base md:text-lg text-paper">{v}</span>
+                    {/* Pinned to the band's own right edge rather than the row,
+                        so it travels with the bar as the bar changes width. */}
+                    {on && uplift > 0 && (
+                      <motion.span
+                        initial={reduced ? false : { opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.25 }}
+                        className="absolute left-full top-1/2 -translate-y-1/2 ml-2 font-mono text-[10px] sm:text-xs whitespace-nowrap"
+                        style={{ color: "var(--signal-bright)" }}
+                      >
+                        +{uplift}%<span className="hidden sm:inline"> reached</span>
+                      </motion.span>
+                    )}
                   </motion.div>
                   <p className="mono-label text-center mt-1.5 sm:mt-2 text-paper/60 leading-[1.5]">
                     {s.label}

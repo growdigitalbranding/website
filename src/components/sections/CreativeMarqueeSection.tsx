@@ -154,7 +154,8 @@ function Row({
 
           {fine && (
             <figcaption className="absolute inset-0 flex flex-col justify-end gap-1 p-4 bg-ink/[0.88] opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out">
-              <span className="font-mono text-lg text-paper">{t.angle}</span>
+              <span className="mono-label text-paper">{t.angle}</span>
+              <span className="font-mono text-lg text-signal-bright">{t.result}</span>
             </figcaption>
           )}
         </figure>

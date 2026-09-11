@@ -7,26 +7,16 @@ import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
 
 /**
- * The four axes, with the terms a builder would recognise as theirs.
- *
- * Each line carries a shorter mobile variant. Hiding lines 2 and 3 below sm
- * was not enough on its own: at 390px the full lines 1 and 4 each wrapped to
- * two rows, so the block still cost 92px against a 71px headline and the
- * hierarchy read upside down. Three terms fit on one row and carry the same
- * signal.
+ * One axis, not four. The old hero opened with seventeen taxonomy terms across
+ * four lines, which is a qualification menu standing between the reader and
+ * the claim. Property type is the axis a builder self-identifies on fastest,
+ * so it survives, demoted to a strip at the foot of the fold where it answers
+ * "is this for me" at the point of decision.
  */
-const POSITIONING = [
-  {
-    full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
-    short: ["Plots", "Apartments", "Villas"],
-  },
-  { full: ["Affordable", "Premium", "Luxury", "Ultra-Luxury"] },
-  { full: ["Pre-Launch", "Launch", "Ongoing", "Ready to Move"] },
-  {
-    full: ["Branding", "Lead Gen", "Follow-Up", "Retargeting", "Conversion"],
-    short: ["Branding", "Lead Gen", "Conversion"],
-  },
-];
+const SEGMENTS = {
+  full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
+  short: ["Plots", "Apartments", "Villas"],
+};
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -93,85 +83,96 @@ export function HeroSection() {
         </div>
       </FadeIn>
 
-      {/* Four stacked lines replace the single eyebrow: the axes a builder
-          self-identifies on, before the headline makes its claim. Lines 2 and
-          3 are hidden below sm — at that width they are four more rows of
-          uppercase mono between the reader and the H1. */}
-      <div className="relative z-[1] px-6 md:px-10 mt-12 sm:mt-16">
-        {POSITIONING.map((line, i) => (
-          <FadeIn
-            key={line.full[0]}
-            y={8}
-            delay={0.1 + i * 0.07}
-            className={i === 1 || i === 2 ? "hidden sm:block" : undefined}
-          >
-            {/* Tighter leading below sm: 1.9 on a wrapped line is generous on
-                desktop and wasteful on a 664px screen. */}
-            <p className="mono-label positioning-line text-graphite leading-[1.55] sm:leading-[1.9]">
-              {line.short && (
-                <span className="sm:hidden">
-                  <Terms parts={line.short} />
-                </span>
-              )}
-              <span className={line.short ? "hidden sm:inline" : undefined}>
-                <Terms parts={line.full} />
-              </span>
-            </p>
-          </FadeIn>
-        ))}
-      </div>
+      {/* The fold is one centred block rather than four stacked bands. The
+          claim and the CTA sit together in the optical centre; the glyph moves
+          out of the vertical run and becomes a mark beside the type, so it
+          stops spending 280px of the fold on decoration. */}
+      <div className="relative z-[1] flex-1 flex items-center px-6 md:px-10 py-8">
+        <div className="w-full max-w-[1400px] mx-auto grid gap-10 md:gap-14 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+          <div className="min-w-0">
+            {/* The counter-claim sets up the headline, so it stays. It is no
+                longer inside the h1: the h1 is now the proposition itself,
+                which is what a search result and a screen reader should get. */}
+            <FadeIn y={16} delay={0.1}>
+              <p
+                className="font-display font-medium lowercase track-h2 text-graphite leading-none mb-3 md:mb-5"
+                style={{ fontSize: "clamp(1rem, 2.1vw, 1.75rem)" }}
+              >
+                most agencies hand you leads and stop.
+              </p>
+            </FadeIn>
 
-      {/* overflow-hidden clipped both axes, and the second line enters from 44px
-          below its own box. At mobile sizes that offset put it entirely outside
-          the clip, so it never intersected the viewport, so whileInView never
-          fired and the headline stayed at opacity 0. Clipping x alone keeps the
-          wide line from causing horizontal scroll without hiding the rise. */}
-      <h1 className="relative z-[1] w-full px-6 md:px-10 overflow-x-clip overflow-y-visible">
-        <FadeIn y={30} delay={0.2}>
-          <span className="block font-display font-medium lowercase track-h2 text-graphite leading-none mb-2 md:mb-3 text-[5vw] sm:text-[4.2vw] md:text-[3.4vw] lg:text-[2.8vw]">
-            most agencies stop at the lead.
-          </span>
-        </FadeIn>
-        <FadeIn y={44} delay={0.32}>
-          <span className="display-grad block font-display font-extrabold lowercase track-display leading-none whitespace-nowrap mt-1 md:-mt-2 text-[11.2vw] sm:text-[11.9vw] md:text-[12.3vw] lg:text-[12.6vw]">
-            we run the loop
-          </span>
-        </FadeIn>
-      </h1>
+            {/* Three fixed lines, not a fluid wrap. Two lines broke as "from ad
+                to site / visit" at 390px, orphaning a word; three short ones
+                fit every width and the step reads as the chain the sentence
+                describes.
 
-      {/* In flow rather than absolutely placed: the free band between the
-          headline and the metric strip measures ~250-270px at desktop, so a
-          fixed 440px glyph could only ever collide with the type. Flow lets it
-          centre in whatever space the viewport actually leaves. */}
-      <FadeIn
-        y={24}
-        delay={0.6}
-        className="relative z-[1] flex-1 min-h-0 flex items-center justify-center py-4"
-      >
-        <Magnet padding={150} strength={3}>
-          <LoopGlyph
-            drawOnMount
-            className="h-auto w-[130px] sm:w-[160px] md:w-[185px] lg:w-[205px]"
-          />
-        </Magnet>
-      </FadeIn>
-
-      <div className="relative z-[1]">
-        <div className="flex justify-between items-end gap-6 px-6 md:px-10 pb-7 sm:pb-8 md:pb-10">
-          <FadeIn y={20} delay={0.45}>
-            <p
-              className="text-graphite font-light lowercase tracking-wide leading-snug max-w-[180px] sm:max-w-[240px] md:max-w-[280px]"
-              style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.15rem)" }}
+                overflow-x-clip, never overflow-hidden: the rise enters from
+                below its own box, and clipping y would hide it outright at
+                mobile sizes where the offset exceeds the line box. */}
+            <h1
+              className="display-grad font-display font-extrabold lowercase track-display leading-[0.94] overflow-x-clip overflow-y-visible"
+              style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}
             >
-              full-loop performance marketing for real estate developers across tamil nadu
-              &amp; karnataka
-            </p>
-          </FadeIn>
-          <FadeIn y={20} delay={0.5}>
-            <PrimaryCta />
+              <FadeIn y={34} delay={0.22}>
+                <span className="block">from ad</span>
+              </FadeIn>
+              <FadeIn y={34} delay={0.3}>
+                <span className="block">to site visit</span>
+              </FadeIn>
+              <FadeIn y={34} delay={0.38}>
+                <span className="block">to booking.</span>
+              </FadeIn>
+            </h1>
+
+            {/* Promoted out of the floor. This is the line that says who we
+                are, who we serve and where, so it is sized to be read rather
+                than found. */}
+            <FadeIn y={18} delay={0.44}>
+              <p
+                className="text-graphite leading-[1.5] mt-5 md:mt-7 max-w-[46ch]"
+                style={{ fontSize: "clamp(0.95rem, 1.55vw, 1.45rem)" }}
+              >
+                We own the whole chain for real estate developers in Tamil Nadu and
+                Karnataka. Creative volume, clean tracking, and follow-up that actually
+                closes.
+              </p>
+            </FadeIn>
+
+            <FadeIn y={18} delay={0.54}>
+              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <PrimaryCta />
+                <span className="mono-label text-graphite">
+                  We reply on WhatsApp inside one working hour
+                </span>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Hidden below md: at phone widths the fold is already carrying the
+              headline, the proposition and the CTA, and a 130px mark below all
+              of it pushes the CTA under the fold. */}
+          <FadeIn y={24} delay={0.66} className="hidden md:block">
+            <Magnet padding={150} strength={3}>
+              <LoopGlyph drawOnMount className="h-auto w-[170px] lg:w-[210px]" />
+            </Magnet>
           </FadeIn>
         </div>
       </div>
+
+      {/* The qualifier strip, at the foot of the fold rather than the head. */}
+      <FadeIn y={12} delay={0.76} className="relative z-[1]">
+        <div className="px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 pt-4 border-t border-mist/70 mx-6 md:mx-10">
+          <p className="mono-label positioning-line text-graphite leading-[1.55]">
+            <span className="sm:hidden">
+              <Terms parts={SEGMENTS.short} />
+            </span>
+            <span className="hidden sm:inline">
+              <Terms parts={SEGMENTS.full} />
+            </span>
+          </p>
+        </div>
+      </FadeIn>
     </section>
   );
 }

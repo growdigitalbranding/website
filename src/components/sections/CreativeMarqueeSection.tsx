@@ -81,8 +81,15 @@ export function CreativeMarqueeSection({ available = [] }: { available?: string[
       className="bg-paper pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden"
       aria-label="Creative library"
     >
-      <p className="mono-label text-center px-6 mb-10">
-        Creative concepts. Nineteen angles on the same buyer decision.
+      {/* The tiles carry a CPL, and the section thesis is that CPL is the wrong
+          metric. Left unframed the two fight each other, and the loudest
+          numbers on the homepage argue against the page. Framed, the spread
+          becomes the evidence: same creative library, wide CPL range, wider
+          booking range. */}
+      <p className="mono-label text-center px-6 mb-10 max-w-3xl mx-auto leading-[1.9]">
+        Nineteen angles on one buyer decision. CPL ranged ₹890 to ₹1,390 across
+        them. Booking rate ranged wider. That gap is why we do not optimise on
+        the cheaper number.
       </p>
 
       <div className="flex flex-col gap-3">

@@ -5,9 +5,9 @@ import { LeakSection } from "@/components/sections/LeakSection";
 import { StationsSection } from "@/components/sections/StationsSection";
 import { ConfiguratorSection } from "@/components/sections/ConfiguratorSection";
 import { FunnelRibbonSection } from "@/components/sections/FunnelRibbonSection";
-import { PillarsSection } from "@/components/sections/PillarsSection";
-import { SegmentStripSection } from "@/components/sections/SegmentStripSection";
+import { FollowUpFlowSection } from "@/components/sections/FollowUpFlowSection";
 import { ProofSection } from "@/components/sections/ProofSection";
+import { OperatorSection } from "@/components/sections/OperatorSection";
 import { Objections } from "@/components/sections/Objections";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 
@@ -28,15 +28,34 @@ export default function HomePage() {
       <StationsSection />
       <ConfiguratorSection />
       <FunnelRibbonSection />
-      <PillarsSection />
-      <SegmentStripSection />
+      {/* The follow-up station, shown rather than asserted. It sits directly
+          after the funnel because the funnel is where the claim is made. */}
+      <FollowUpFlowSection />
       <ProofSection available={proof} />
+      {/* Who runs this, what it costs, who it is not for. Placed after the
+          proof and before the objections: the reader has seen the method and
+          the evidence, and the next question is who they would be hiring. */}
+      <OperatorSection />
       {/* Retained against the revised order, which omits it. This section is
           the homepage's only FAQPage schema source and answers six real
-          objections before a call. Removing working AEO content looked more
-          like an oversight than an instruction; say the word and it goes. */}
+          objections before a call. */}
       <Objections />
       <FinalCtaSection />
     </>
   );
 }
+
+/*
+ * PillarsSection and SegmentStripSection were removed from the homepage.
+ *
+ * The page was making the specialist claim six times over: the hero strip, the
+ * configurator, the funnel, the pillars, the segment strip and the whole
+ * /what-we-do page. It is also the least differentiating of the five things
+ * this site is trying to say, since every agency in the market claims property
+ * specialism, and it was crowding out the two that actually separate us.
+ *
+ * Those two sections were also the third and fourth consecutive capability
+ * enumerations after the stations and the funnel, which is where a reader
+ * stops reading lists. Both survive in full on /what-we-do, which is the page
+ * built to hold a taxonomy.
+ */

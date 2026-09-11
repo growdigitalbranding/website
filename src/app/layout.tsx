@@ -17,6 +17,35 @@ export const metadata: Metadata = {
   },
   description:
     "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
+  alternates: { canonical: "/" },
+  // Without these every shared link renders as a blank card, which is most of
+  // how this site actually gets seen: pasted into WhatsApp and email.
+  // metadataBase above resolves the relative path, so this stays correct on
+  // any host. 2400x1260 is the 1.91:1 card at 2x, for retina previews.
+  openGraph: {
+    type: "website",
+    siteName: "Grow Digital Branding",
+    locale: "en_IN",
+    url: "/",
+    title: "Most agencies stop at the lead. We run the loop.",
+    description:
+      "Performance marketing for real estate developers across Tamil Nadu and Karnataka. Creative volume, clean signal, and follow-up that closes.",
+    images: [
+      {
+        url: "/og.png",
+        width: 2400,
+        height: 1260,
+        alt: "Grow Digital Branding. Most agencies stop at the lead. We run the loop.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Most agencies stop at the lead. We run the loop.",
+    description:
+      "Performance marketing for real estate developers across Tamil Nadu and Karnataka.",
+    images: ["/og.png"],
+  },
 };
 
 export default async function RootLayout({

@@ -5,9 +5,17 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 /**
- * Character-by-character scroll reveal. Each character renders an invisible
- * placeholder plus an absolutely positioned animated span, so the paragraph
- * never reflows as it animates.
+ * Character-by-character scroll reveal.
+ *
+ * Each character used to render twice: a transparent placeholder to hold the
+ * line box, plus an absolutely positioned animated copy on top. The placeholder
+ * was there because the animated span was absolute, and the span was absolute
+ * for no reason, since the only animated property is opacity and opacity never
+ * reflows. The cost of that pair was real: text extraction returned every
+ * character doubled, so the leak paragraph, the most argumentative copy on the
+ * site, was indexable as "y y o o u u r r  c c o o s s t t".
+ *
+ * One span per character now. Half the DOM, correct text, same reveal.
  *
  * `highlightFrom` is a character index. Everything past it resolves to
  * --signal rather than --ink, which is how the thesis sentence carries the
@@ -32,21 +40,15 @@ export function AnimatedText({
   const chars = [...text];
 
   if (reduced) {
+    // Two spans, not one per character: nothing is animating, so the split
+    // only has to mark where the highlight starts.
+    const cut = highlightFrom ?? text.length;
     return (
       <p ref={ref} className={className}>
-        {chars.map((c, i) => (
-          <span
-            key={i}
-            style={{
-              color:
-                highlightFrom !== undefined && i >= highlightFrom
-                  ? "var(--signal)"
-                  : "var(--ink)",
-            }}
-          >
-            {c}
-          </span>
-        ))}
+        <span style={{ color: "var(--ink)" }}>{text.slice(0, cut)}</span>
+        {cut < text.length && (
+          <span style={{ color: "var(--signal)" }}>{text.slice(cut)}</span>
+        )}
       </p>
     );
   }
@@ -85,16 +87,11 @@ function Char({
   const opacity = useTransform(progress, [start, end], [0.25, 1]);
 
   return (
-    <span className="relative inline-block whitespace-pre">
-      <span className="opacity-0" aria-hidden="true">
-        {char}
-      </span>
-      <motion.span
-        className="absolute left-0 top-0"
-        style={{ opacity, color: highlight ? "var(--signal)" : "var(--ink)" }}
-      >
-        {char}
-      </motion.span>
-    </span>
+    <motion.span
+      className="whitespace-pre"
+      style={{ opacity, color: highlight ? "var(--signal)" : "var(--ink)" }}
+    >
+      {char}
+    </motion.span>
   );
 }

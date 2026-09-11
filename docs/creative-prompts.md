@@ -8,8 +8,20 @@ Nothing needs appending.
 
 ## Output settings
 
-- **Aspect ratio 4:5 portrait** (or 3:4 if the tool has no 4:5). Tiles render
-  portrait and are cropped with `object-cover`.
+- **Aspect ratio 3:4 or 4:5 portrait.** Either works. The marquee has two rows
+  and they are different shapes: row one is 260x325 (4:5), row two is 300x300
+  (square). Every tile uses `object-cover`, so the source ratio only decides how
+  much is cropped, never whether it fits.
+
+  A 3:4 source loses about 6% of its height in the 4:5 row and 25% in the square
+  row. A 4:5 source loses nothing in the first and 20% in the second. The
+  difference between the two is small, and 3:4 is the more widely supported
+  option, so use it if that is what your generator offers.
+
+  **Because a partial set cycles through both rows, any image can land in the
+  square one.** Frame accordingly: keep the subject roughly centred vertically
+  with margin above and below, and never put anything that matters in the top or
+  bottom eighth of the frame.
 - **Minimum 1080px wide.** Anything smaller looks soft on a retina screen.
 - Save as `c-01.jpg` … `c-21.jpg` into `public/creatives/`, then:
 

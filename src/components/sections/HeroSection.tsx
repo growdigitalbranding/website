@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
@@ -37,6 +37,53 @@ const STAGES: Stage[] = [
 const LAST = STAGES[STAGES.length - 1];
 const TOTAL_UPLIFT = `${(LAST.after / LAST.before).toFixed(1)}x the bookings`;
 
+// Literal hex, not var(): Motion cannot interpolate a CSS custom property, so
+// a token here would snap the colour while the width springs for 800ms.
+const BAND_ON = "#147700";
+const BAND_OFF = "rgba(239,240,236,0.22)";
+
+/**
+ * A number that travels to its new value instead of being replaced by it.
+ * Swapping 58 for 86 in one frame reads as a re-render; counting reads as the
+ * same cohort moving.
+ */
+function Count({ value, reduced }: { value: number; reduced: boolean }) {
+  const spring = useSpring(value, { stiffness: 110, damping: 20 });
+  const text = useTransform(spring, (n) => Math.round(n).toString());
+  useEffect(() => {
+    if (reduced) spring.jump(value);
+    else spring.set(value);
+  }, [value, reduced, spring]);
+  return <motion.span>{text}</motion.span>;
+}
+
+/**
+ * The loss, made physical. Dots detach at the junction and fall away as the
+ * band below narrows.
+ *
+ * Once, on the first build only. Charming the first time and irritating by the
+ * fourth, so it is not wired to the toggle. Transform and opacity only: these
+ * sit above a bar that is already animating width, and layout work here would
+ * be the thing that costs frames on a mid-range Android.
+ */
+function Drops({ count, delay }: { count: number; delay: number }) {
+  const dots = Math.min(Math.max(Math.round(count / 6), 3), 8);
+  return (
+    <span aria-hidden className="pointer-events-none absolute inset-x-0 -top-1 flex justify-center gap-1.5">
+      {Array.from({ length: dots }, (_, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: [0, 1, 1, 0], y: [-6, 2, 14, 26] }}
+          transition={{ duration: 0.85, delay: delay + i * 0.045, ease: [0.16, 1, 0.3, 1] }}
+          className="block h-1 w-1 rounded-full"
+          style={{ background: "var(--pulse)" }}
+        />
+      ))}
+    </span>
+  );
+}
+
 const SEGMENTS = {
   full: ["Plots", "Apartments", "Villas", "Senior Living", "Commercial"],
   short: ["Plots", "Apartments", "Villas"],
@@ -66,6 +113,8 @@ function Terms({ parts }: { parts: string[] }) {
 export function HeroSection() {
   const [on, setOn] = useState(false);
   const reduced = useReducedMotion();
+  const funnelRef = useRef<HTMLDivElement>(null);
+  const built = useInView(funnelRef, { once: true, amount: 0.3 });
 
   // One demonstration on load, then it waits. Without it the switch reads as
   // decoration and most visitors never touch it. Under reduced motion nothing
@@ -170,10 +219,11 @@ export function HeroSection() {
             >
               <motion.span
                 animate={{ left: on ? 42 : 4 }}
+                whileTap={reduced ? undefined : { scale: 0.9 }}
                 transition={
                   reduced
                     ? { duration: 0 }
-                    : { type: "spring", stiffness: 420, damping: 32 }
+                    : { type: "spring", stiffness: 500, damping: 26 }
                 }
                 className="absolute top-1 h-7 w-7 rounded-full bg-paper"
               />
@@ -196,7 +246,7 @@ export function HeroSection() {
           {/* Right gutter, not decoration: the bars are centred, so the widest
               one put its uplift badge 32px past the section edge at 390px and
               the clip hid it. The gutter is what the badge is centred within. */}
-          <div className="flex flex-col gap-1.5 sm:gap-2 pr-12 sm:pr-16">
+          <div ref={funnelRef} className="flex flex-col gap-1.5 sm:gap-2 pr-12 sm:pr-16">
             {STAGES.map((s, i) => {
               const v = s[key];
               const lost = i > 0 ? STAGES[i - 1][key] - v : 0;
@@ -207,31 +257,51 @@ export function HeroSection() {
                 <div key={s.label}>
                   {i > 0 && (
                     <div className="flex justify-center">
+                      {/* No key on state: remounting made it fade out and back
+                          in on every flip. It counts instead. */}
                       <motion.span
-                        key={key + i}
                         initial={reduced ? false : { opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35 }}
+                        transition={{ duration: 0.35, delay: reduced ? 0 : i * 0.07 }}
                         className="font-mono text-[10px] sm:text-[11px] mb-1 sm:mb-1.5"
                         style={{ color: "var(--pulse)" }}
                       >
-                        &minus;{lost} lost here
+                        &minus;<Count value={lost} reduced={reduced} /> lost here
                       </motion.span>
                     </div>
                   )}
                   <motion.div
-                    animate={{ width: `${Math.max(v, 16)}%` }}
+                    // Colour is animated, not styled: it has to travel with the
+                    // width or the bar recolours in one frame while still
+                    // growing. The stagger makes the change read as flow down
+                    // the funnel rather than five bars resizing at once.
+                    initial={{ width: "16%", backgroundColor: BAND_OFF }}
+                    animate={{
+                      width: `${Math.max(v, 16)}%`,
+                      backgroundColor: on ? BAND_ON : BAND_OFF,
+                    }}
                     transition={
-                      reduced ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 18 }
+                      reduced
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 90, damping: 18, delay: i * 0.07 }
                     }
                     data-band
                     className="relative mx-auto rounded-lg flex items-center justify-center"
-                    style={{
-                      height: "clamp(2.1rem, 4.8vh, 3.4rem)",
-                      background: on ? "var(--signal)" : "rgba(239,240,236,0.22)",
-                    }}
+                    style={{ height: "clamp(2.1rem, 4.8vh, 3.4rem)" }}
                   >
-                    <span className="font-mono text-sm sm:text-base md:text-lg text-paper">{v}</span>
+                    {/* Counted from the untreated column, which never changes.
+                        Deriving it from the live loss made the array grow again
+                        on the flip back, and the extra dots mounted fresh and
+                        fell a second time. */}
+                    {i > 0 && built && !reduced && (
+                      <Drops
+                        count={STAGES[i - 1].before - s.before}
+                        delay={0.35 + i * 0.07}
+                      />
+                    )}
+                    <span className="font-mono text-sm sm:text-base md:text-lg text-paper">
+                      <Count value={v} reduced={reduced} />
+                    </span>
                     {/* Pinned to the band's own right edge rather than the row,
                         so it travels with the bar as the bar changes width. */}
                     {on && uplift > 0 && (

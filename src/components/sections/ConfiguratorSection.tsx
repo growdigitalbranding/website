@@ -148,7 +148,7 @@ export function ConfiguratorSection() {
                 <p className="mono-label text-signal mb-2">{s.n}</p>
                 <h3 className="font-display text-lg text-ink mb-2">{s.name}</h3>
                 <p className="text-graphite font-light text-sm sm:text-base leading-relaxed">
-                  {resolveLine(s.line, type, position, stage)}
+                  {resolveLine(s, type, position, stage)}
                 </p>
               </motion.div>
             ))}
@@ -165,7 +165,7 @@ export function ConfiguratorSection() {
               {s.n} {s.name}
             </p>
             <p className="text-graphite font-light text-sm sm:text-base leading-relaxed max-w-3xl">
-              {resolveLine(s.line, type, position, stage)}
+              {resolveLine(s, type, position, stage)}
             </p>
           </div>
         ))}

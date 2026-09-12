@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 import { getGtmContainerId } from "@/lib/settings";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/privacy",
   title: "Privacy Policy",
   description:
     "What growdigitalbranding collects when you send an enquiry, where it is stored, how long it is kept, and how to have it deleted.",
-};
+});
 
 /**
  * Written to match what the site actually does, and revised when the lead

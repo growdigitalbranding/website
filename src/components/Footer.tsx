@@ -16,6 +16,7 @@ const COLUMNS = [
   {
     title: "Who we help",
     links: [
+      { href: "/who-we-help", label: "All segments" },
       { href: "/who-we-help/real-estate", label: "Real estate" },
       { href: "/who-we-help/senior-living", label: "Senior living" },
       { href: "/who-we-help/interiors", label: "Interiors" },
@@ -34,6 +35,7 @@ const COLUMNS = [
   {
     title: "Tools",
     links: [
+      { href: "/tools", label: "All tools" },
       { href: "/tools/cpl-calculator", label: "CPL calculator" },
       { href: "/tools/tracking-health-check", label: "Tracking health check" },
       { href: "/tools/creative-fatigue-estimator", label: "Creative fatigue estimator" },

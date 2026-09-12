@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { TaxonomyNav } from "./TaxonomyNav";
@@ -20,11 +21,12 @@ import {
 import { faqJsonLd } from "@/lib/schema/jsonld";
 import { BRAND } from "@/lib/brand";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/what-we-do",
   title: "What we do",
   description:
     "The full capability directory: eight property types, five price positions, eight project stages, forty services across five pillars, ten buyer segments and six geographies, each with what actually changes about the marketing.",
-};
+});
 
 /**
  * The homepage sells; this page documents. A directory is the right format

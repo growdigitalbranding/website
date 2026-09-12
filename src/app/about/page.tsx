@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/about",
   title: "About",
-  description: "An operator-run agency, not a stock-photo team page.",
-};
+  description:
+    "An operator-run agency, not a stock-photo team page.",
+});
 
 export default function AboutPage() {
   return (

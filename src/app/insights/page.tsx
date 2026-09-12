@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/insights",
   title: "Insights",
-  description: "Benchmark data and tactical pieces on performance marketing for high-consideration purchases.",
-};
+  description:
+    "Benchmark data and tactical pieces on performance marketing for high-consideration purchases.",
+});
 
 export default function InsightsPage() {
   return (

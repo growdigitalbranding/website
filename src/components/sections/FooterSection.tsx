@@ -16,6 +16,7 @@ const COLUMNS = [
   {
     title: "Who we help",
     links: [
+      { href: "/who-we-help", label: "All segments" },
       { href: "/who-we-help/real-estate", label: "Real estate" },
       { href: "/who-we-help/senior-living", label: "Senior living" },
       { href: "/who-we-help/interiors", label: "Interiors" },

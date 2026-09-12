@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/pricing",
   title: "Pricing",
-  description: "Three engagement models, with real ranges. No 'contact us for a quote.'",
-};
+  description:
+    "Three engagement models, with real ranges. No 'contact us for a quote.'",
+});
 
 const PLANS = [
   {

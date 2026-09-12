@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/terms",
   title: "Terms of Service",
-};
+  description:
+    "The terms covering use of this site. Engagement terms, scope, fees and media spend handling live in each client's signed service agreement, not here.",
+});
 
 export default function TermsPage() {
   return (

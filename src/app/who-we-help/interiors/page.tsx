@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/who-we-help/interiors",
   title: "Interiors",
-  description: "Performance marketing for premium interior design firms with a long, portfolio-driven sales cycle.",
-};
+  description:
+    "Performance marketing for premium interior design firms with a long, portfolio-driven sales cycle.",
+});
 
 export default function Page() {
   return (
     <>
+      <BreadcrumbSchema path="/who-we-help/interiors" />
       <PageHero
         eyebrow="WHO WE HELP / INTERIORS"
         title="Portfolio-driven marketing for a service, not a product"

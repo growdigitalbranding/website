@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/tools",
   title: "Tools",
-  description: "Free interactive calculators for lead-to-booking economics, tracking health, and creative fatigue.",
-};
+  description:
+    "Free interactive calculators for lead-to-booking economics, tracking health, and creative fatigue.",
+});
 
 const TOOLS = [
   {

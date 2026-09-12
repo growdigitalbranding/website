@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { faqJsonLd } from "@/lib/schema/jsonld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/who-we-help/real-estate",
   title: "Real Estate",
   description:
     "Performance marketing for builders and developers. Project launches, sustenance campaigns, and site-visit economics.",
-};
+});
 
 // Benchmark ranges below are typical ranges observed across managed accounts,
 // not audited industry-wide statistics. Update with live portfolio data as
@@ -38,6 +41,7 @@ const FAQS = [
 export default function RealEstatePage() {
   return (
     <>
+      <BreadcrumbSchema path="/who-we-help/real-estate" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQS)) }}

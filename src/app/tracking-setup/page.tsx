@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/tracking-setup",
   title: "Our Tracking Setup",
-  description: "A plain-language writeup of exactly what's running under this site. The credibility artefact.",
-};
+  description:
+    "A plain-language writeup of exactly what's running under this site. The credibility artefact.",
+});
 
 const ITEMS = [
   { name: "Server-side GTM", detail: "Runs on its own subdomain with a proper cookie lifespan, ahead of the browser container." },

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/work",
   title: "Work",
-  description: "Case studies from managed accounts across real estate, senior living, and interiors.",
-};
+  description:
+    "Case studies from managed accounts across real estate, senior living, and interiors.",
+});
 
 export default function WorkPage() {
   return (

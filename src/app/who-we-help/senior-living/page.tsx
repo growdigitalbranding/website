@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/who-we-help/senior-living",
   title: "Senior Living",
-  description: "Performance marketing for senior living operators with long, trust-first sales cycles.",
-};
+  description:
+    "Performance marketing for senior living operators with long, trust-first sales cycles.",
+});
 
 export default function Page() {
   return (
     <>
+      <BreadcrumbSchema path="/who-we-help/senior-living" />
       <PageHero
         eyebrow="WHO WE HELP / SENIOR LIVING"
         title="Trust-first marketing for a decision the whole family makes"

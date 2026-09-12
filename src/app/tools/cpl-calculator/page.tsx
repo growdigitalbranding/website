@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { CplCalculator } from "./CplCalculator";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/tools/cpl-calculator",
   title: "CPL Calculator",
-  description: "Turn ad spend and conversion rates into cost per booking and marketing cost as a % of revenue.",
-};
+  description:
+    "Turn ad spend and conversion rates into cost per booking and marketing cost as a % of revenue.",
+});
 
 export default function CplCalculatorPage() {
   return (
     <>
+      <BreadcrumbSchema path="/tools/cpl-calculator" />
       <PageHero
         eyebrow="TOOLS / CPL CALCULATOR"
         title="What's your real cost per booking?"

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/the-loop",
   title: "The Loop",
   description:
     "Why performance marketing for high-consideration purchases has to be a closed loop, not a media buying line item.",
-};
+});
 
 export default function TheLoopPage() {
   return (

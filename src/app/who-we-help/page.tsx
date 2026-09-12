@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/who-we-help",
   title: "Who we help",
-  description: "Builders and developers first. Senior living and interiors, too.",
-};
+  description:
+    "Builders and developers first. Senior living and interiors, too.",
+});
 
 const VERTICALS = [
   {

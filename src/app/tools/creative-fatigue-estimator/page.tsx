@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { CreativeFatigueEstimator } from "./CreativeFatigueEstimator";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/tools/creative-fatigue-estimator",
   title: "Creative Fatigue Estimator",
-  description: "Enter frequency and its growth rate, get an estimated refresh date before CPL starts climbing.",
-};
+  description:
+    "Enter frequency and its growth rate, get an estimated refresh date before CPL starts climbing.",
+});
 
 export default function CreativeFatigueEstimatorPage() {
   return (
     <>
+      <BreadcrumbSchema path="/tools/creative-fatigue-estimator" />
       <PageHero
         eyebrow="TOOLS / CREATIVE FATIGUE ESTIMATOR"
         title="When does your creative need a refresh?"

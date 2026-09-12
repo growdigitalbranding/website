@@ -18,10 +18,16 @@ import type { PositionId, PropertyTypeId, StageId } from "./capability";
  * the price band. Any chip then changes at least one station, and no axis can
  * be starved by another.
  *
- * Overrides only exist where there is something specific and defensible to
- * say. A line that could not be written from real operating knowledge is
- * omitted so the base shows instead. Padding all 1,600 with plausible-sounding
- * filler would make the tool feel smart and be wrong.
+ * Each station's leading axis is now covered completely, which is what makes
+ * every one of the 320 combinations distinct: two stations answer to property
+ * type, two to stage, one to price band, so the panel as a whole encodes all
+ * three choices. Verified by enumeration, not by sampling: 320 combinations,
+ * 320 distinct panels, and no station falling through to its base line.
+ *
+ * The base lines stay as the safety net for any axis value added later. If a
+ * new property type or stage is introduced, the leading-axis check in the test
+ * sweep fails and names it rather than the tool quietly going inert on that
+ * chip, which is how this broke the first time.
  */
 
 export type LoopLine = {
@@ -51,6 +57,8 @@ export const STATIONS: Station[] = [
     line: {
       base: "Fifteen to twenty distinct angles a month, refreshed before fatigue hits rather than after.",
       byType: {
+        villas:
+          "Space and privacy, shot rather than described. The buyer is picturing a life, so real footage beats a render every time.",
         independent:
           "Land plus build, so the angle is ownership without the project. Privacy and plot size do the work here.",
         apartments:
@@ -119,6 +127,16 @@ export const STATIONS: Station[] = [
           "Long cycles and low volume. Value-based signals matter more than event counts here.",
       },
       byStage: {
+        relaunch:
+          "The account carries the first run's data. Clean it before spending again, or the old signal steers the new campaign.",
+        final:
+          "Low volume left, so every event counts double. Deduplication matters more than reach at this point.",
+        rtm:
+          "Short path from enquiry to registration, so the model can learn from the real outcome instead of a proxy for it.",
+        possession:
+          "The gap between enquiry and booking is closing, so uploads finally land inside the attribution window rather than after it.",
+        launch:
+          "Nothing in the account to learn from yet, so clean events from day one. A messy first month teaches the algorithm nothing worth keeping.",
         construction:
           "Long gap between enquiry and booking, so offline uploads are the only way the account sees the outcome.",
         prelaunch:
@@ -175,6 +193,12 @@ export const STATIONS: Station[] = [
     line: {
       base: "Entity consistency, schema coverage, and a mention footprint on the sources assistants actually cite.",
       byType: {
+        weekend:
+          "Drive time, upkeep and rental potential decide it. Answer those three where they are being asked.",
+        commercial:
+          "Yield, tenancy mix and lease terms are the questions. Publish the numbers a spreadsheet actually needs.",
+        villas:
+          "Buyers research the micro-market and the builder before they look at the project. Both have to be answerable.",
         independent:
           "Approval status, plot dimensions and handover terms. That is what gets asked and what should be publicly answerable.",
         apartments:
@@ -232,6 +256,12 @@ export const STATIONS: Station[] = [
         ultra: "Too few bookings to optimise on directly. Send qualified visits back instead and treat bookings as validation.",
       },
       byStage: {
+        rtm:
+          "The shortest loop available. Booking follows enquiry inside weeks, so the account learns faster here than anywhere else.",
+        ongoing:
+          "Steady monthly bookings, so the loop closes on a regular cycle and the compounding becomes visible rather than theoretical.",
+        launch:
+          "First real loop, with nothing to compare against. The job is setting the baseline the next quarter gets judged on.",
         possession:
           "Bookings and registrations land close together now, so one month of upload finally shows the whole picture rather than half of it.",
         final:

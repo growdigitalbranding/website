@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
-import { PHONE } from "@/lib/contact";
+import { PHONE, PHONE_DISPLAY } from "@/lib/contact";
 
 const COLUMNS = [
   {
@@ -71,9 +71,8 @@ export function Footer() {
             <p>Coimbatore, Tamil Nadu, India</p>
             <p>
               <a href={`tel:${PHONE}`} className="hover:text-signal">
-                +91 00000 00000
-              </a>{" "}
-              <span className="text-xs">(placeholder, update)</span>
+                {PHONE_DISPLAY}
+              </a>
             </p>
           </div>
           <nav className="flex flex-wrap gap-6">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PHONE, EMAIL, WHATSAPP_URL } from "@/lib/contact";
+import { PHONE, PHONE_DISPLAY, EMAIL, WHATSAPP_URL } from "@/lib/contact";
 import { BRAND } from "@/lib/brand";
 
 const COLUMNS = [
@@ -59,7 +59,7 @@ export function FooterSection() {
             <li>Coimbatore, Tamil Nadu</li>
             <li>
               <a href={`tel:${PHONE}`} className="hover:text-paper transition-colors">
-                +91 00000 00000
+                {PHONE_DISPLAY}
               </a>
             </li>
             <li>

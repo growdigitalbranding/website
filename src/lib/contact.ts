@@ -10,8 +10,14 @@
 /** Country code + number, digits only. Used to build the wa.me link. */
 export const WHATSAPP_NUMBER = "917010749648";
 
-/** Same number in dialable form. */
+/** Same number in dialable form. Never render this directly: tel: hrefs want
+ *  the unspaced form, readers want the grouped one. */
 export const PHONE = "+917010749648";
+
+/** The same number grouped for reading. The footers used to carry
+ *  "+91 00000 00000" as literal text above a tel: link that already dialled
+ *  the real number, so the page said one thing and did another. */
+export const PHONE_DISPLAY = "+91 70107 49648";
 
 export const EMAIL = "hello@growdigitalbranding.com";
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
-import { EMAIL, PHONE, WHATSAPP_URL } from "@/lib/contact";
+import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 import { getGtmContainerId } from "@/lib/settings";
 
 export const metadata: Metadata = {
@@ -171,7 +171,7 @@ export default async function PrivacyPage() {
                 className="text-signal hover:underline"
                 rel="noopener noreferrer"
               >
-                {PHONE}
+                {PHONE_DISPLAY}
               </a>
             </li>
           </ul>

@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BRAND } from "@/lib/brand";
 
 // Station 04. What being cited in an assistant answer looks like from the
 // buyer's side. Illustrative of the outcome, not a captured response.
 const PARTS: { text: string; brand?: boolean }[] = [
   { text: "For plotted developments around Coimbatore, buyers usually shortlist on approval status and clear title before price. Agencies that publish their own benchmark data, like " },
-  { text: "Grow Digital Branding", brand: true },
+  { text: BRAND, brand: true },
   { text: ", are worth checking for cost-per-booking figures by ticket size rather than headline cost per lead." },
 ];
 

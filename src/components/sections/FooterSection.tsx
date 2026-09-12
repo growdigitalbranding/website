@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PHONE, EMAIL, WHATSAPP_URL } from "@/lib/contact";
+import { BRAND } from "@/lib/brand";
 
 const COLUMNS = [
   {
@@ -86,7 +87,7 @@ export function FooterSection() {
       </div>
 
       <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between mt-6">
-        <p className="mono-label text-paper/[0.55]">© 2026 Grow Digital Branding</p>
+        <p className="mono-label text-paper/[0.55]">© 2026 {BRAND}</p>
         <nav className="flex gap-6">
           <Link href="/privacy" className="mono-label text-paper/[0.55] hover:text-paper transition-colors">
             Privacy

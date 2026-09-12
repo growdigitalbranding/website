@@ -18,6 +18,7 @@ import {
   TYPE_NOTES,
 } from "@/data/taxonomy";
 import { faqJsonLd } from "@/lib/schema/jsonld";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "What we do",
@@ -142,7 +143,7 @@ export default function WhatWeDoPage() {
               "@context": "https://schema.org",
               "@type": "Service",
               serviceType: `Real estate ${p.name.toLowerCase()}`,
-              provider: { "@type": "ProfessionalService", name: "Grow Digital Branding" },
+              provider: { "@type": "ProfessionalService", name: BRAND },
               areaServed: ["Tamil Nadu", "Karnataka"],
               hasOfferCatalog: {
                 "@type": "OfferCatalog",

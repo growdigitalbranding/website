@@ -7,7 +7,7 @@ import { getGtmContainerId } from "@/lib/settings";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "What Grow Digital Branding collects when you send an enquiry, where it is stored, how long it is kept, and how to have it deleted.",
+    "What growdigitalbranding collects when you send an enquiry, where it is stored, how long it is kept, and how to have it deleted.",
 };
 
 /**
@@ -50,7 +50,7 @@ export default async function PrivacyPage() {
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-12 text-graphite">
         <Section title="Who we are">
           <p>
-            Grow Digital Branding (&ldquo;Grow&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is a
+            growdigitalbranding (&ldquo;Grow&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is a
             performance marketing agency based in Coimbatore, Tamil Nadu, India. This policy
             covers growdigitalbranding.com. It does not cover the marketing accounts we
             operate for clients, where the client is the data fiduciary and their own policy

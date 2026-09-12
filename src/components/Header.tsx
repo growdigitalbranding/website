@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { useScrolledPast } from "@/lib/motion/useScrolledPast";
+import { BRAND } from "@/lib/brand";
 
 const NAV = [
   { href: "/the-loop", label: "The Loop" },
@@ -32,7 +33,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1440px] px-6 h-16 flex items-center justify-between">
-        <Link href="/" aria-label="Grow Digital Branding, home" className="flex items-center">
+        <Link href="/" aria-label={`${BRAND}, home`} className="flex items-center">
           <Logo className="h-11 w-auto" />
         </Link>
 

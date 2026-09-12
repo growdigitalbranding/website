@@ -23,6 +23,8 @@
  * both, since the brand green is legible on either.
  */
 
+import { BRAND_LOCKUP } from "@/lib/brand";
+
 /**
  * The gradient id has to be unique per rendered instance or the document ends
  * up with duplicate ids, which is invalid and makes url(#...) ambiguous. The
@@ -106,7 +108,7 @@ export function Logo({
     <svg
       viewBox={full ? "-8 0 352 190" : bare ? "-8 0 352 118" : "-8 0 352 148"}
       role="img"
-      aria-label="Grow Digital Branding, real estate growth and conversion"
+      aria-label={BRAND_LOCKUP}
       className={className}
     >
       <defs>

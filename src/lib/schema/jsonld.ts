@@ -1,9 +1,10 @@
 import { EMAIL, PHONE } from "@/lib/contact";
+import { BRAND } from "@/lib/brand";
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Grow",
+  name: BRAND,
   url: "https://growdigitalbranding.com",
   description:
     "Performance marketing for high-consideration purchases. Real estate first, then senior living and interiors.",

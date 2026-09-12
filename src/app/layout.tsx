@@ -8,12 +8,13 @@ import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { organizationJsonLd } from "@/lib/schema/jsonld";
 import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
 import { getGtmContainerId } from "@/lib/settings";
+import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
   title: {
-    default: "Grow Digital Branding | Performance marketing for builders",
-    template: "%s | Grow",
+    default: `${BRAND} | Performance marketing for builders`,
+    template: `%s | ${BRAND}`,
   },
   description:
     "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   // any host. 2400x1260 is the 1.91:1 card at 2x, for retina previews.
   openGraph: {
     type: "website",
-    siteName: "Grow Digital Branding",
+    siteName: BRAND,
     locale: "en_IN",
     url: "/",
     title: "Most agencies stop at the lead. We run the loop.",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 2400,
         height: 1260,
-        alt: "Grow Digital Branding. Most agencies stop at the lead. We run the loop.",
+        alt: `${BRAND}. Most agencies stop at the lead. We run the loop.`,
       },
     ],
   },

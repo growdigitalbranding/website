@@ -30,6 +30,9 @@ import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 
 type Metric = { label: string; value: string; tone?: "signal" | "flag" };
 
+/** A link in the chain. `broken` marks where the account was losing people. */
+type Link = { label: string; broken?: boolean };
+
 type Case = {
   n: string;
   category: string;
@@ -39,6 +42,14 @@ type Case = {
   verified: boolean;
   metrics: Metric[];
   intervention: string;
+  /**
+   * The account as we found it and as we rebuilt it. This is the part that is
+   * ours to publish: it describes our own diagnosis and our own build, and
+   * carries no spend, no CPL and no campaign names. A structure is evidence of
+   * competence in a way an unverifiable number is not.
+   */
+  found: Link[];
+  built: Link[];
 };
 
 /**
@@ -69,6 +80,19 @@ const CASES: Case[] = [
     ],
     intervention:
       "Rebuilt from four self-competing Advantage+ campaigns into a clean three-tier structure, then wired offline bookings back into the account.",
+    found: [
+      { label: "4 campaigns" },
+      { label: "same audience", broken: true },
+      { label: "lead" },
+      { label: "no return path", broken: true },
+    ],
+    built: [
+      { label: "3 tiers" },
+      { label: "split audience" },
+      { label: "lead" },
+      { label: "booking" },
+      { label: "back to targeting" },
+    ],
   },
   {
     n: "02",
@@ -84,6 +108,19 @@ const CASES: Case[] = [
     ],
     intervention:
       "CPL never moved. Bookings doubled, because WhatsApp qualification ran before the telecaller ever dialled.",
+    found: [
+      { label: "lead" },
+      { label: "hours of silence", broken: true },
+      { label: "cold dial" },
+      { label: "no-show", broken: true },
+    ],
+    built: [
+      { label: "lead" },
+      { label: "WhatsApp ack" },
+      { label: "qualified in chat" },
+      { label: "warm dial" },
+      { label: "site visit" },
+    ],
   },
   {
     n: "03",
@@ -99,8 +136,82 @@ const CASES: Case[] = [
     ],
     intervention:
       "No creative changes in month one. We fixed the signal layer, and the same budget started finding a different person.",
+    found: [
+      { label: "browser pixel" },
+      { label: "events dropped", broken: true },
+      { label: "platform guesses" },
+      { label: "optimises to form-fillers", broken: true },
+    ],
+    built: [
+      { label: "pixel" },
+      { label: "server-side CAPI" },
+      { label: "offline uploads" },
+      { label: "platform learns buyers" },
+    ],
   },
 ];
+
+/**
+ * One row of the chain. Pills for the links, hairlines between them, and a
+ * dashed connector where the account was losing people.
+ *
+ * Wraps rather than scrolls: a horizontal scroller inside a sticky card is a
+ * gesture fight on a phone, and these are short enough to stack.
+ */
+function Chain({
+  links,
+  tone,
+  label,
+}: {
+  links: Link[];
+  tone: "found" | "built";
+  label: string;
+}) {
+  const on = tone === "built";
+  return (
+    <div>
+      <p
+        className="mono-label mb-2.5"
+        style={{ color: on ? "var(--signal)" : "var(--pulse-ink)" }}
+      >
+        {label}
+      </p>
+      <ol className="flex flex-wrap items-center gap-y-2">
+        {links.map((l, i) => (
+          <li key={l.label} className="flex items-center">
+            {i > 0 && (
+              <span
+                aria-hidden
+                className="mx-1.5 sm:mx-2 h-px w-4 sm:w-6 shrink-0"
+                style={{
+                  background: l.broken ? "transparent" : on ? "var(--signal)" : "var(--mist)",
+                  borderTop: l.broken ? "1px dashed var(--pulse-ink)" : undefined,
+                }}
+              />
+            )}
+            <span
+              className="rounded-full px-2.5 py-1 font-mono text-[11px] sm:text-xs whitespace-nowrap"
+              style={
+                l.broken
+                  ? {
+                      color: "var(--pulse-ink)",
+                      border: "1px dashed var(--pulse-ink)",
+                      background: "transparent",
+                    }
+                  : on
+                    ? { color: "var(--paper)", background: "var(--signal)" }
+                    : { color: "var(--graphite)", background: "var(--mist)" }
+              }
+            >
+              {l.broken && <span aria-hidden>&#10005; </span>}
+              {l.label}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
 export function ProofSection() {
   return (
@@ -226,17 +337,24 @@ function CaseCard({
               </div>
             ))}
           </dl>
-        ) : (
-          /* Unverified: the work is described, the numbers are withheld. A
-             quiet line beats a metric nobody has checked. */
-          <div className="border-y border-mist py-3.5 mb-5">
-            <p className="mono-label text-graphite leading-[1.8]">
-              Figures for this account on request
-            </p>
-          </div>
-        )}
+        ) : null}
 
-        <p className="text-graphite max-w-2xl text-sm sm:text-base">{data.intervention}</p>
+        {/* The representation, in place of a number nobody has checked. What
+            was broken and what replaced it, which is our diagnosis and our
+            build rather than the client's performance. */}
+        <div className="border-t border-mist pt-5 grid gap-5 sm:gap-6 md:grid-cols-2">
+          <Chain links={data.found} tone="found" label="As we found it" />
+          <Chain links={data.built} tone="built" label="As we rebuilt it" />
+        </div>
+
+        <p className="text-graphite max-w-2xl text-sm sm:text-base mt-5 pt-5 border-t border-mist">
+          {data.intervention}
+        </p>
+        {!data.verified && (
+          <p className="mono-label text-graphite/70 mt-3">
+            Figures for this account on request
+          </p>
+        )}
       </motion.article>
     </div>
   );

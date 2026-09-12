@@ -119,7 +119,7 @@ export function ConfiguratorSection() {
         <span aria-hidden="true">
           Marketing <Word text={positionLabel} reduced={reduced} />{" "}
           <Word text={typeLabel} reduced={reduced} /> at{" "}
-          <Word text={stageLabel} reduced={reduced} /> &mdash; end to end.
+          <Word text={stageLabel} reduced={reduced} />, end to end.
         </span>
       </p>
 

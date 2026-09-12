@@ -13,7 +13,6 @@ import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 
 export default function HomePage() {
   // Read at build time, so uploading any subset of the images just works.
-  const proof = listAssets("proof");
   const creatives = listAssets("creatives");
 
   return (
@@ -31,7 +30,7 @@ export default function HomePage() {
       {/* The follow-up station, shown rather than asserted. It sits directly
           after the funnel because the funnel is where the claim is made. */}
       <FollowUpFlowSection />
-      <ProofSection available={proof} />
+      <ProofSection />
       {/* Who runs this, what it costs, who it is not for. Placed after the
           proof and before the objections: the reader has seen the method and
           the evidence, and the next question is who they would be hiring. */}

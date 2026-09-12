@@ -6,6 +6,7 @@ import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";
 import { FloatingNav } from "@/components/loop/FloatingNav";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
+import { Logo } from "@/components/Logo";
 
 /**
  * The same hundred leads, run two ways.
@@ -137,11 +138,8 @@ export function HeroSection() {
 
       <FadeIn y={-20} delay={0} className="relative z-[1] px-6 md:px-10 pt-6 md:pt-8">
         <div className="flex items-center justify-between gap-6">
-          <Link
-            href="/"
-            className="press font-display font-extrabold uppercase track-h2 text-xl md:text-2xl text-paper"
-          >
-            Grow
+          <Link href="/" aria-label="Grow Digital Branding, home" className="press flex items-center">
+            <Logo variant="wordmark" tone="paper" className="h-8 md:h-11 w-auto" />
           </Link>
           <nav className="hidden md:flex items-center gap-7 lg:gap-9">
             {NAV.map((n) => (

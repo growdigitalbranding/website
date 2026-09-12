@@ -1,5 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#14171A"/>
-  <path d="M5 23 C 13 22, 21 18, 26 9" stroke="#8DC63F" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <path d="M23 5 L29 8 L23 13 Z" fill="#D7DF23"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Favicon: the supplied app mark. Dark rounded square, white lowercase
+       "g", green arrow swooping through it and up to the right.
+
+       The "g" is drawn as strokes rather than <text> on purpose: an SVG
+       favicon gets no webfonts, so a <text> mark would render in whatever
+       system face the platform picks and change shape between Chrome on
+       Windows and Safari on a Mac. Geometry is identical everywhere.
+
+       The arrow is painted twice, once in the background colour at a wider
+       stroke, so it keeps a dark separation where it crosses the white
+       letter instead of merging into it at 16px. -->
+  <defs>
+    <linearGradient id="a" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8dc63f"/>
+      <stop offset="55%" stop-color="#a6d137"/>
+      <stop offset="100%" stop-color="#d7df23"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="15" fill="#14171a"/>
+
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round">
+    <circle cx="26" cy="29" r="9"/>
+    <path d="M35 29 V 43 C 35 49, 29 51, 24 49"/>
+  </g>
+
+  <path d="M7 49 C 20 47, 36 38, 46 19" stroke="#14171a" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M7 49 C 20 47, 36 38, 46 19" stroke="url(#a)" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M40 8 L58 15 L42 27 Z" fill="#14171a" stroke="#14171a" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M40 8 L58 15 L42 27 Z" fill="url(#a)"/>
 </svg>

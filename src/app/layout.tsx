@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { bricolage, interTight, jetbrainsMono } from "@/lib/fonts";
 import { LenisProvider } from "@/components/motion/LenisProvider";
@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   description:
     "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
   alternates: { canonical: "/" },
+  // favicon.ico, icon.svg and apple-icon.png are picked up from src/app by
+  // file convention; the manifest is the one that has to be declared.
+  manifest: "/site.webmanifest",
   // Without these every shared link renders as a blank card, which is most of
   // how this site actually gets seen: pasted into WhatsApp and email.
   // metadataBase above resolves the relative path, so this stays correct on
@@ -46,6 +49,12 @@ export const metadata: Metadata = {
       "Performance marketing for real estate developers across Tamil Nadu and Karnataka.",
     images: ["/og.png"],
   },
+};
+
+export const viewport: Viewport = {
+  // Colours the browser chrome around the page: the address bar on Android
+  // and the status bar area of an installed shortcut.
+  themeColor: "#14171a",
 };
 
 export default async function RootLayout({

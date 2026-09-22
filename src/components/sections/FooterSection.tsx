@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PHONE, PHONE_DISPLAY, EMAIL, WHATSAPP_URL } from "@/lib/contact";
 import { BRAND } from "@/lib/brand";
+import { ConsentReset } from "@/components/ConsentBanner";
 
 const COLUMNS = [
   {
@@ -96,6 +97,7 @@ export function FooterSection() {
           <Link href="/terms" className="mono-label text-paper/[0.55] hover:text-paper transition-colors">
             Terms
           </Link>
+          <ConsentReset className="mono-label text-paper/[0.55] hover:text-paper transition-colors text-left" />
         </nav>
         <p className="mono-label text-paper/[0.55]">Last updated {built}</p>
       </div>

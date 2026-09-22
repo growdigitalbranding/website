@@ -115,6 +115,14 @@ body {
    Tracking tightens as size grows, matching the steps above and the
    --track-* tokens: large type reads too loose at the spacing small type
    needs. */
+/* One bottom bar at a time. The consent banner and the sticky mobile CTA are
+   both fixed to the bottom, and on a phone the banner covers the CTA rather
+   than sitting above it. The banner sets data-consent-open on <html> while it
+   is up. */
+html[data-consent-open] .sticky-mobile-cta {
+  display: none;
+}
+
 .text-display-m {
   font-size: clamp(1.95rem, 3.6vw, 3.1rem);
   line-height: 1.05;

@@ -7,6 +7,7 @@ import { Grain } from "@/components/Grain";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { organizationJsonLd } from "@/lib/schema/jsonld";
 import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { getGtmContainerId } from "@/lib/settings";
 import { BRAND } from "@/lib/brand";
 
@@ -86,6 +87,8 @@ export default async function RootLayout({
           <main className="flex-1 relative z-[2]">{children}</main>
           <SiteChrome slot="bottom" />
           <StickyMobileCTA />
+          {/* Nothing to consent to until a container is configured. */}
+          {gtm && <ConsentBanner />}
         </LenisProvider>
       </body>
     </html>

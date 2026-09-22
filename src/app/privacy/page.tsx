@@ -75,14 +75,26 @@ export default async function PrivacyPage() {
             listed below.
           </p>
           {gtm ? (
-            <p>
-              <strong className="text-ink">Analytics and advertising data.</strong> We use
-              Google Tag Manager to load measurement tools such as Google Analytics, the
-              Meta Conversions API and Google Ads. These record how the site was reached and
-              which pages were viewed, so we can tell which of our own marketing is working.
-              Consent is set to denied by default, so these tools run without marketing or
-              analytics cookies unless you allow them.
-            </p>
+            <>
+              <p>
+                <strong className="text-ink">Analytics and advertising data.</strong> We use
+                Google Tag Manager to load measurement tools such as Google Analytics, the
+                Meta Conversions API and Google Ads. These record how the site was reached
+                and which pages were viewed, so we can tell which of our own marketing is
+                working.
+              </p>
+              <p>
+                <strong className="text-ink">Your cookie choice.</strong> In the European
+                Economic Area, the United Kingdom and Switzerland, consent is denied by
+                default: those tools load in a cookieless mode and set nothing until you
+                accept the banner. Everywhere else, including India, they are allowed by
+                default and no banner is shown. Either way you can decline at any time using
+                the <strong className="text-ink">Cookie settings</strong> link in the footer
+                of any page, which switches analytics and advertising consent off and
+                remembers that on this device. Declining changes nothing about how the site
+                works; we simply measure less.
+              </p>
+            </>
           ) : (
             <p>
               We do not run analytics, advertising pixels or tracking cookies on this site.

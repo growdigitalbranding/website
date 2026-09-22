@@ -10,10 +10,24 @@ import Script from "next/script";
  * pixel, Google Ads, conversion tags — so nothing is lost by refusing raw
  * script, and it all becomes editable without a deploy.
  *
- * Consent defaults are denied before the container loads. Under Consent Mode
- * v2 tags then run in a cookieless mode until consent is granted, so adding a
- * banner later is an update call rather than a retrofit. Grow sells Consent
- * Mode v2 as a service; shipping its own site without it would be a poor look.
+ * Consent defaults are set before the container loads, and they are
+ * region-scoped. This matters: a single unscoped denied default applies
+ * worldwide, and with no banner to update it, every visitor everywhere stays
+ * denied forever. GTM's container diagnostics reports exactly that, as a 0%
+ * consent rate "including regions outside the EEA", and the measurement cost
+ * is real: no remarketing audiences build, and conversions arrive modelled
+ * rather than observed.
+ *
+ * So: denied by default inside the EEA, the UK and Switzerland, where prior
+ * consent is the expectation, and granted everywhere else. ConsentBanner
+ * then offers the EEA visitor the choice that turns denied into granted.
+ *
+ * Google resolves the region by IP at tag-fire time, which is authoritative
+ * and not something this code can be wrong about. The banner's own region
+ * guess only decides whether to draw the UI.
+ *
+ * Grow sells Consent Mode v2 as a service; shipping its own site without it
+ * would be a poor look.
  */
 export function Analytics({ containerId }: { containerId: string | null }) {
   if (!containerId) return null;
@@ -30,6 +44,9 @@ export function Analytics({ containerId }: { containerId: string | null }) {
           __html: `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+var CONSENT_REGIONS = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'];
+// Region-scoped first. A region-specific default wins over the general one,
+// and listing it first also makes the intent readable.
 gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
@@ -37,7 +54,17 @@ gtag('consent', 'default', {
   analytics_storage: 'denied',
   functionality_storage: 'granted',
   security_storage: 'granted',
+  region: CONSENT_REGIONS,
   wait_for_update: 500
+});
+// Everywhere else, which for this business is almost all of the traffic.
+gtag('consent', 'default', {
+  ad_storage: 'granted',
+  ad_user_data: 'granted',
+  ad_personalization: 'granted',
+  analytics_storage: 'granted',
+  functionality_storage: 'granted',
+  security_storage: 'granted'
 });
 gtag('set', 'url_passthrough', true);
 gtag('set', 'ads_data_redaction', true);

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { PHONE, PHONE_DISPLAY } from "@/lib/contact";
+import { ConsentReset } from "@/components/ConsentBanner";
 
 const COLUMNS = [
   {
@@ -81,6 +82,7 @@ export function Footer() {
             <Link href="/privacy" className="hover:text-signal">
               Privacy
             </Link>
+            <ConsentReset className="hover:text-signal text-left" />
             <Link href="/terms" className="hover:text-signal">
               Terms
             </Link>

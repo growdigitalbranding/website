@@ -22,6 +22,7 @@
 - /insights/speed-to-lead-real-estate — why contact rate is the cheapest rate to move, a 29% cut in cost per booking from contact rate alone, and how to build your own speed-to-lead decay curve from call logs
 - /insights/why-meta-lead-ads-poor-quality — why Meta optimises toward form fillers rather than buyers, what the platform cannot see after the form, and the three levels of feedback that change lead quality
 - /insights/how-many-ad-creatives-real-estate — deriving creative volume from frequency accrual, winner lifespan and hit rate, with a worked example landing between 12 and 29 new creatives a month
+- /insights/get-cited-by-ai-assistants — the three tests that decide whether an AI assistant cites you: server-rendered content, an entity that resolves to one organisation, and published material specific enough to quote
 
 ## Terms this site defines
 

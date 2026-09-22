@@ -996,6 +996,165 @@ export const ARTICLES: Article[] = [
       },
     ],
   },
+  {
+    slug: "get-cited-by-ai-assistants",
+    title: "How do you get your company cited by AI assistants?",
+    shortTitle: "Getting cited by AI assistants",
+    kind: "Tactical",
+    dek: "There is no ranking factor to game and no submission form. Three things decide it: whether a crawler can read you without JavaScript, whether your company resolves to one entity, and whether you have published anything specific enough to quote.",
+    description:
+      "Why assistants synthesise rather than rank, the three tests that decide whether you appear in an answer, and the plumbing that makes you eligible. Includes what nobody can promise.",
+    published: "2026-09-22",
+    updated: "2026-09-22",
+    answer:
+      "You cannot buy it, submit for it, or optimise a keyword into it. An assistant composes an answer from sources it can parse, attribute to a consistent organisation, and safely quote, so those three properties are the whole job. Most sites fail the first for technical reasons, the second because their own name is inconsistent across their own markup, and the third because everything specific they know is kept back for a sales call. Fix all three and you become eligible. Nobody, us included, can promise more than eligible.",
+    blocks: [
+      { kind: "h2", text: "Assistants do not rank, they synthesise" },
+      {
+        kind: "p",
+        text: "A search engine returns a list and lets the person choose. An assistant reads several sources and writes one answer, citing a handful. That difference changes the economics completely.",
+      },
+      {
+        kind: "p",
+        text: "Position seven on a results page still gets clicks. There is no position seven in a generated answer. You are in the paragraph or you are not, which makes this closer to winner-take-few than to a gradient. It also means the useful question is not how to rank. It is what makes a passage safe for a model to lift.",
+      },
+      { kind: "h2", text: "Test one: can a crawler read you without JavaScript?" },
+      {
+        kind: "p",
+        text: "Several of the crawlers feeding assistant answers do not execute JavaScript. If your content is assembled in the browser, what they fetch is an empty shell with a loading spinner in it. No amount of good writing survives that.",
+      },
+      {
+        kind: "p",
+        lead: "How to check yours in thirty seconds:",
+        text: "open the page, view source, and search the raw HTML for a sentence from the middle of your copy. If it is not there, it does not exist as far as a non-rendering crawler is concerned. Do it for your service pages, not just the homepage, because they are usually built differently.",
+      },
+      {
+        kind: "p",
+        text: "For reference, we measured our own site the same way: between 97% and 100% of the text inside the main element of every page is present in the raw HTML before any JavaScript runs. That is not a boast, it is the floor. It is also the single most common reason a well-written site is invisible to assistants, and it is invisible to the people running the site because their browser renders everything perfectly.",
+      },
+      { kind: "h2", text: "Test two: does your company resolve to one entity?" },
+      {
+        kind: "p",
+        text: "Assistants corroborate before they cite. A company that appears under three variations of its name, with two phone numbers and an address that differs between the website and the Google Business Profile, does not consolidate into one confident entity. It looks like three weak ones.",
+      },
+      {
+        kind: "p",
+        lead: "We shipped this bug on our own site.",
+        text: "Our schema.org markup declared the organisation under one name, our Open Graph tags used a longer version of it, and the domain was a third string. Three names for one company, in our own machine-readable markup, on a site that sells this as a service. It is an easy thing to miss precisely because every individual page looks correct to a human.",
+      },
+      {
+        kind: "p",
+        text: "What consolidation actually requires:",
+      },
+      {
+        kind: "ul",
+        items: [
+          "One name, spelled one way, in the schema.org organisation node, in og:site_name, in the page copy, in the Google Business Profile and in every directory listing.",
+          "A stable @id on the organisation node. Without one, the same organisation object repeated across thirty pages reads as thirty unrelated declarations rather than one entity seen thirty times.",
+          "sameAs pointing at the profiles you control: LinkedIn, the Google Business Profile, Instagram. This is the corroboration mechanism. It is how a model confirms the entity on your site is the same one it has seen elsewhere.",
+          "Identical phone number and address everywhere, down to the formatting.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "None of this is exotic and all of it is checkable in an afternoon. It is also the part most agencies skip, because it produces no screenshot.",
+      },
+      { kind: "h2", text: "Test three: have you published anything worth quoting?" },
+      {
+        kind: "p",
+        text: "This is the one that actually decides it, and the one no technical fix reaches.",
+      },
+      {
+        kind: "p",
+        text: "A model quoting you needs a sentence that is specific, self-contained and attributable. Look at your own site honestly and ask which sentence a model could lift into an answer without embarrassing itself.",
+      },
+      {
+        kind: "table",
+        head: ["Unquotable", "Quotable"],
+        rows: [
+          ["We deliver measurable results", "Cost per booking is cost per lead divided by the product of the five rates after the lead"],
+          ["Industry-leading expertise", "Creative fatigue for metro real-estate audiences triggers our refresh at frequency 2.8"],
+          ["Transparent pricing", "Signal Setup is ₹75,000, one time"],
+          ["Case studies available on request", "Anything at all with a number in it"],
+        ],
+      },
+      {
+        kind: "p",
+        lead: "Hedged copy is worse than vague copy.",
+        text: "A page that says a figure is illustrative and not an average is explicitly instructing a model not to cite it, and the model will comply. That hedge may be the right call, ours are deliberate, but be clear about the cost: every caveat you add is a passage you have removed from the citable pool.",
+      },
+      {
+        kind: "p",
+        text: "Which leads to the uncomfortable part. If everything specific you know is reserved for a sales conversation, there is nothing on your site to cite, and you will not appear in answers no matter how clean the markup is. Getting cited requires publishing something you would rather charge for.",
+      },
+      { kind: "h2", text: "The plumbing, in order of how often it is broken" },
+      {
+        kind: "ol",
+        items: [
+          "Server-render the content. Everything else is decoration if the crawler sees an empty page.",
+          "One correct canonical URL per page. We found every page on our own site declaring the homepage as its canonical, inherited from a single line in a layout file. A crawler reads that as a site of duplicates, and it is silent: nothing looks wrong in a browser.",
+          "schema.org as a graph with a stable @id, not a loose object repeated per page, so the publisher and author references resolve to one node.",
+          "FAQPage markup on real questions, and never the same question on two URLs. Duplicated FAQ markup means neither page gets the result.",
+          "An llms.txt naming what the site actually answers, which is the file an assistant reads to orient itself.",
+          "A robots.txt that names the answer engines. Note that Google-Extended and Applebot-Extended are separate tokens governing AI grounding rather than classic search, so allowing Googlebot does not allow them.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "Treat that list as hygiene rather than a growth lever. It does not get you cited. It removes the reasons you would be excluded.",
+      },
+      { kind: "h2", text: "What nobody can promise" },
+      {
+        kind: "p",
+        text: "There is no submission form, no ranking API, no inclusion guarantee, and no agency relationship that changes what a model says. Answers vary between assistants, between phrasings of the same question, and between one week and the next.",
+      },
+      {
+        kind: "p",
+        text: "So treat a promise of guaranteed AI citations the way you would treat a promise of a guaranteed Google position: as a claim about something the seller does not control. What is controllable is being parseable, being one entity, and being quotable. All three are necessary. None of them is sufficient, and we would rather say that than sell the other thing.",
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "Assistants compose one answer rather than ranking a list, so it is closer to winner-take-few than to a gradient.",
+          "View source and search for a sentence from the middle of your page. If it is not in the raw HTML, non-rendering crawlers cannot see it.",
+          "One name, one phone number, one address, a stable @id, and sameAs profiles. Inconsistency reads as three weak entities rather than one strong one.",
+          "A model quotes specifics. If everything specific is held back for the sales call, there is nothing to cite.",
+          "The plumbing makes you eligible. Nobody controls what an assistant actually says, and anyone promising otherwise is selling something they do not own.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How do you get your business mentioned by ChatGPT or Gemini?",
+        answer:
+          "There is no submission process. An assistant composes answers from sources it can parse, attribute to a consistent organisation and safely quote, so those are the three things to fix: server-render your content so non-rendering crawlers can read it, make your company resolve to one entity across schema.org, Open Graph, your Google Business Profile and directories, and publish something specific enough that a sentence can be lifted from it. Those make you eligible; nobody controls what the model actually says.",
+      },
+      {
+        question: "Does my website need to work without JavaScript for AI search?",
+        answer:
+          "Effectively yes. Several crawlers that feed assistant answers do not execute JavaScript, so content assembled in the browser reaches them as an empty shell. Check by opening view source and searching the raw HTML for a sentence from the middle of your copy. Do it on service pages rather than just the homepage, since those are often built differently.",
+      },
+      {
+        question: "What is llms.txt and does it matter?",
+        answer:
+          "It is a plain text file at the root of your site describing what the site covers and which pages answer what, intended as an orientation file for AI crawlers the way robots.txt is for search crawlers. It is cheap to add and helps an assistant find the right page, but it is orientation rather than a ranking mechanism. It will not compensate for content a crawler cannot read or an entity it cannot resolve.",
+      },
+      {
+        question: "Can an agency guarantee you will appear in AI search results?",
+        answer:
+          "No, and the guarantee is the warning sign. There is no submission form, no ranking API and no inclusion guarantee; answers vary between assistants, between phrasings of the same question and week to week. What an agency can legitimately do is make you parseable, consolidate your entity, and help you publish material specific enough to quote. That produces eligibility, not a promise.",
+      },
+    ],
+    related: [
+      { href: "/what-we-do/ai-search-visibility", label: "The Answer Visibility station in practice" },
+      {
+        href: "/insights/good-cost-per-lead-real-estate",
+        label: "An example of the kind of specificity that gets quoted",
+      },
+      { href: "/the-loop", label: "Where this sits in the loop" },
+    ],
+  },
 ];
 
 export function getArticle(slug: string) {

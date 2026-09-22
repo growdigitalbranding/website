@@ -29,6 +29,7 @@ const ROUTES: [route: string, source: string][] = [
   ["/insights/speed-to-lead-real-estate", "src/data/insights.ts"],
   ["/insights/why-meta-lead-ads-poor-quality", "src/data/insights.ts"],
   ["/insights/how-many-ad-creatives-real-estate", "src/data/insights.ts"],
+  ["/insights/get-cited-by-ai-assistants", "src/data/insights.ts"],
   ["/tools", "src/app/tools/page.tsx"],
   ["/tools/cpl-calculator", "src/app/tools/cpl-calculator/page.tsx"],
   ["/tools/tracking-health-check", "src/app/tools/tracking-health-check/page.tsx"],

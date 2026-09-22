@@ -9,6 +9,7 @@ import { organizationJsonLd } from "@/lib/schema/jsonld";
 import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { getGtmContainerId } from "@/lib/settings";
+import { BUILD_COMMIT, BUILT_AT } from "@/lib/build";
 import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = {
@@ -20,6 +21,13 @@ export const metadata: Metadata = {
   description:
     "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
   alternates: { canonical: "/" },
+  // Lets anyone, including npm run verify, tell in one request whether the
+  // running server is serving the commit that was pushed. Not secret: the
+  // repository is the client's and the SHA reveals nothing the source does not.
+  other: {
+    "build-commit": BUILD_COMMIT,
+    "build-time": BUILT_AT,
+  },
   // favicon.ico, icon.svg and apple-icon.png are picked up from src/app by
   // file convention; the manifest is the one that has to be declared.
   manifest: "/site.webmanifest",

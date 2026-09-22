@@ -45,6 +45,46 @@ async function get(path) {
 
 console.log(`Verifying ${BASE}\n`);
 
+// --- is the server even running the code you pushed? ----------------------
+// Checked first, because every other failure below is noise if the answer is
+// no, and "I deployed and nothing changed" is nearly always this.
+let localHead = null;
+try {
+  const { execFileSync } = await import("node:child_process");
+  localHead = execFileSync("git", ["rev-parse", "HEAD"], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+  }).trim();
+} catch {
+  // Not in a git checkout. Skip the comparison rather than fail on it.
+}
+
+try {
+  const home = await get("/");
+  const live = home.body.match(/<meta name="build-commit" content="([^"]+)"/)?.[1] ?? null;
+  const builtAt = home.body.match(/<meta name="build-time" content="([^"]+)"/)?.[1] ?? null;
+
+  if (!live) {
+    record(
+      "deployed build is identifiable",
+      false,
+      "no build-commit meta: the server is running a build from before this check existed, so it is definitely stale",
+    );
+  } else if (!localHead || live === "unknown") {
+    record("deployed build", true, `live ${live.slice(0, 8)}${builtAt ? `, built ${builtAt}` : ""}`);
+  } else {
+    record(
+      "server is running the commit you pushed",
+      live === localHead,
+      live === localHead
+        ? `${live.slice(0, 8)}, built ${builtAt}`
+        : `live ${live.slice(0, 8)} but local HEAD is ${localHead.slice(0, 8)}. Rebuild, then RESTART the node process: next start serves the build it loaded at boot.`,
+    );
+  }
+} catch (err) {
+  record("homepage reachable", false, err.message);
+}
+
 // --- sitemap ---------------------------------------------------------------
 let sitemapUrls = [];
 try {

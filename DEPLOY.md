@@ -16,6 +16,33 @@ Node 20.9 or newer is required (Next 16). `package.json` pins this via
 `.next/` is gitignored, so the build has to happen on the server. It is not
 uploaded by `git push`.
 
+## "I deployed and the page has not changed"
+
+Almost always this: **`next start` serves the build it loaded when the process
+started.** Running `npm run build` underneath a running server rewrites
+`.next` but does not change what that process is serving. The build succeeds,
+nothing looks wrong, and the site keeps serving the old pages until the
+process is restarted.
+
+Check it in one request:
+
+    curl -s https://growdigitalbranding.com/ | grep build-commit
+
+That prints the commit the running server was built from. Compare it to
+`git rev-parse HEAD`. `npm run verify` makes the same comparison and reports
+it first, because every other failure it could report is noise if the answer
+to this one is no.
+
+If the commit is old, in order:
+
+1. Restart the Node process. On hPanel that is the restart control for the
+   app, not another build.
+2. Still old: the build did not run against the new code. Check
+   `git log --oneline -1` **on the server** and confirm the pull landed and
+   is on `main`.
+3. Commit matches but a page still looks old: that is the HTML cache, capped
+   at 60s fresh and 300s stale. A hard refresh confirms it immediately.
+
 ## After every deploy
 
     npm run verify

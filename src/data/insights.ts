@@ -34,7 +34,7 @@ export type Article = {
   title: string;
   /** Short label for cards and breadcrumbs. */
   shortTitle: string;
-  kind: "Benchmark method" | "Tactical" | "Economics";
+  kind: "Benchmark method" | "Tactical" | "Economics" | "Diagnostic";
   dek: string;
   description: string;
   published: string;
@@ -527,6 +527,473 @@ export const ARTICLES: Article[] = [
       { href: "/what-we-do/tracking-attribution", label: "The signal layer that makes direct compound" },
       { href: "/tools/cpl-calculator", label: "Work out your own cost per booking" },
       { href: "/who-we-help/real-estate", label: "How we work with builders and developers" },
+    ],
+  },
+  {
+    slug: "speed-to-lead-real-estate",
+    title: "How fast do you have to call a real estate lead?",
+    shortTitle: "How fast to call a lead",
+    kind: "Tactical",
+    dek: "Inside a minute if you can, inside five if you cannot. Not out of politeness. Contact rate is the first term in the cost-per-booking chain, so it multiplies everything after it.",
+    description:
+      "Why contact rate is the cheapest rate to move, what actually decays in the first minutes, and how to measure your own speed-to-lead decay curve from data you already have.",
+    published: "2026-09-22",
+    updated: "2026-09-22",
+    answer:
+      "Inside a minute if you can staff it, inside five if you cannot. A lead you never reach converts at zero no matter how good the rest of your process is, and contact rate sits first in the chain that produces cost per booking, so it multiplies every rate after it. On the worked funnel from our cost-per-lead article, moving contact rate from 60% to 85% and changing nothing else cuts cost per booking 29%, from ₹2,16,450 to ₹1,52,788. No new creative, no new targeting, no change in cost per lead.",
+    blocks: [
+      { kind: "h2", text: "Why the first term is the one to attack" },
+      {
+        kind: "p",
+        text: "Cost per booking is cost per lead divided by the product of the five rates after the lead: contacted, qualified, site visit booked, showed up, closed. Because they multiply, a proportional gain anywhere is worth the same as a proportional gain anywhere else. Contact rate is not special in the arithmetic. It is special in practice, for two reasons.",
+      },
+      {
+        kind: "ul",
+        items: [
+          "It is usually furthest from its ceiling. Qualification and close rates are constrained by the market and your product. Contact rate is constrained by whether someone dialled, which is a staffing and routing decision you control outright.",
+          "It is the cheapest to move. Nobody has to get better at selling. Somebody has to pick up the phone sooner, and a system has to make sure the lead reaches them.",
+        ],
+      },
+      {
+        kind: "table",
+        caption: "Contact rate in isolation. All other rates held constant. Example inputs.",
+        head: ["", "Before", "After"],
+        rows: [
+          ["Contact rate", "60%", "85%"],
+          ["Lead to booking", "0.693%", "0.982%"],
+          ["Leads per booking", "144", "102"],
+          ["Media per booking at ₹1,500 CPL", "₹2,16,450", "₹1,52,788"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "A 29% cut in the cost of a booking from one rate, with the media plan untouched. And because contact rate is bounded at 100%, you can see exactly how much headroom is left. If you are at 60%, you know there is 40 points of it.",
+      },
+      { kind: "h2", text: "What actually decays in those minutes" },
+      {
+        kind: "p",
+        text: "Three things, and it is worth being precise about them, because the mechanism tells you what to build.",
+      },
+      {
+        kind: "p",
+        lead: "Memory and frame.",
+        text: "They did not fill one form. They filled several in one sitting, because that is how anyone shortlists. Whoever calls first is a continuation of what the buyer was already doing. Whoever calls on Tuesday is an interruption from a company they have to be reminded about.",
+      },
+      {
+        kind: "p",
+        lead: "Availability.",
+        text: "The moment of maximum intent is the moment they were already on their phone looking at property. That window closes on its own. Twenty minutes later they are driving, in a meeting, or back at work.",
+      },
+      {
+        kind: "p",
+        lead: "Competition.",
+        text: "Broad targeting means every developer in the segment is reaching a heavily overlapping audience. You are not competing for the buyer's attention in the abstract. You are competing with four other callers on the same afternoon.",
+      },
+      {
+        kind: "p",
+        text: "You will find plenty of quoted multiples for how much better a one-minute callback performs. We are not going to repeat a number we cannot source to your account. The direction is not in dispute, the magnitude is account-specific, and it is measurable from data you already hold.",
+      },
+      { kind: "h2", text: "Measure your own decay curve" },
+      {
+        kind: "p",
+        text: "Your call logs carry a timestamp and your CRM carries a lead creation time. The difference between them is the only speed-to-lead study that should set your policy. Bucket every lead from the last quarter and fill this in.",
+      },
+      {
+        kind: "table",
+        caption: "Build this from your own call logs. One quarter is usually enough.",
+        head: ["Time to first dial", "Leads", "Contact rate", "Site visit booked"],
+        rows: [
+          ["Under 1 minute", "", "", ""],
+          ["1 to 5 minutes", "", "", ""],
+          ["5 to 30 minutes", "", "", ""],
+          ["30 to 120 minutes", "", "", ""],
+          ["2 hours to same day", "", "", ""],
+          ["Next day or later", "", "", ""],
+          ["Never dialled", "", "0%", "0%"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "Two things usually fall out of that table the first time anyone builds it. The never-dialled row is larger than management believed, and the drop between the first two buckets and the rest is steeper than anyone expected. Both are worth more than another round of creative testing.",
+      },
+      { kind: "h2", text: "The arithmetic of a second dial attempt" },
+      {
+        kind: "p",
+        text: "One dial is not a contact attempt. If a single dial connects with probability p and you treat attempts within a short window as roughly independent, n attempts connect with 1 minus (1 minus p) to the power n.",
+      },
+      {
+        kind: "formula",
+        expression: "Connect probability after n attempts = 1 - (1 - p)^n",
+        note: "Independence is an approximation, so read these as an optimistic ceiling.",
+      },
+      {
+        kind: "table",
+        caption: "At a 45% single-dial connect rate. Upper bound, not a forecast.",
+        head: ["Attempts", "Cumulative connect"],
+        rows: [
+          ["1", "45.0%"],
+          ["2", "69.8%"],
+          ["3", "83.4%"],
+          ["4", "90.8%"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "The independence assumption is doing real work there and it is not quite true, because someone who never answers a first call is a different kind of person from someone who happened to miss one. So treat the table as the shape rather than the forecast: the second and third attempts carry most of the recoverable contact rate, and after the fourth you are mostly annoying people. Measure your own multi-attempt curve the same way you measured the decay curve.",
+      },
+      { kind: "h2", text: "What makes the number achievable" },
+      {
+        kind: "p",
+        text: "A service level is a staffing decision, not an aspiration written on a whiteboard. Five rules make the difference between a policy and a number that quietly drifts.",
+      },
+      {
+        kind: "ol",
+        items: [
+          "Decide who owns the hours your leads actually arrive in. Property gets browsed in the evening and at weekends. An SLA that only holds between 10am and 6pm on weekdays is an SLA for a minority of your leads.",
+          "Automate the first touch, humanise the second. An instant WhatsApp carrying the project's approval status and a booking link holds the frame while a person gets to the phone. It is not a substitute for the call.",
+          "Route by source, not round robin. The person who knows the project should get the lead from that project's campaign, or the first two minutes are spent on internal lookup.",
+          "Define attempts and a window before you define outcomes. How many dials, over how long, before a lead is marked unreachable. Without that rule, unreachable means whatever the busiest telecaller decides it means.",
+          "Report time to first dial weekly, on the same dashboard as cost per lead. A rate nobody reports is a rate that decays back to where it started within a quarter.",
+        ],
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "Contact rate sits first in the chain, so it multiplies every rate after it.",
+          "60% to 85% contact rate, alone, cut the worked example's cost per booking 29% with cost per lead unchanged.",
+          "It is the cheapest rate to move because it is a routing problem, not a selling problem.",
+          "Do not adopt someone else's speed-to-lead multiple. Build your own decay curve from call logs; you already have the data.",
+          "One dial is not an attempt. The second and third carry most of the recoverable contact rate.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How quickly should you call a real estate lead?",
+        answer:
+          "Inside a minute where staffing allows, inside five otherwise. The reason is arithmetic rather than etiquette: contact rate is the first of the five rates between a lead and a booking, and because those rates multiply, it scales everything after it. Raising contact rate from 60% to 85% with no other change cut cost per booking by 29% in our worked example.",
+      },
+      {
+        question: "How many times should you call a lead before giving up?",
+        answer:
+          "Three to four attempts within a defined window captures most of the recoverable contact rate. At a 45% single-dial connect rate, treating attempts as roughly independent, cumulative connect goes 45%, 70%, 83%, 91% across four attempts. That independence assumption makes it an optimistic ceiling, so measure your own curve, but the shape holds: the second and third attempts do most of the work.",
+      },
+      {
+        question: "How do I measure speed to lead without buying a tool?",
+        answer:
+          "Take lead creation time from your CRM and first dial time from your call logs, bucket every lead from the last quarter by the difference, then compute contact rate and site-visit-booked rate for each bucket. That gives you your own decay curve, which is the only one that should set your policy. The never-dialled row is usually the finding.",
+      },
+      {
+        question: "Does an automated WhatsApp reply count as speed to lead?",
+        answer:
+          "It helps and it does not substitute. An instant automated message carrying approval status and a booking link holds the buyer's attention while a person gets to the phone, which is valuable because the buyer is shortlisting several projects at once. Contact rate in the funnel should still be measured on human contact.",
+      },
+    ],
+    related: [
+      {
+        href: "/insights/good-cost-per-lead-real-estate",
+        label: "Where the five-rate chain and these figures come from",
+      },
+      { href: "/what-we-do/follow-up-systems", label: "How we build the follow-up loop" },
+      { href: "/tools/cpl-calculator", label: "Run your own funnel through the calculator" },
+    ],
+  },
+
+  {
+    slug: "why-meta-lead-ads-poor-quality",
+    title: "Why are my Facebook and Instagram leads such poor quality?",
+    shortTitle: "Why Meta leads come in unqualified",
+    kind: "Diagnostic",
+    dek: "Because the platform is optimising for exactly what you asked it for, and you almost certainly asked for form fills. Here is what it can and cannot see, and the three levels of telling it the truth.",
+    description:
+      "Meta optimises toward the event you select, and it cannot see anything after the form unless you send it. The three levels of feedback, and why optimising straight for bookings usually backfires.",
+    published: "2026-09-22",
+    updated: "2026-09-22",
+    answer:
+      "Because the system is working correctly against the wrong objective. Meta does not know which of your leads bought. It knows which of them submitted a form, because that is the only outcome you told it about. Ask for form fills and it will find the people most likely to fill a form and least likely to buy, since those are the cheapest people in the auction to reach. This is not a targeting failure to be fixed with better audiences. It is a feedback failure, and the fix is telling the platform what a good outcome actually was.",
+    blocks: [
+      { kind: "h2", text: "The optimisation event is the entire instruction" },
+      {
+        kind: "p",
+        text: "With broad targeting and Advantage+ placements, you are no longer choosing who sees the ad. The system is, and the only thing steering it is the conversion event you selected. Select Lead and you have instructed it, precisely and literally, to find people who submit lead forms cheaply.",
+      },
+      {
+        kind: "p",
+        text: "It is very good at that. The complaint that leads are poor quality is usually a complaint that the machine did what it was told.",
+      },
+      { kind: "h2", text: "Why instant forms are the sharpest version of the problem" },
+      {
+        kind: "p",
+        text: "A native pre-filled form removes friction between the ad and the submission. That friction was not waste. It was doing qualification work for free, by asking the buyer to want it slightly more than a single tap.",
+      },
+      {
+        kind: "ul",
+        items: [
+          "Pre-filled instant forms produce the cheapest leads and the lowest intent, because the buyer supplied nothing and decided nothing.",
+          "A higher-intent form type, an added review step, or two qualifying questions each raise cost per lead and raise qualification rate. That is the same trade as disclosing approval status, and it is settled the same way: by whether qualification rose proportionally more than cost per lead.",
+          "Comparing your cost per lead against another builder's is close to meaningless when one of you is running instant forms and the other is running a landing page with a phone field. You are pricing different things.",
+        ],
+      },
+      { kind: "h2", text: "What the platform never finds out" },
+      {
+        kind: "p",
+        text: "Everything after the form is invisible unless you send it. Meta has no view of any of this:",
+      },
+      {
+        kind: "table",
+        head: ["Event", "Visible to the platform by default"],
+        rows: [
+          ["Form submitted", "Yes. This is the event you optimise on."],
+          ["Telecaller reached them", "No"],
+          ["Qualified on budget and intent", "No"],
+          ["Site visit booked", "No"],
+          ["Actually turned up", "No"],
+          ["Booked a unit", "No"],
+          ["Ticket value of that booking", "No"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "So the model's entire concept of success stops at the form. Every optimisation decision it makes for the next month is built from a definition of a good outcome that your sales team would not recognise.",
+      },
+      { kind: "h2", text: "Three levels of sending the truth back" },
+      {
+        kind: "p",
+        text: "These are cumulative. Most accounts stop at the first, a good agency runs the second, and the third is the one that changes lead quality.",
+      },
+      {
+        kind: "ol",
+        items: [
+          "Browser pixel only. The baseline, and increasingly lossy: consent banners, tracking prevention and ad blockers all cut into it. Events that never arrive cannot teach anything.",
+          "Conversions API, server-side, deduplicated against the pixel. This makes the lead event reliable again. Worth doing, but note what it has achieved: it has made the platform more confident about the wrong objective.",
+          "Offline conversion upload. A weekly file saying which of those leads were qualified, which booked a site visit, which turned up and which bought. Only now does the platform have a definition of quality that matches yours.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "Almost nobody runs the third one. It is the difference between an ad account that learns from your business and one that learns from your form.",
+      },
+      { kind: "h2", text: "What changes once bookings go back, and the trap in it" },
+      {
+        kind: "p",
+        text: "Two things become possible. You can optimise for a deeper event than the form, and you can send value with the conversion so the system learns the difference between a ₹45L buyer and a ₹1.5Cr buyer rather than treating both as one unit of success.",
+      },
+      {
+        kind: "p",
+        lead: "The trap:",
+        text: "deeper events are rarer, and optimisation needs volume to learn from. Meta's published guidance has long put the figure at roughly 50 conversions per week per ad set to get out of the learning phase. If you close four bookings a month, pointing the campaign directly at bookings starves it, and performance gets worse rather than better while everyone concludes the whole approach failed.",
+      },
+      {
+        kind: "p",
+        text: "The workable path is to optimise for the deepest event that still clears usable weekly volume, usually qualified lead or site visit booked, and to keep feeding the rarer booking events as offline conversions and as value. The rare events then shape the model without being asked to carry it.",
+      },
+      { kind: "h2", text: "The diagnostic, in order" },
+      {
+        kind: "p",
+        text: "Before blaming the creative or the audience, work down this list. In our experience the answer is above line four more often than below it.",
+      },
+      {
+        kind: "ol",
+        items: [
+          "What event is the campaign actually optimising for right now? Not what the brief said. Check the ad set.",
+          "Is the Conversions API live, and are server and browser events deduplicated? Double-counted events train the model on phantom success.",
+          "Are offline conversions being uploaded at all, on what cadence, and what is the match rate? A low match rate means the uploads exist and teach nothing.",
+          "Is lead source tagged at creation, in one system, so a booking can be traced back to the campaign that produced it?",
+          "Is the sales team's disposition data, the reason a lead was rejected, getting back to whoever runs the account? Otherwise nobody can tell a targeting problem from a qualification-script problem.",
+          "Only now: is the form type doing free qualification work, or removing it?",
+          "Only now: is the creative attracting the buyer or attracting the tap?",
+        ],
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "Poor lead quality is usually the platform succeeding at the objective you set.",
+          "With broad targeting, the conversion event is the only steering input you still control.",
+          "Meta sees the form and nothing after it unless you send it.",
+          "Pixel, then Conversions API, then offline conversions. Only the third changes quality.",
+          "Do not optimise straight for bookings at low volume. Optimise for the deepest event that clears roughly 50 a week, and feed bookings back as offline conversions and value.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Why are Facebook lead ads producing unqualified leads?",
+        answer:
+          "Because the campaign is optimising for form submissions and the platform cannot see anything that happens after the form. With broad targeting, the conversion event is the only instruction it receives, so it finds the people cheapest to convert into a form fill, who are rarely the people most likely to buy. The fix is feeding qualification, site visit and booking data back through offline conversions, not adjusting the audience.",
+      },
+      {
+        question: "Do Meta instant forms produce worse leads than a landing page?",
+        answer:
+          "Generally yes, and the mechanism is friction. A pre-filled instant form asks the buyer to supply nothing and decide nothing, so it removes the free qualification that a landing page form with a phone field was doing. Higher-intent form types, a review step or two qualifying questions raise cost per lead and raise qualification rate; whether that is a good trade depends on which rose proportionally more.",
+      },
+      {
+        question: "Should I optimise my campaign for bookings instead of leads?",
+        answer:
+          "Not directly, at typical real estate volumes. Meta's published guidance has long put the learning phase at roughly 50 conversions per week per ad set, and a developer closing a handful of bookings a month cannot supply that. Optimise for the deepest event that still clears usable volume, usually qualified lead or site visit booked, and feed bookings back as offline conversions and conversion value so they shape the model without having to carry it.",
+      },
+      {
+        question: "What are offline conversions and why do they matter?",
+        answer:
+          "An offline conversion upload is a periodic file telling the ad platform what happened to leads after they left the platform: which were qualified, which booked a site visit, which turned up, which bought, and for how much. It is the only way the system learns a definition of quality that matches yours. Most accounts never implement it, which is why their lead quality never improves no matter how the targeting is adjusted.",
+      },
+    ],
+    related: [
+      { href: "/what-we-do/tracking-attribution", label: "The signal layer, in practice" },
+      { href: "/tools/tracking-health-check", label: "Check what your tracking is actually sending" },
+      {
+        href: "/insights/good-cost-per-lead-real-estate",
+        label: "Why cost per lead comparisons mislead",
+      },
+    ],
+  },
+
+  {
+    slug: "how-many-ad-creatives-real-estate",
+    title: "How many ad creatives does a real estate campaign need?",
+    shortTitle: "How many creatives you need",
+    kind: "Benchmark method",
+    dek: "It is an arithmetic question, not a taste question. Work it from your weekly impressions, your reached audience and the frequency at which your account starts to fatigue.",
+    description:
+      "Derive your own creative volume from frequency accrual, winner lifespan and your hit rate. A worked example landing between 12 and 23 new creatives a month, with a sensitivity table.",
+    published: "2026-09-22",
+    updated: "2026-09-22",
+    answer:
+      "Enough to keep frequency below the point where your cost per lead starts climbing with nothing else changed. That is derivable rather than a matter of opinion: divide your fatigue frequency by your weekly frequency accrual to get how long a set of creatives lasts, multiply up to find how many have to be live, then divide by your hit rate to find how many you must produce to get them. On the worked example below it lands between 12 and 23 new creatives a month, which is why our own standard is 15 to 20.",
+    blocks: [
+      { kind: "h2", text: "What frequency is, and why 3 is not a magic number" },
+      {
+        kind: "p",
+        text: "Frequency is impressions divided by reach over a window. It is an average, and that is the thing to hold on to: an average of 2.8 means a substantial part of your audience has seen the ad six or seven times while another part has seen it once.",
+      },
+      {
+        kind: "p",
+        text: "There is no universal number at which fatigue begins. What is general is the shape. Cost per lead sits flat, then starts climbing with no change to your offer, your targeting or the market. Your own fatigue point is the frequency at which that turn happens in your account, and you can read it off a chart of weekly frequency against weekly cost per lead over a couple of months. Ours trigger at 2.8 for metro real-estate audiences. Yours is yours.",
+      },
+      { kind: "h2", text: "Step one: how many creatives have to be live" },
+      {
+        kind: "p",
+        text: "Frequency accrues at weekly impressions divided by weekly reach. A creative set is done when accumulated frequency reaches your fatigue point.",
+      },
+      {
+        kind: "formula",
+        expression: "Weeks per creative set = fatigue frequency ÷ (weekly impressions ÷ weekly reach)",
+      },
+      {
+        kind: "table",
+        caption: "Worked example. Example inputs, not benchmarks. Put your own in.",
+        head: ["Input", "Value", "Working"],
+        rows: [
+          ["Weekly impressions", "5,00,000", "From a roughly ₹3L monthly media budget"],
+          ["Weekly reach", "2,00,000", ""],
+          ["Weekly frequency accrual", "2.5", "5,00,000 ÷ 2,00,000"],
+          ["Fatigue frequency", "2.8", "Read from your own CPL curve"],
+          ["Weeks per set", "1.12", "2.8 ÷ 2.5"],
+          ["Sets per month", "3.87", "4.33 ÷ 1.12"],
+          ["Creatives live per month at 3 per set", "11.6", "3.87 × 3"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "Roughly twelve creative slots a month, just to hold frequency steady. Notice that nothing in that calculation is about taste, seasonality or how good your designer is. It is a consequence of spending concentrated money against a finite audience.",
+      },
+      { kind: "h2", text: "Step two: how many you have to produce" },
+      {
+        kind: "p",
+        text: "Twelve live slots is not twelve new creatives. Winners do not retire the first time a set fatigues; they rest, rotate back, and run against different segments. What you are really replacing each month is the share of the bank that has genuinely stopped working.",
+      },
+      {
+        kind: "formula",
+        expression: "New creatives per month = (live slots ÷ winner lifespan in months) ÷ hit rate",
+        note: "Hit rate = creatives that beat your account's median CPL ÷ creatives shipped.",
+      },
+      {
+        kind: "table",
+        caption: "Sensitivity around 11.6 live slots. Find your own row.",
+        head: ["Winner lifespan", "Hit rate 20%", "Hit rate 25%", "Hit rate 33%"],
+        rows: [
+          ["2 months", "29 / month", "23 / month", "18 / month"],
+          ["3 months", "19 / month", "15 / month", "12 / month"],
+          ["4 months", "14 / month", "12 / month", "9 / month"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "Most metro real-estate accounts we see sit near the middle row, which is where 15 to 20 a month comes from. If your hit rate is 20% and your winners die after two months, you need nearly thirty and an agency promising you four is not going to hold your frequency down. Both of those inputs are measurable in your own account, and neither is usually measured.",
+      },
+      { kind: "h2", text: "Distinct means distinct" },
+      {
+        kind: "p",
+        text: "The number is meaningless if the creatives are not genuinely different. Five colourways of one layout are one creative to the viewer and close to one creative to the algorithm, which is learning what makes a person stop rather than what hex value you used.",
+      },
+      {
+        kind: "ul",
+        items: [
+          "Distinct means a different angle, not a different crop: approval and title proof, a specific objection answered, the locality rather than the building, price framing, a resident or buyer voice, construction progress, an explicit comparison.",
+          "A refresh that changes only the headline resets nothing, and the frequency clock keeps running.",
+          "Format counts as variation and is the cheapest kind: the same angle as a static, a carousel and a short vertical video is three tests, not one.",
+          "If you cannot describe in one sentence why a creative is different from the one next to it, it is not a second creative.",
+        ],
+      },
+      { kind: "h2", text: "The cadence that makes it survivable" },
+      {
+        kind: "p",
+        text: "Fifteen to twenty distinct creatives a month is impossible as a monthly request to a designer and routine as a pipeline. Four things make it a pipeline.",
+      },
+      {
+        kind: "ol",
+        items: [
+          "A shoot bank. One proper day of site footage, units, construction progress and locality, cut down repeatedly, beats twelve separate briefs. Renders age badly and every competitor has the same ones.",
+          "A running angle list, so the question each week is which angle to shoot next rather than what to make.",
+          "Kill rules agreed in advance: at what spend and what cost per lead does a creative get switched off, decided before anyone is emotionally invested in it.",
+          "Frequency and first-time impression ratio on the weekly report next to cost per lead. Fatigue is only invisible if nobody is looking for it.",
+        ],
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "Creative volume is derivable from frequency accrual, not a matter of taste.",
+          "Weeks per set = fatigue frequency ÷ (weekly impressions ÷ weekly reach).",
+          "The worked example needs about 12 creatives live per month just to hold frequency.",
+          "New production = live slots ÷ winner lifespan ÷ hit rate, which lands between 12 and 29 a month depending on two numbers you can measure.",
+          "Recolours are not variations. If you cannot say why it is different in a sentence, it is not a second creative.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How many ad creatives does a real estate campaign need per month?",
+        answer:
+          "Derive it rather than guessing. Weeks per creative set equals your fatigue frequency divided by weekly impressions over weekly reach. On a worked example of 5,00,000 weekly impressions against 2,00,000 weekly reach with fatigue at 2.8, a set lasts 1.12 weeks, which needs about 12 creatives live per month. Dividing by winner lifespan and hit rate gives new production of roughly 12 to 29 a month, with most metro accounts landing at 15 to 20.",
+      },
+      {
+        question: "What ad frequency is too high for real estate?",
+        answer:
+          "There is no universal threshold. Frequency is an average, so a figure of 2.8 means part of your audience has seen the ad six or seven times. Find your own fatigue point by charting weekly frequency against weekly cost per lead over two months and looking for where cost per lead starts climbing with nothing else changed. Our trigger for metro real-estate audiences is 2.8.",
+      },
+      {
+        question: "Do different colours or headlines count as different creatives?",
+        answer:
+          "No. Five colourways of one layout are one creative to the viewer and close to one to the algorithm, which is learning what makes someone stop scrolling. A distinct creative uses a different angle: approval proof, a specific objection, the locality rather than the building, price framing, a buyer voice, construction progress. Running the same angle as a static, a carousel and a short video does count as three tests.",
+      },
+      {
+        question: "What is a creative hit rate and how do I measure mine?",
+        answer:
+          "It is the share of creatives you ship that beat your account's median cost per lead. Measure it over a quarter by ranking every creative you ran by cost per lead and counting how many landed above the median. It is one of the two inputs that decide how many creatives you need to produce, and almost nobody tracks it.",
+      },
+    ],
+    related: [
+      { href: "/what-we-do/creative-engine", label: "How we run creative as a production line" },
+      {
+        href: "/tools/creative-fatigue-estimator",
+        label: "Estimate your own fatigue point",
+      },
+      {
+        href: "/insights/good-cost-per-lead-real-estate",
+        label: "What rising cost per lead does to cost per booking",
+      },
     ],
   },
 ];

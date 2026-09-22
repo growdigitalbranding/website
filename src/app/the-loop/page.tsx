@@ -5,7 +5,7 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/the-loop",
-  title: "The Loop",
+  title: "Cost per booking, not cost per lead",
   description:
     "Why performance marketing for a high-consideration purchase has to be a closed loop. The diagnosis, the four stations, and what skipping each one costs.",
 });

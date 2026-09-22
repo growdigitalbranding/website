@@ -5,7 +5,7 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/pricing",
-  title: "Pricing",
+  title: "Pricing: ₹75,000 to ₹2.5L a month, published",
   description:
     "Three engagement models with real rupee ranges published, from a one-time Signal Setup to a full retainer. No contact-us-for-a-quote.",
 });

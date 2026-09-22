@@ -12,6 +12,7 @@ export function ServiceTemplate({
   tooling,
   miniCase,
   objection,
+  answer,
   reading = [],
 }: {
   eyebrow: string;
@@ -22,6 +23,9 @@ export function ServiceTemplate({
   tooling: string[];
   miniCase: string;
   objection: { question: string; answer: string };
+  /** The direct answer, rendered before anything else. Assistants and skim
+   *  readers both take the first substantive paragraph. */
+  answer: string;
   /** Article slugs that expand this service. */
   reading?: string[];
 }) {
@@ -30,6 +34,12 @@ export function ServiceTemplate({
       <PageHero eyebrow={eyebrow} title={title} subtitle={subtitle} />
 
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-14">
+        {/* The direct answer, before any preamble. */}
+        <div className="border-l-2 pl-5 md:pl-6" style={{ borderColor: "var(--signal)" }}>
+          <p className="mono-label text-signal mb-3">The short answer</p>
+          <p className="text-lg md:text-xl text-ink">{answer}</p>
+        </div>
+
         <section className="border border-mist rounded-2xl p-6 bg-paper-2">
           <p className="mono-label text-graphite mb-3">WHO THIS IS FOR</p>
           <ul className="flex flex-col gap-2">
@@ -42,7 +52,7 @@ export function ServiceTemplate({
         </section>
 
         <section>
-          <h2 className="text-h3 font-display font-bold mb-4">What's included</h2>
+          <h2 className="text-h3 font-display font-bold mb-4">What do you actually get?</h2>
           <ul className="flex flex-col gap-3">
             {included.map((item) => (
               <li key={item} className="border-t border-mist pt-3 text-lg text-graphite">
@@ -53,7 +63,7 @@ export function ServiceTemplate({
         </section>
 
         <section>
-          <h2 className="text-h3 font-display font-bold mb-4">The tooling, named</h2>
+          <h2 className="text-h3 font-display font-bold mb-4">Which tools does this run on?</h2>
           <div className="flex flex-wrap gap-2">
             {tooling.map((tool) => (
               <span
@@ -67,7 +77,7 @@ export function ServiceTemplate({
         </section>
 
         <section>
-          <h2 className="text-h3 font-display font-bold mb-4">In practice</h2>
+          <h2 className="text-h3 font-display font-bold mb-4">What does this look like on a real account?</h2>
           <p className="text-lg text-graphite">{miniCase}</p>
         </section>
 

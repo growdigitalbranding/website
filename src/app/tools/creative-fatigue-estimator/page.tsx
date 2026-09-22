@@ -7,7 +7,7 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/tools/creative-fatigue-estimator",
-  title: "Creative Fatigue Estimator",
+  title: "Ad creative fatigue estimator",
   description:
     "Enter your frequency and its growth rate to get an estimated refresh date, before rising cost per lead tells you the creative is already tired.",
 });

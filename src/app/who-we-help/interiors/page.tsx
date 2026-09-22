@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/interiors",
-  title: "Interiors",
+  title: "Marketing for interior design firms",
   description:
     "Performance marketing for premium interior design firms, built around a long consideration window and a lead that is worth qualifying before it is called.",
 });
@@ -19,6 +20,10 @@ export default function Page() {
         title="Portfolio-driven marketing for a service, not a product"
         subtitle="Interior design sells on taste and trust before it sells on price. The creative engine and the follow-up loop both have to reflect that."
       />
+
+      <DirectAnswer>
+        A long consideration window and a lead worth qualifying before anyone calls it. Cost per booking is cost per lead divided by the product of the five post-lead rates, and in a category this considered the qualification rate is usually the one furthest from its ceiling, not the media cost.
+      </DirectAnswer>
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-10">
         <p className="text-lg text-graphite">
           A furniture ad and an interior design ad look similar but sell differently. The buyer

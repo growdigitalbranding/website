@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
   path: "/about",
-  title: "About",
+  title: "An operator-run agency in Coimbatore",
   description:
     "An operator-run agency in Coimbatore, working with builders across Tamil Nadu and Karnataka. Who runs it, how many accounts we take, and who we are not for.",
 });
@@ -17,6 +18,10 @@ export default function AboutPage() {
         title="Run by people who've bought their own media."
         subtitle="Grow is based in Coimbatore, working with builders across Tamil Nadu and Karnataka on the assumption that most agencies stop too early to matter."
       />
+
+      <DirectAnswer>
+        An operator-run agency in Coimbatore, working with builders across Tamil Nadu and Karnataka. Pricing is published rather than quoted: ₹75,000 one-time for Signal Setup, ₹1,25,000 for the Creative Engine, and ₹60,000 to ₹2,50,000 a month for the full loop above a ₹1.5L media floor. We take a small number of accounts at a time, and we do not take a percentage of spend.
+      </DirectAnswer>
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-10">
         <p className="text-lg text-graphite">
           We started this agency because every real estate account we inherited had the same

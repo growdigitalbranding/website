@@ -4,7 +4,7 @@ import { PageHero, CTABand } from "@/components/PageHero";
 
 export const metadata: Metadata = pageMeta({
   path: "/tracking-setup",
-  title: "Our Tracking Setup",
+  title: "The tracking stack running on this site",
   description:
     "A plain-language writeup of exactly what runs under this site: the stack, the events, the consent defaults. The same setup we would build for you.",
 });

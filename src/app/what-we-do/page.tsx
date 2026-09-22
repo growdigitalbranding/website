@@ -23,7 +23,7 @@ import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do",
-  title: "What we do",
+  title: "Performance marketing services for builders",
   description:
     "The full capability directory: eight property types, five price positions, five project stages, and the five services that run across all of them.",
 });

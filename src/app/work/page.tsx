@@ -7,7 +7,7 @@ import { CASES } from "@/data/cases";
 
 export const metadata: Metadata = pageMeta({
   path: "/work",
-  title: "Work",
+  title: "What we changed in three real accounts",
   description:
     "We do not publish client dashboards. Here is what each engagement actually changed, what you can check on a call, and what you get in writing.",
 });

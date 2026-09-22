@@ -5,7 +5,7 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do/performance-marketing",
-  title: "Performance marketing",
+  title: "Meta and Google Ads for real estate developers",
   description:
     "Meta and Google campaign architecture for real estate, built to stop your ad sets competing with each other and priced against cost per booking.",
 });
@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "Advantage+ optimises within the account structure and creative you give it. If the structure is fighting itself or the creative pool is thin, automation just finds the least-bad answer inside a bad setup, fast. Structure and creative are still your job.",
         }}
+        answer="We buy Meta and Google media against cost per booking, not cost per lead. Cost per booking is cost per lead divided by the product of the five rates after the lead, so a \u20b91,500 lead converting at 0.69% to booking costs \u20b92,16,450 a booking. That is the number on the weekly report, and it is the one that moves when the structure stops competing with itself."
         reading={["good-cost-per-lead-real-estate", "channel-partner-vs-direct-leads"]}
       />
     </>

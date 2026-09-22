@@ -5,7 +5,7 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do/ai-search-visibility",
-  title: "AI Search Visibility",
+  title: "AI search visibility for real estate brands",
   description:
     "Entity consistency, structured data and citable content, so the assistants your buyers ask before they ask Google can find and quote you.",
 });
@@ -37,6 +37,7 @@ export default function Page() {
           answer:
             "We track it the way you'd expect an operator to: direct prompts against major assistants on your target queries, tracked monthly, plus referral traffic tagged from assistant citations where it's detectable. It's directional, not a vanity metric, and we say so.",
         }}
+        answer="Three things decide whether an assistant cites you: whether a crawler can read the page without JavaScript, whether your company resolves to one entity, and whether you have published anything specific enough to quote. This site measures 97 to 100% of its content present in raw HTML before any script runs, which is the test most sites fail without ever finding out."
         reading={["get-cited-by-ai-assistants"]}
       />
     </>

@@ -7,7 +7,7 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/tools/cpl-calculator",
-  title: "CPL Calculator",
+  title: "Cost per booking calculator for real estate",
   description:
     "Turn ad spend and your own funnel rates into cost per booking and marketing cost per sale. Runs live in the browser, no email required.",
 });

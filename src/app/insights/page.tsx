@@ -6,7 +6,7 @@ import { ARTICLES_BY_DATE } from "@/data/insights";
 
 export const metadata: Metadata = pageMeta({
   path: "/insights",
-  title: "Insights",
+  title: "Real estate marketing, with the working shown",
   description:
     "Cost per booking arithmetic, RERA and approval status in the funnel, and channel partner economics. Method pieces for builders, with the working shown.",
 });

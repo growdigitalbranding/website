@@ -5,7 +5,7 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do/tracking-attribution",
-  title: "Tracking & Attribution",
+  title: "Meta CAPI and server-side tracking setup",
   description:
     "Conversions API, server-side GTM and weekly offline conversion uploads, so the ad platform learns which of your leads actually bought.",
 });
@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "You keep it. Every container, dataset, and CRM webhook is provisioned under your own Meta Business Manager and Google account from day one. Not ours. We hand over full admin on request, no lock-in.",
         }}
+        answer="Conversions API, server-side GTM and weekly offline conversion uploads, all provisioned under your own Business Manager from day one. There are three levels of feedback and almost nobody runs the third; without it the platform's definition of success stops at the form, and lead quality never improves no matter how the targeting is adjusted."
         reading={["why-meta-lead-ads-poor-quality"]}
       />
     </>

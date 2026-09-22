@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/senior-living",
-  title: "Senior Living",
+  title: "Senior living marketing and lead generation",
   description:
     "Performance marketing for senior living operators, built around a long trust-first cycle where the decision maker and the resident are rarely the same person.",
 });
@@ -19,6 +20,10 @@ export default function Page() {
         title="Trust-first marketing for a decision the whole family makes"
         subtitle="The lead is rarely the person who'll live there. Creative, qualification, and follow-up all have to account for an influencer who isn't the prospect."
       />
+
+      <DirectAnswer>
+        The same loop, with a longer window and more people in the room. The five rates between a lead and a booking still multiply, so the leverage is still contact rate and show-up rate rather than cost per lead. What changes is that the enquirer and the resident are often different people, so qualification has to survive being relayed.
+      </DirectAnswer>
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-10">
         <p className="text-lg text-graphite">
           Senior living has one of the longest and most emotionally loaded sales cycles in

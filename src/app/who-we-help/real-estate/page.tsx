@@ -7,7 +7,7 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
-  title: "Real Estate",
+  title: "Real estate marketing agency, Tamil Nadu",
   description:
     "Performance marketing for builders and developers across Tamil Nadu and Karnataka. Project launches, sustenance campaigns and site-visit economics.",
 });

@@ -5,7 +5,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = pageMeta({
   path: "/contact",
-  title: "Book a call",
+  title: "Book a 30-minute marketing audit call",
   description:
     "Book a 30-minute call. Three fields, no forms marathon, no deck. We look at your account and tell you which rate is cheapest to fix first.",
 });

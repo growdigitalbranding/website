@@ -16,6 +16,41 @@ Node 20.9 or newer is required (Next 16). `package.json` pins this via
 `.next/` is gitignored, so the build has to happen on the server. It is not
 uploaded by `git push`.
 
+## Telling Bing about new pages: IndexNow
+
+IndexNow is a push protocol. Rather than waiting for a crawler to notice a
+change, you tell it, and Bing, Yandex, Seznam and Naver share the endpoint.
+Google does not participate, so the sitemap is still what serves Google.
+
+Worth running because Copilot answers from the Bing index, which makes Bing
+crawl latency into AI visibility latency.
+
+After a deploy has finished and the new pages are live:
+
+    npm run indexnow
+
+It reads the **deployed** sitemap, not local source, so it cannot drift from
+what is actually published and it fails loudly if the deploy has not landed.
+Submitting URLs that still serve the old build is worse than not submitting:
+the crawler arrives, finds nothing new, and learns to come back less often.
+
+    npm run indexnow -- --dry-run          print the payload, send nothing
+    npm run indexnow -- <url> <url>        submit only these URLs
+
+Exit code is 0 on HTTP 200 or 202 and 1 on anything else, so it is safe to
+chain after the build in a deploy script.
+
+The key file `public/<key>.txt` is **not a secret**, despite looking like
+one. The protocol requires that exact string to be publicly readable at
+`https://growdigitalbranding.com/<key>.txt`; that is how the endpoint proves
+you control the host. It belongs in the repo and needs no environment
+variable. Do not delete it, and if it is ever rotated, change it in
+`scripts/indexnow.mjs` and rename the file in the same commit.
+
+At 30 URLs, resubmitting everything on each deploy is well inside acceptable
+use. Past a few hundred pages, filter by `<lastmod>` instead or the endpoint
+will start returning 429.
+
 ## Unstyled page: plain serif text, blue underlined links, no layout
 
 The HTML renders but nothing under `/_next/static/` is being served, so the

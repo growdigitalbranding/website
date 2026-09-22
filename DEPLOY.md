@@ -8,13 +8,26 @@ Node 20.9 or newer is required (Next 16). `package.json` pins this via
 
 ## Deploy
 
-    git pull
-    npm ci
-    npm run build     # writes .next/ - must run on the server
-    npm start         # next start, honours $PORT
+On the server, from the app directory:
 
-`.next/` is gitignored, so the build has to happen on the server. It is not
-uploaded by `git push`.
+    npm run deploy        # pull, install, build. Checks the usual traps.
+
+**Then restart the Node app in hPanel.** That step is not optional and the
+script cannot do it: `next start` serves the build it loaded at boot, so a
+rebuild underneath a running process changes nothing until the process comes
+back. Confirm with `npm run verify`.
+
+A `git pull` on its own is not a deploy. `.next/` is gitignored, so nothing
+built is ever transferred by `git push`, and hPanel's Git integration pulls
+files without building or restarting. Pull, build, restart: all three, every
+time.
+
+The long form, if you would rather run it by hand:
+
+    git pull
+    npm ci --include=dev   # the build needs typescript and tailwind
+    NODE_OPTIONS=--max-old-space-size=2048 npm run build
+    # then restart the app in hPanel
 
 ## "I deployed and the page has not changed"
 

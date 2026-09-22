@@ -14,6 +14,12 @@
 - /tracking-setup — the exact measurement stack running on this site
 - /tools/cpl-calculator — turns ad spend + funnel rates into cost per booking
 
+## Published articles
+
+- /insights/good-cost-per-lead-real-estate — what a good cost per lead is for a real estate project, the cost-per-booking formula, and a worked example where fixing two downstream rates cuts cost per booking 44% with CPL unchanged
+- /insights/rera-approval-status-lead-quality — how RERA registration and DTCP approval status in the creative raise cost per lead and lower cost per booking, and what can legitimately run before registration
+- /insights/channel-partner-vs-direct-leads — brokerage against media cost per booking worked at a ₹75L ticket, and the three asymmetries that decide it
+
 ## Terms this site defines
 
 - **Loop marketing** — running creative, tracking, follow-up, and booking-data feedback as one closed system, instead of media buying alone.

@@ -105,6 +105,28 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* These two steps were missing from the scale while being used across the
+   site: .text-h3 appeared on 25 headings in 13 files and .text-display-m on
+   the article H1, and neither existed, so every one of those headings was
+   rendering at body size. Section headings on /the-loop, /pricing,
+   /tracking-setup, the service template and every CTA band were the same size
+   as the paragraph underneath them.
+
+   Tracking tightens as size grows, matching the steps above and the
+   --track-* tokens: large type reads too loose at the spacing small type
+   needs. */
+.text-display-m {
+  font-size: clamp(1.95rem, 3.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.text-h3 {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
 .grid-overlay {
   position: absolute;
   inset: 0;

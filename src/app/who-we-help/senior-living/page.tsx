@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/who-we-help/senior-living",
   title: "Senior Living",
   description:
-    "Performance marketing for senior living operators with long, trust-first sales cycles.",
+    "Performance marketing for senior living operators, built around a long trust-first cycle where the decision maker and the resident are rarely the same person.",
 });
 
 export default function Page() {

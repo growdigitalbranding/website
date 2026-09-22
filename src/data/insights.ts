@@ -58,7 +58,7 @@ export const ARTICLES: Article[] = [
     kind: "Benchmark method",
     dek: "There is no such number in isolation. Here is the one that replaces it, the five rates it depends on, and how to work out yours in about five minutes.",
     description:
-      "Cost per lead means nothing without the five funnel rates underneath it. The formula for cost per booking, a fully worked example, and why CPL rises with ticket size.",
+      "Cost per lead means nothing without the five funnel rates underneath it. The cost-per-booking formula, a worked example, and why CPL rises with ticket size.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -230,7 +230,7 @@ export const ARTICLES: Article[] = [
     kind: "Tactical",
     dek: "Leading with registration and approval status raises your cost per lead and lowers your cost per booking. Here is the arithmetic of that trade, and where approval status belongs in the funnel.",
     description:
-      "Why putting RERA registration and approval status in the creative, not the footer, raises cost per lead and lowers cost per booking. Plus what you can legitimately run before registration.",
+      "Why putting RERA registration and approval status in the creative raises cost per lead, lowers cost per booking, and where the trade breaks even exactly.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -385,7 +385,7 @@ export const ARTICLES: Article[] = [
     kind: "Economics",
     dek: "On cost per booking alone, channel partners often win. The comparison is still incomplete, because only one of the two channels gets cheaper the longer you run it.",
     description:
-      "Brokerage against media cost per booking, worked at a ₹75L ticket, plus the three asymmetries that decide it: risk shape, marginal cost direction, and who owns the buyer data.",
+      "Brokerage against media cost per booking, worked at a Rs 75L ticket, plus the three asymmetries that decide it once you run more than one project.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -536,7 +536,7 @@ export const ARTICLES: Article[] = [
     kind: "Tactical",
     dek: "Inside a minute if you can, inside five if you cannot. Not out of politeness. Contact rate is the first term in the cost-per-booking chain, so it multiplies everything after it.",
     description:
-      "Why contact rate is the cheapest rate to move, what actually decays in the first minutes, and how to measure your own speed-to-lead decay curve from data you already have.",
+      "Why contact rate is the cheapest rate to move, a 29% cut in cost per booking from that one rate, and how to build your own decay curve from call logs.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -707,7 +707,7 @@ export const ARTICLES: Article[] = [
     kind: "Diagnostic",
     dek: "Because the platform is optimising for exactly what you asked it for, and you almost certainly asked for form fills. Here is what it can and cannot see, and the three levels of telling it the truth.",
     description:
-      "Meta optimises toward the event you select, and it cannot see anything after the form unless you send it. The three levels of feedback, and why optimising straight for bookings usually backfires.",
+      "Meta optimises toward the event you selected and cannot see anything after the form. The three levels of feedback, and the trap most people hit next.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -856,7 +856,7 @@ export const ARTICLES: Article[] = [
     kind: "Benchmark method",
     dek: "It is an arithmetic question, not a taste question. Work it from your weekly impressions, your reached audience and the frequency at which your account starts to fatigue.",
     description:
-      "Derive your own creative volume from frequency accrual, winner lifespan and your hit rate. A worked example landing between 12 and 23 new creatives a month, with a sensitivity table.",
+      "Derive creative volume from frequency accrual, winner lifespan and your hit rate. A worked example landing between 12 and 29 new creatives a month.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:
@@ -1003,7 +1003,7 @@ export const ARTICLES: Article[] = [
     kind: "Tactical",
     dek: "There is no ranking factor to game and no submission form. Three things decide it: whether a crawler can read you without JavaScript, whether your company resolves to one entity, and whether you have published anything specific enough to quote.",
     description:
-      "Why assistants synthesise rather than rank, the three tests that decide whether you appear in an answer, and the plumbing that makes you eligible. Includes what nobody can promise.",
+      "Why assistants synthesise rather than rank, the three tests that decide whether you appear in an answer, and what nobody can honestly promise.",
     published: "2026-09-22",
     updated: "2026-09-22",
     answer:

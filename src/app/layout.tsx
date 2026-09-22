@@ -15,7 +15,7 @@ import { BRAND } from "@/lib/brand";
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
   title: {
-    default: `${BRAND} | Performance marketing for builders`,
+    default: `Performance marketing for real estate developers | ${BRAND}`,
     template: `%s | ${BRAND}`,
   },
   description:

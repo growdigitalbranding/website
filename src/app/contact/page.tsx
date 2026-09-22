@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/contact",
   title: "Book a call",
   description:
-    "Book a 30-minute call with Grow. Three fields, no forms marathon.",
+    "Book a 30-minute call. Three fields, no forms marathon, no deck. We look at your account and tell you which rate is cheapest to fix first.",
 });
 
 export default function ContactPage() {

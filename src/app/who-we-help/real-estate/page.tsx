@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
   title: "Real Estate",
   description:
-    "Performance marketing for builders and developers. Project launches, sustenance campaigns, and site-visit economics.",
+    "Performance marketing for builders and developers across Tamil Nadu and Karnataka. Project launches, sustenance campaigns and site-visit economics.",
 });
 
 // Benchmark ranges below are typical ranges observed across managed accounts,

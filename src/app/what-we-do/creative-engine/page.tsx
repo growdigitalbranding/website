@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/creative-engine",
   title: "Creative Engine",
   description:
-    "Creative volume as a production system, not a monthly favour from a designer.",
+    "Creative volume as a production system rather than a monthly favour from a designer. Fifteen to twenty distinct angles a month, with a refresh cadence.",
 });
 
 export default function Page() {

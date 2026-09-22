@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/performance-marketing",
   title: "Performance marketing",
   description:
-    "Meta + Google campaign architecture built to stop competing with itself.",
+    "Meta and Google campaign architecture for real estate, built to stop your ad sets competing with each other and priced against cost per booking.",
 });
 
 export default function Page() {

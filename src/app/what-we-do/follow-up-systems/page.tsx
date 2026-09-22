@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/follow-up-systems",
   title: "Follow-Up Systems",
   description:
-    "WhatsApp automation, speed-to-lead, and a CRM loop that closes.",
+    "WhatsApp automation, sub-minute speed to lead, and a CRM loop that feeds bookings back into the ad account instead of losing them in a spreadsheet.",
 });
 
 export default function Page() {

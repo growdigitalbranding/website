@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/tracking-attribution",
   title: "Tracking & Attribution",
   description:
-    "CAPI, server-side GTM, offline conversions. The signal layer.",
+    "Conversions API, server-side GTM and weekly offline conversion uploads, so the ad platform learns which of your leads actually bought.",
 });
 
 export default function Page() {

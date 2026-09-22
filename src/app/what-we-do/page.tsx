@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do",
   title: "What we do",
   description:
-    "The full capability directory: eight property types, five price positions, eight project stages, forty services across five pillars, ten buyer segments and six geographies, each with what actually changes about the marketing.",
+    "The full capability directory: eight property types, five price positions, five project stages, and the five services that run across all of them.",
 });
 
 /**

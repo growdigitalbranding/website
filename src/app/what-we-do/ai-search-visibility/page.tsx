@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/ai-search-visibility",
   title: "AI Search Visibility",
   description:
-    "Entity consistency and citable content for the assistants your buyers now ask.",
+    "Entity consistency, structured data and citable content, so the assistants your buyers ask before they ask Google can find and quote you.",
 });
 
 export default function Page() {

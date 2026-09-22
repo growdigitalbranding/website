@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/tools",
   title: "Tools",
   description:
-    "Free interactive calculators for lead-to-booking economics, tracking health, and creative fatigue.",
+    "Free calculators for lead-to-booking economics, tracking health and creative fatigue. No email gate, no signup, and the arithmetic is published.",
 });
 
 const TOOLS = [

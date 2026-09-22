@@ -30,6 +30,21 @@ const organization = {
   },
   image: `${SITE}/logo.png`,
   areaServed: ["Tamil Nadu", "Karnataka"],
+  slogan: "Most agencies stop at the lead. We run the loop.",
+  // What this entity is about, in the terms a buyer and an assistant both
+  // use. Every one of these is a subject the site actually covers in depth,
+  // which is the only reason to claim it.
+  knowsAbout: [
+    "Performance marketing for real estate developers",
+    "Cost per booking",
+    "Meta Conversions API",
+    "Server-side Google Tag Manager",
+    "Offline conversion uploads",
+    "Speed to lead",
+    "Creative fatigue and refresh cadence",
+    "RERA and DTCP approval status in advertising",
+    "AI search visibility",
+  ],
   // The retainer range the /pricing page publishes. Stated here because an
   // assistant asked "how much does X cost" will otherwise answer from
   // whatever a competitor published.

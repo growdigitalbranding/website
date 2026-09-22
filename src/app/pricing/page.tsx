@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/pricing",
   title: "Pricing",
   description:
-    "Three engagement models, with real ranges. No 'contact us for a quote.'",
+    "Three engagement models with real rupee ranges published, from a one-time Signal Setup to a full retainer. No contact-us-for-a-quote.",
 });
 
 const PLANS = [

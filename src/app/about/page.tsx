@@ -6,7 +6,7 @@ export const metadata: Metadata = pageMeta({
   path: "/about",
   title: "About",
   description:
-    "An operator-run agency, not a stock-photo team page.",
+    "An operator-run agency in Coimbatore, working with builders across Tamil Nadu and Karnataka. Who runs it, how many accounts we take, and who we are not for.",
 });
 
 export default function AboutPage() {

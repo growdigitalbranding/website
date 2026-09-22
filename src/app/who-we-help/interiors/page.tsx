@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/who-we-help/interiors",
   title: "Interiors",
   description:
-    "Performance marketing for premium interior design firms with a long, portfolio-driven sales cycle.",
+    "Performance marketing for premium interior design firms, built around a long consideration window and a lead that is worth qualifying before it is called.",
 });
 
 export default function Page() {

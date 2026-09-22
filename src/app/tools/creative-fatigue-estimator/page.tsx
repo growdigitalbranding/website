@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMeta({
   path: "/tools/creative-fatigue-estimator",
   title: "Creative Fatigue Estimator",
   description:
-    "Enter frequency and its growth rate, get an estimated refresh date before CPL starts climbing.",
+    "Enter your frequency and its growth rate to get an estimated refresh date, before rising cost per lead tells you the creative is already tired.",
 });
 
 export default function CreativeFatigueEstimatorPage() {

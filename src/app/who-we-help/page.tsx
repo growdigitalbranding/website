@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMeta({
   path: "/who-we-help",
   title: "Who we help",
   description:
-    "Builders and developers first. Senior living and interiors, too.",
+    "Builders and developers first, then senior living operators and premium interior firms. Three segments that share a long, trust-first buying cycle.",
 });
 
 const VERTICALS = [

@@ -6,7 +6,7 @@ export const metadata: Metadata = pageMeta({
   path: "/tracking-setup",
   title: "Our Tracking Setup",
   description:
-    "A plain-language writeup of exactly what's running under this site. The credibility artefact.",
+    "A plain-language writeup of exactly what runs under this site: the stack, the events, the consent defaults. The same setup we would build for you.",
 });
 
 const ITEMS = [

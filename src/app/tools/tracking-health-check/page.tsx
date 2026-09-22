@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMeta({
   path: "/tools/tracking-health-check",
   title: "Tracking Health Check",
   description:
-    "A short questionnaire that scores your CAPI/pixel setup and tells you what's missing.",
+    "A short questionnaire that scores your pixel and Conversions API setup and tells you which gap is costing you the most measurable conversions.",
 });
 
 export default function TrackingHealthCheckPage() {

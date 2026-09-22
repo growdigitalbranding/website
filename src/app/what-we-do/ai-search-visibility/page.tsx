@@ -37,6 +37,7 @@ export default function Page() {
           answer:
             "We track it the way you'd expect an operator to: direct prompts against major assistants on your target queries, tracked monthly, plus referral traffic tagged from assistant citations where it's detectable. It's directional, not a vanity metric, and we say so.",
         }}
+        reading={["get-cited-by-ai-assistants"]}
       />
     </>
   );

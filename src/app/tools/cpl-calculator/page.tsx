@@ -3,6 +3,7 @@ import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { CplCalculator } from "./CplCalculator";
+import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/tools/cpl-calculator",
@@ -23,6 +24,10 @@ export default function CplCalculatorPage() {
       <div className="mx-auto max-w-[1440px] px-6 pb-16">
         <CplCalculator />
       </div>
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <FurtherReading label="Where this arithmetic comes from" slugs={["good-cost-per-lead-real-estate"]} />
+      </div>
+
       <CTABand />
     </>
   );

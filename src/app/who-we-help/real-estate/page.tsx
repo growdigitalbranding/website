@@ -3,6 +3,7 @@ import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { faqJsonLd } from "@/lib/schema/jsonld";
+import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
@@ -118,6 +119,17 @@ export default function RealEstatePage() {
           </section>
         ))}
       </article>
+
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <FurtherReading
+          label="Written for builders"
+          slugs={[
+            "good-cost-per-lead-real-estate",
+            "rera-approval-status-lead-quality",
+            "channel-partner-vs-direct-leads",
+          ]}
+        />
+      </div>
 
       <CTABand />
     </>

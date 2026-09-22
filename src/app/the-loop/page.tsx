@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/the-loop",
@@ -119,6 +120,17 @@ export default function TheLoopPage() {
             tells you whether the money worked.
           </p>
         </section>
+        <FurtherReading
+          label="The four stations, worked out in full"
+          slugs={[
+            "how-many-ad-creatives-real-estate",
+            "why-meta-lead-ads-poor-quality",
+            "speed-to-lead-real-estate",
+            "get-cited-by-ai-assistants",
+          ]}
+          className="border-t border-mist pt-12"
+        />
+
       </article>
 
       <CTABand />

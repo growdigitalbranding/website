@@ -9,6 +9,7 @@ import { FollowUpFlowSection } from "@/components/sections/FollowUpFlowSection";
 import { ProofSection } from "@/components/sections/ProofSection";
 import { OperatorSection } from "@/components/sections/OperatorSection";
 import { Objections } from "@/components/sections/Objections";
+import { InsightsBandSection } from "@/components/sections/InsightsBandSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 
 export default function HomePage() {
@@ -39,6 +40,10 @@ export default function HomePage() {
           the homepage's only FAQPage schema source and answers six real
           objections before a call. */}
       <Objections />
+      {/* Published work, after the objections have been answered and before
+          the ask. A reader who is still here is evaluating whether we know
+          the subject, and this is the page's only route into the articles. */}
+      <InsightsBandSection />
       <FinalCtaSection />
     </>
   );

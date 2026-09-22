@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "You keep it. Every container, dataset, and CRM webhook is provisioned under your own Meta Business Manager and Google account from day one. Not ours. We hand over full admin on request, no lock-in.",
         }}
+        reading={["why-meta-lead-ads-poor-quality"]}
       />
     </>
   );

@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "Automation doesn't replace your telecallers, it protects the window before they can act. A WhatsApp acknowledgement inside 60 seconds keeps the lead warm for the 20-40 minutes it realistically takes a human to get to the phone.",
         }}
+        reading={["speed-to-lead-real-estate"]}
       />
     </>
   );

@@ -3,6 +3,7 @@ import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { CreativeFatigueEstimator } from "./CreativeFatigueEstimator";
+import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/tools/creative-fatigue-estimator",
@@ -23,6 +24,10 @@ export default function CreativeFatigueEstimatorPage() {
       <div className="mx-auto max-w-2xl px-6 pb-16">
         <CreativeFatigueEstimator />
       </div>
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <FurtherReading label="Where this arithmetic comes from" slugs={["how-many-ad-creatives-real-estate"]} />
+      </div>
+
       <CTABand />
     </>
   );

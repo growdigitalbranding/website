@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "Advantage+ optimises within the account structure and creative you give it. If the structure is fighting itself or the creative pool is thin, automation just finds the least-bad answer inside a bad setup, fast. Structure and creative are still your job.",
         }}
+        reading={["good-cost-per-lead-real-estate", "channel-partner-vs-direct-leads"]}
       />
     </>
   );

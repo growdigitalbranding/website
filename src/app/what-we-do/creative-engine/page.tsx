@@ -36,6 +36,7 @@ export default function Page() {
           answer:
             "Not every angle needs to be a full shoot. Most are recuts and re-copies of the same 3-4 raw assets, tested against different buyer motivations. Volume comes from variation, not from 20 separate production days.",
         }}
+        reading={["how-many-ad-creatives-real-estate"]}
       />
     </>
   );

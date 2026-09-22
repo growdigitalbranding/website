@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FurtherReading } from "@/components/FurtherReading";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { faqJsonLd } from "@/lib/schema/jsonld";
 
@@ -11,6 +12,7 @@ export function ServiceTemplate({
   tooling,
   miniCase,
   objection,
+  reading = [],
 }: {
   eyebrow: string;
   title: string;
@@ -20,6 +22,8 @@ export function ServiceTemplate({
   tooling: string[];
   miniCase: string;
   objection: { question: string; answer: string };
+  /** Article slugs that expand this service. */
+  reading?: string[];
 }) {
   return (
     <>
@@ -75,6 +79,8 @@ export function ServiceTemplate({
           <h2 className="text-h3 font-display font-bold mb-4">{objection.question}</h2>
           <p className="text-lg text-graphite">{objection.answer}</p>
         </section>
+
+        <FurtherReading slugs={reading} className="border-t border-mist pt-10" />
 
         <p className="text-sm text-graphite">
           See how this fits the rest of the system on{" "}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/pricing",
@@ -70,6 +71,13 @@ export default function PricingPage() {
           signal.
         </p>
       </div>
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <FurtherReading
+          label="How this compares to the alternative"
+          slugs={["channel-partner-vs-direct-leads"]}
+        />
+      </div>
+
       <CTABand />
     </>
   );

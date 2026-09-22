@@ -17,3 +17,10 @@ next-env.d.ts
 # Duplicate skill copies the skills CLI writes for the Eve agent target.
 # The canonical copies live in .agents/skills (symlinked into .claude/skills).
 /agent/
+
+# Installed skill packages. 11MB across 290 files, none of which the site
+# builds from or serves: they are tooling for whoever is editing the repo,
+# not part of the application. Tracking them slowed every clone and every
+# deploy pull for nothing. The files stay on disk; git just stops carrying
+# them.
+/.agents/

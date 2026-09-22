@@ -16,6 +16,25 @@ Node 20.9 or newer is required (Next 16). `package.json` pins this via
 `.next/` is gitignored, so the build has to happen on the server. It is not
 uploaded by `git push`.
 
+## After every deploy
+
+    npm run verify
+
+Checks the deployed site rather than local source: sitemap reachable, correct
+content type, 31 URLs, every one of them returning 200 and canonicalising to
+itself; robots naming the answer engines; the IndexNow key file; every static
+asset; all seven articles present; the organisation node carrying its @id and
+logo; and, once a GTM container is configured, that the Consent Mode defaults
+in the served HTML are region-scoped rather than a blanket worldwide denial.
+
+Exit code is 0 only when every check passes, so it can gate a deploy script:
+
+    git pull && npm ci && npm run build && npm run verify && npm run indexnow
+
+It cannot check the GTM container diagnostics panel, which is behind a Google
+login. What it can prove is that the consent defaults that panel complains
+about are correct in what the server actually sends.
+
 ## Telling Bing about new pages: IndexNow
 
 IndexNow is a push protocol. Rather than waiting for a crawler to notice a

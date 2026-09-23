@@ -27,7 +27,7 @@ export function OperatorSection() {
     <section
       id="who-runs-this"
       aria-labelledby="operator-heading"
-      className="bg-paper-2 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
+      className="bg-paper px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
     >
       <div className="max-w-6xl mx-auto grid gap-12 md:gap-16 lg:grid-cols-[1.15fr_1fr]">
         <div>
@@ -66,7 +66,7 @@ export function OperatorSection() {
             {/* Published ranges rather than "contact us for a quote": the point
                 is that a builder can disqualify himself here, before a call
                 costs either side an hour. */}
-            <dl className="surface rounded-[28px] p-6 sm:p-8">
+            <dl className="surface rounded-card p-6 sm:p-8">
               {FACTS.map((f, i) => (
                 <div
                   key={f.label}

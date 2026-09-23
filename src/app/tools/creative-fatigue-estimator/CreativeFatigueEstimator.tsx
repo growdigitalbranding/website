@@ -29,7 +29,7 @@ export function CreativeFatigueEstimator() {
             step="0.1"
             value={frequency}
             onChange={(e) => setFrequency(e.target.value)}
-            className="h-12 px-4 rounded-lg border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
+            className="h-12 px-4 rounded-chip border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
           />
         </label>
         <label className="flex flex-col gap-1.5">
@@ -39,12 +39,12 @@ export function CreativeFatigueEstimator() {
             step="0.05"
             value={weeklyGrowth}
             onChange={(e) => setWeeklyGrowth(e.target.value)}
-            className="h-12 px-4 rounded-lg border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
+            className="h-12 px-4 rounded-chip border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
           />
         </label>
       </div>
 
-      <div className="border border-mist rounded-2xl p-6 bg-paper-2">
+      <div className="surface rounded-card p-6">
         <p className="mono-label text-graphite mb-1">ESTIMATED REFRESH TRIGGER</p>
         {weeksToTrigger > 0 ? (
           <>

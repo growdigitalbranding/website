@@ -42,7 +42,7 @@ export function FunnelRibbonSection() {
     <section
       ref={ref}
       id="the-funnel"
-      className="bg-ink rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px]"
+      className="bg-ink rounded-t-sheet"
       style={scrubbed ? { height: "250dvh" } : undefined}
       aria-labelledby="funnel-heading"
     >

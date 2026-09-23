@@ -57,7 +57,7 @@ export function FinalCTA() {
           <h2 className="text-h2 font-display font-bold mb-8">Book a 30-minute call.</h2>
 
           {status === "success" ? (
-            <div className="border border-mist rounded-2xl p-8 bg-paper-2">
+            <div className="border border-mist rounded-card p-8 bg-paper-2">
               <p className="text-lg font-medium mb-2">Got it. Thanks.</p>
               <p className="text-graphite">
                 We reply on WhatsApp inside one working hour. Usually much less.
@@ -81,7 +81,7 @@ export function FinalCTA() {
                     ref={errorRef}
                     role="alert"
                     tabIndex={-1}
-                    className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-flag/40"
+                    className="rounded-card border border-flag/30 bg-flag/[0.04] p-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-flag/40"
                   >
                   {error === "delivery_failed" ? (
                     <>
@@ -140,7 +140,7 @@ function Field({
       <input
         name={name}
         type={type}
-        className="h-12 px-4 rounded-lg border border-mist bg-paper-2 focus-visible:border-signal outline-none"
+        className="h-12 px-4 rounded-chip border border-mist bg-paper-2 focus-visible:border-signal outline-none"
         {...rest}
       />
     </label>

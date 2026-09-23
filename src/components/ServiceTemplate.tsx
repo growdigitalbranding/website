@@ -40,7 +40,7 @@ export function ServiceTemplate({
           <p className="text-lg md:text-xl text-ink">{answer}</p>
         </div>
 
-        <section className="border border-mist rounded-2xl p-6 bg-paper-2">
+        <section className="surface rounded-card p-6">
           <p className="mono-label text-graphite mb-3">WHO THIS IS FOR</p>
           <ul className="flex flex-col gap-2">
             {whoFor.map((w) => (

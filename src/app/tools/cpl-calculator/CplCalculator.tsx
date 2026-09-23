@@ -44,7 +44,7 @@ export function CplCalculator() {
         <NumberField label="Average ticket size (₹)" value={ticketSize} onChange={setTicketSize} />
       </div>
 
-      <div className="border border-mist rounded-2xl p-6 bg-paper-2 flex flex-col gap-6">
+      <div className="surface rounded-card p-6 flex flex-col gap-6">
         <div>
           <p className="mono-label text-graphite mb-1">ESTIMATED LEADS / MONTH</p>
           <p className="font-mono text-2xl">{Math.round(result.leads)}</p>
@@ -93,7 +93,7 @@ function NumberField({
         inputMode="decimal"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-12 px-4 rounded-lg border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
+        className="h-12 px-4 rounded-chip border border-mist bg-paper-2 focus-visible:border-signal outline-none font-mono"
       />
     </label>
   );

@@ -129,7 +129,7 @@ function Row({
       {track.map((t, i) => (
         <figure
           key={`${t.id}-${i}`}
-          className="tile group relative m-0 shrink-0 rounded-xl overflow-hidden border border-ink/[0.07] bg-paper-2"
+          className="tile group relative m-0 shrink-0 rounded-card overflow-hidden border border-ink/[0.07] bg-paper-2"
           style={{ width: w, height: h }}
         >
           {t.file ? (

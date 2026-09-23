@@ -33,7 +33,7 @@ export function PillarsSection() {
             delay={i * 0.08}
             className={i === 0 ? "lg:col-span-2" : undefined}
           >
-            <article className="surface h-full rounded-[24px] p-6 md:p-8 flex flex-col">
+            <article className="surface h-full rounded-card p-6 md:p-8 flex flex-col">
               <p className="mono-label text-signal mb-2">{p.n}</p>
               <h3 className="font-display text-2xl md:text-3xl text-ink mb-5">{p.name}</h3>
               <ul className="flex flex-col flex-1">

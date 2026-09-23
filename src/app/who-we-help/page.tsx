@@ -36,6 +36,7 @@ export default function WhoWeHelpPage() {
         eyebrow="WHO WE HELP"
         title="High-consideration purchases. Nothing shopped on price."
         subtitle="Not for ecommerce dropshippers, sub-₹25k/month budgets, or anyone shopping on price."
+        variant="split"
       />
 
       <DirectAnswer>
@@ -46,7 +47,7 @@ export default function WhoWeHelpPage() {
           <Link
             key={v.href}
             href={v.href}
-            className="border border-mist rounded-2xl p-6 hover:border-signal transition-colors"
+            className="surface tile rounded-card p-6 hover:border-signal"
           >
             <h2 className="text-h3 font-display font-bold mb-2">{v.title}</h2>
             <p className="text-graphite">{v.desc}</p>

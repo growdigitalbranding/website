@@ -66,6 +66,7 @@ export default function WorkPage() {
         eyebrow="WORK"
         title="What we can show you, and what we can't."
         subtitle="We do not publish client dashboards. Spend, cost per lead and campaign names belong to the client, not to our marketing. What follows is the part that is ours to publish: what each account looked like when we found it, and what we rebuilt it into."
+        variant="ink"
       />
 
       <article className="mx-auto max-w-3xl px-6 pb-16 flex flex-col gap-16">
@@ -104,7 +105,7 @@ export default function WorkPage() {
             {CASES.map((c) => (
               <li
                 key={c.n}
-                className="flex flex-col gap-5 border border-mist rounded-2xl p-6 bg-paper-2"
+                className="surface flex flex-col gap-5 rounded-card p-6"
               >
                 <div className="flex flex-col gap-1">
                   <p className="mono-label text-signal">

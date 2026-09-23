@@ -285,7 +285,7 @@ export function HeroSection() {
                         : { type: "spring", stiffness: 90, damping: 18, delay: i * 0.07 }
                     }
                     data-band
-                    className="relative mx-auto rounded-lg flex items-center justify-center"
+                    className="relative mx-auto rounded-chip flex items-center justify-center"
                     style={{ height: "clamp(2.1rem, 4.8vh, 3.4rem)" }}
                   >
                     {/* Counted from the untreated column, which never changes.

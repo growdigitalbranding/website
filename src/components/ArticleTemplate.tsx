@@ -58,7 +58,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
               <figure key={i} className="my-2">
                 {/* Wide on purpose, so it gets its own scroller rather than
                     forcing the article column to scroll sideways on a phone. */}
-                <div className="overflow-x-auto rounded-2xl border border-mist bg-paper-2 p-5">
+                <div className="surface overflow-x-auto rounded-card p-5">
                   <code className="font-mono text-[15px] md:text-base text-ink whitespace-nowrap">
                     {b.expression}
                   </code>
@@ -71,7 +71,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
           case "table":
             return (
               <figure key={i} className="my-2">
-                <div className="overflow-x-auto rounded-2xl border border-mist">
+                <div className="overflow-x-auto rounded-card border border-mist">
                   <table className="w-full border-collapse text-left">
                     <thead>
                       <tr className="bg-paper-2">
@@ -113,7 +113,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
             return (
               <aside
                 key={i}
-                className="rounded-2xl p-6 bg-ink text-paper flex flex-col gap-4 my-2"
+                className="rounded-card p-6 bg-ink text-paper flex flex-col gap-4 my-2"
               >
                 <p className="mono-label" style={{ color: "var(--signal-bright)" }}>
                   {b.label}

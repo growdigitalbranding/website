@@ -95,7 +95,7 @@ export function ProofSection() {
   return (
     <section
       id="proof"
-      className="relative z-10 -mt-10 sm:-mt-12 md:-mt-14 bg-paper rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 pt-20 sm:pt-24 md:pt-28 pb-[22vh]"
+      className="relative z-10 -mt-10 sm:-mt-12 md:-mt-14 bg-paper-2 rounded-t-sheet px-5 sm:px-8 md:px-10 pt-20 sm:pt-24 md:pt-28 pb-[22vh]"
     >
       <FadeIn y={40}>
         <h2
@@ -167,7 +167,7 @@ function CaseCard({
       <motion.article
         ref={ref}
         style={{ scale: reduced ? 1 : scale, top: `${index * 22}px` }}
-        className="surface-raised relative w-full rounded-[32px] sm:rounded-[40px] md:rounded-[48px] p-5 sm:p-7 md:p-9"
+        className="surface-raised relative w-full rounded-sheet p-5 sm:p-7 md:p-9"
       >
         <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex items-start gap-4 sm:gap-6 min-w-0">

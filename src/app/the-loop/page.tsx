@@ -17,6 +17,7 @@ export default function TheLoopPage() {
         eyebrow="THE METHODOLOGY"
         title="Most agencies stop at the lead. Here's why that's the whole problem."
         subtitle="A loop marketing works when the account learns from your bookings, not just your form fills. Here's the diagnosis, the four stations, and what it costs to skip each one."
+        variant="split"
       />
 
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-16">

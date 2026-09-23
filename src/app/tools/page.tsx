@@ -36,6 +36,7 @@ export default function ToolsPage() {
         eyebrow="TOOLS"
         title="Free tools. Real numbers, not gated results."
         subtitle="Results show on the page for everyone. Only the emailed PDF version is gated."
+        variant="split"
       />
 
       <DirectAnswer>
@@ -46,7 +47,7 @@ export default function ToolsPage() {
           <Link
             key={t.href}
             href={t.href}
-            className="border border-mist rounded-2xl p-6 hover:border-signal transition-colors"
+            className="surface tile rounded-card p-6 hover:border-signal"
           >
             <h2 className="text-h3 font-display font-bold mb-2">{t.title}</h2>
             <p className="text-graphite">{t.desc}</p>

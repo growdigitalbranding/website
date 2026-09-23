@@ -175,7 +175,10 @@ export function ConsentBanner() {
       className="fixed inset-x-0 bottom-0 z-40 p-3 sm:p-4 lg:bottom-0"
       style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
     >
-      <div className="mx-auto max-w-3xl rounded-2xl bg-ink text-paper p-5 sm:p-6 shadow-2xl flex flex-col gap-4">
+      <div
+        className="mx-auto max-w-3xl on-ink rounded-card bg-ink text-paper p-5 sm:p-6 flex flex-col gap-4"
+        style={{ boxShadow: "var(--e3)" }}
+      >
         <div className="flex flex-col gap-2">
           <p className="mono-label" style={{ color: "var(--signal-bright)" }}>
             Cookies

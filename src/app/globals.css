@@ -11,6 +11,14 @@
   --color-signal-bright: var(--signal-bright);
   --color-pulse: var(--pulse);
   --color-flag: var(--flag);
+  --color-flag-bright: var(--flag-bright);
+
+  /* The four documented radius steps from tokens.css, exposed as utilities so
+     there is exactly one name per value: rounded-chip, rounded-card,
+     rounded-sheet, rounded-full. Nothing else. */
+  --radius-chip: var(--r-chip);
+  --radius-card: var(--r-card);
+  --radius-sheet: var(--r-sheet);
 
   --font-display: var(--font-bricolage), "Archivo Expanded", sans-serif;
   --font-body: var(--font-inter-tight), "Inter Tight", sans-serif;
@@ -388,9 +396,20 @@ html[data-consent-open] .sticky-mobile-cta {
   height: 96px;
   z-index: 39;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(239, 240, 236, 0.9), transparent);
-  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
-  mask-image: linear-gradient(to bottom, #000 40%, transparent);
+  /* Hue-free. This strip is fixed, so it cannot know whether an ink or a
+     paper section is passing under it, and a paper-coloured gradient painted
+     a light fog across every dark band on the way past. A masked blur
+     dissolves content under the floating nav on any ground. */
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .scroll-edge {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Response: feedback belongs on the press, and it has to be instant. The press
@@ -408,7 +427,8 @@ html[data-consent-open] .sticky-mobile-cta {
 
 /* Tiles lift toward the cursor rather than only revealing a caption. */
 .tile {
-  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out),
+    border-color 240ms var(--ease-out);
   box-shadow: var(--e1), var(--edge-light);
 }
 @media (hover: hover) and (pointer: fine) {
@@ -560,4 +580,68 @@ html[data-consent-open] .sticky-mobile-cta {
   .config-chip::before {
     display: none;
   }
+}
+
+/* --- Dark ground context -------------------------------------------------
+   --ink is the brand's strongest surface and it appeared on the homepage
+   only, above the fold. Every light-ground default fails on it: --signal is
+   3.1:1, --flag is 2.3:1, --graphite and --mist vanish. Rather than rewrite
+   each utility at every call site, this class redefines the tokens for its
+   subtree, so `text-signal`, `text-graphite`, `border-mist` and `text-flag`
+   keep working and keep clearing AA. Put it on any section that sits on ink.
+
+   Measured against --ink: --signal-bright 9.0:1, --flag-bright 6.0:1,
+   --pulse 7.7:1 (unchanged, it was specified for this ground). */
+.on-ink {
+  --signal: var(--signal-bright);
+  --flag: var(--flag-bright);
+  --graphite: rgba(239, 240, 236, 0.66);
+  --mist: rgba(239, 240, 236, 0.18);
+  --paper-2: rgba(239, 240, 236, 0.06);
+  color: var(--paper);
+}
+
+/* The one place the light defaults cannot simply be re-pointed: .surface
+   paints itself --paper, and --paper has to stay light because type uses it. */
+.on-ink .surface,
+.on-ink .surface-raised {
+  background: rgba(239, 240, 236, 0.055);
+  border-color: rgba(239, 240, 236, 0.14);
+  box-shadow: var(--e2), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+/* The underline field, inverted. Autofill is included because this is a lead
+   form: Chrome's default autofill paints a light-blue box that is unreadable
+   against ink, and only an inset shadow can override it. */
+.on-ink .field-input {
+  color: var(--paper);
+  border-bottom-color: rgba(239, 240, 236, 0.3);
+}
+.on-ink .field-input:focus {
+  border-bottom-color: var(--signal-bright);
+}
+.on-ink .field-input::placeholder {
+  color: rgba(239, 240, 236, 0.42);
+}
+.on-ink .field-input:-webkit-autofill,
+.on-ink .field-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--paper);
+  -webkit-box-shadow: inset 0 0 0 1000px var(--ink);
+  caret-color: var(--paper);
+}
+.on-ink :focus-visible {
+  outline-color: var(--signal-bright);
+}
+.on-ink ::selection {
+  background: var(--signal-bright);
+  color: var(--ink);
+}
+
+/* The display gradient, inverted. Same two-stop fade, light to 62%. */
+.display-grad-ink {
+  background: linear-gradient(180deg, var(--paper) 0%, rgba(239, 240, 236, 0.62) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

@@ -77,7 +77,7 @@ export function FinalCtaSection() {
   }
 
   return (
-    <section className="bg-paper py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-10">
+    <section className="on-ink bg-ink rounded-t-sheet pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 px-5 sm:px-8 md:px-10">
       <div className="max-w-[720px] mx-auto flex flex-col items-center text-center">
         <FadeIn y={24}>
           <div ref={glyphRef} className={`w-[180px] mb-10 ${pulsed ? "loop-closed-pulse" : ""}`}>
@@ -87,7 +87,7 @@ export function FinalCtaSection() {
 
         <FadeIn y={40} delay={0.05}>
           <h2
-            className="display-grad font-display font-extrabold lowercase leading-none track-display"
+            className="display-grad-ink font-display font-extrabold lowercase leading-none track-display"
             style={{ fontSize: "clamp(2.5rem, 8vw, 96px)" }}
           >
             let&apos;s close the loop
@@ -96,7 +96,7 @@ export function FinalCtaSection() {
 
         <FadeIn y={20} delay={0.12}>
           <p
-            className="text-graphite font-light max-w-[480px] mt-6"
+            className="text-paper/70 font-light max-w-[480px] mt-6"
             style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)" }}
           >
             Thirty minutes. We&apos;ll audit your account live and tell you where the leak is,
@@ -112,7 +112,7 @@ export function FinalCtaSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.32 }}
-                className="rounded-2xl border border-mist bg-paper-2 p-8 text-left"
+                className="surface rounded-card p-8 text-left"
               >
                 <p className="mono-label mb-3">Booked</p>
                 <p className="text-lg font-medium mb-6">
@@ -163,7 +163,7 @@ export function FinalCtaSection() {
                     ref={errorRef}
                     role="alert"
                     tabIndex={-1}
-                    className="rounded-2xl border border-flag/30 bg-flag/[0.04] p-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-flag/40"
+                    className="rounded-card border border-flag/40 bg-flag/[0.10] p-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-flag/40"
                   >
                     {error === "delivery_failed" ? (
                       <>
@@ -214,7 +214,7 @@ function Field({
   return (
     <label className="flex flex-col gap-2">
       <span className="mono-label">{label}</span>
-      <input name={name} type={type} required className="field-input h-12 text-lg text-ink" {...rest} />
+      <input name={name} type={type} required className="field-input h-12 text-lg" {...rest} />
     </label>
   );
 }

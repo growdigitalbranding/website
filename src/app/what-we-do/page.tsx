@@ -164,6 +164,7 @@ export default function WhatWeDoPage() {
         eyebrow="WHAT WE DO"
         title="The full directory."
         subtitle="Every property type, position, stage and service we market, with what actually changes about the work in each case. The homepage argues; this page documents."
+        variant="split"
       />
 
       <div className="mx-auto max-w-[1440px] px-6 pb-20 grid lg:grid-cols-[220px_1fr] gap-10 lg:gap-16">

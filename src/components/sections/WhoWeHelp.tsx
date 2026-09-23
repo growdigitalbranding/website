@@ -38,7 +38,7 @@ export function WhoWeHelp() {
             >
               <Link
                 href={tile.href}
-                className="group relative block h-64 md:h-80 rounded-2xl bg-ink text-paper p-8 flex flex-col justify-end overflow-hidden"
+                className="group relative block h-64 md:h-80 rounded-card bg-ink text-paper p-8 flex flex-col justify-end overflow-hidden"
               >
                 <h3 className="text-h3 font-display font-bold">{tile.label}</h3>
                 <p className="text-sm text-paper/70 mt-2 max-w-sm">{tile.desc}</p>

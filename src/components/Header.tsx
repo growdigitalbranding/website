@@ -33,7 +33,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto max-w-[1440px] px-6 h-16 flex items-center justify-between">
-        <Link href="/" aria-label={`${BRAND}, home`} className="flex items-center">
+        <Link href="/" aria-label={`${BRAND}, home`} className="press flex items-center">
           <Logo className="h-11 w-auto" />
         </Link>
 
@@ -58,7 +58,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="lg:hidden w-11 h-11 flex items-center justify-center"
+            className="press lg:hidden w-11 h-11 flex items-center justify-center"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}

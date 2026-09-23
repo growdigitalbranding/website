@@ -136,7 +136,7 @@ export function MegaMenu({ label, href }: { label: string; href: string }) {
             transition={{ duration: 0.2, ease: EASE }}
             className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
           >
-            <div className="surface rounded-2xl p-6 w-[min(90vw,640px)] grid grid-cols-3 gap-6">
+            <div className="surface rounded-card p-6 w-[min(90vw,640px)] grid grid-cols-3 gap-6">
               {columns.map((col) => (
                 <div key={col.heading}>
                   <p className="mono-label text-graphite mb-3">{col.heading}</p>

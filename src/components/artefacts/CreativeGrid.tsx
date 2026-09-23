@@ -31,7 +31,7 @@ export function CreativeGrid() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.42, delay: Math.min(i * 0.03, 0.4), ease: [0.16, 1, 0.3, 1] }}
-            className={`aspect-[4/5] rounded-md border flex flex-col justify-end p-2 ${
+            className={`aspect-[4/5] rounded-chip border flex flex-col justify-end p-2 ${
               tile.fatigued
                 ? "border-mist bg-mist/40 opacity-45"
                 : "border-signal/30 bg-signal-bright/15"
@@ -43,11 +43,11 @@ export function CreativeGrid() {
       </div>
       <figcaption className="mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
         <span>
-          <span className="inline-block w-2 h-2 rounded-sm bg-signal-bright/60 align-middle mr-1.5" />
+          <span className="inline-block w-2 h-2 rounded-full bg-signal-bright/60 align-middle mr-1.5" />
           in rotation
         </span>
         <span>
-          <span className="inline-block w-2 h-2 rounded-sm bg-mist align-middle mr-1.5" />
+          <span className="inline-block w-2 h-2 rounded-full bg-mist align-middle mr-1.5" />
           past frequency 2.8, queued for refresh
         </span>
       </figcaption>

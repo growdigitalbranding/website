@@ -19,7 +19,7 @@ export function InsightsBandSection() {
   const latest = ARTICLES_BY_DATE.slice(0, 3);
 
   return (
-    <section className="bg-paper-2 border-t border-mist py-16 md:py-20">
+    <section className="bg-paper border-t border-mist py-16 md:py-20">
       <div className="mx-auto max-w-[1440px] px-6 grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="flex flex-col gap-4">
           <p className="mono-label text-graphite">What we publish</p>

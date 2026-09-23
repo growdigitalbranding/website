@@ -39,7 +39,7 @@ export function FooterSection() {
   const built = new Date().toISOString().slice(0, 10);
 
   return (
-    <footer className="bg-ink text-paper rounded-t-[40px] sm:rounded-t-[50px] px-5 sm:px-8 md:px-10 pt-20 pb-8 overflow-hidden">
+    <footer className="on-ink bg-ink text-paper border-t border-paper/10 px-5 sm:px-8 md:px-10 pt-20 pb-8 overflow-hidden">
       <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
         {COLUMNS.map((col) => (
           <div key={col.title}>

@@ -17,6 +17,7 @@ export default function AboutPage() {
         eyebrow="ABOUT"
         title="Run by people who've bought their own media."
         subtitle="Grow is based in Coimbatore, working with builders across Tamil Nadu and Karnataka on the assumption that most agencies stop too early to matter."
+        variant="split"
       />
 
       <DirectAnswer>

@@ -20,7 +20,7 @@ export function TrackingHealthCheck() {
         {QUESTIONS.map((q, i) => (
           <label
             key={q}
-            className="flex items-start gap-3 border border-mist rounded-2xl p-4 cursor-pointer"
+            className="press surface flex items-start gap-3 rounded-card p-4 cursor-pointer"
           >
             <input
               type="checkbox"
@@ -33,7 +33,7 @@ export function TrackingHealthCheck() {
         ))}
       </div>
 
-      <div className="mt-8 border border-mist rounded-2xl p-6 bg-paper-2">
+      <div className="surface mt-8 rounded-card p-6">
         <p className="mono-label text-graphite mb-1">YOUR SCORE</p>
         <p className="font-mono text-3xl text-signal mb-3">
           {score} / {QUESTIONS.length}

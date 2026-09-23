@@ -42,12 +42,18 @@ export default function PricingPage() {
         eyebrow="PRICING"
         title="Real numbers. Not 'contact us for a quote.'"
         subtitle="Publishing ranges filters out the wrong leads before they cost either of us a call."
+        variant="ink"
+        meta={[
+          { label: "Audit, one-off", value: "\u20b975,000" },
+          { label: "Retainer, monthly", value: "\u20b960,000\u2013\u20b92,50,000" },
+          { label: "Minimum media spend", value: "\u20b91.5L/month" },
+        ]}
       />
       <div className="mx-auto max-w-[1440px] px-6 pb-16 grid md:grid-cols-3 gap-6">
         {PLANS.map((plan) => (
           <div
             key={plan.name}
-            className={`rounded-2xl p-8 flex flex-col border ${
+            className={`rounded-card p-8 flex flex-col border ${
               plan.featured ? "border-signal bg-paper-2" : "border-mist"
             }`}
           >

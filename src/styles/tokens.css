@@ -68,3 +68,29 @@
   --response-fast: 0.22s;
   --response-base: 0.4s;
 }
+
+/* --- Radius scale --------------------------------------------------------
+   Sixteen distinct corner radii had accumulated across the tree (2xl, 3xl,
+   lg, xl, sm, md and five one-off pixel values), which is not a system. Four
+   documented steps, chosen by surface size, plus a hard 0 for bands and rows:
+
+     --r-chip   small controls and thumbs under ~120px: inputs, creative
+                thumbnails, swatches. Anything larger reads bloated at 16px.
+     --r-card   cards and panels. The value 2xl already used in 32 places.
+     --r-sheet  large surfaces from ~600px wide: the overlapping section
+                sheet and full-width panels. One value, not a responsive ramp.
+     pill       anything the pointer treats as a button.
+
+   Rows, bands, table cells and dividers stay square. */
+:root {
+  --r-chip: 8px;
+  --r-card: 16px;
+  --r-sheet: 40px;
+}
+
+/* On --ink, --flag measures 2.3:1 and fails as error text. This is the same
+   hue lifted for dark grounds, at 6.0:1 on --ink, and it is the exact
+   counterpart of the --pulse / --pulse-ink split above. Never on paper. */
+:root {
+  --flag-bright: #ff5a68;
+}

@@ -1,5 +1,10 @@
 # Competitor Analysis — growdigitalbranding.com
 
+> **Update 2026-09-27:** competitors are now identified from live search results.
+> See `KEYWORD-GAP-ANALYSIS.md` for the top 10, the theme-by-theme gap matrix and the
+> prioritised build list. This file remains the method for the metrics that still need a
+> data API: volumes, difficulty, positions and backlinks.
+
 > **This document contains no competitor data.**
 >
 > The environment this plan was produced in has no outbound network access: every

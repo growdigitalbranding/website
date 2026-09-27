@@ -26,6 +26,8 @@ const KEY_PAGES: [path: string, title: string, note: string][] = [
   ["/what-we-do", "What we do", "the services that make up the loop, as a full directory"],
   ["/what-we-do/performance-marketing", "Lead generation for real estate", "real estate lead generation on Meta and Google, judged on cost per booking rather than cost per lead"],
   ["/what-we-do/facebook-ads-real-estate", "Facebook and Meta ads for real estate", "lead form strategy, learning-phase arithmetic, creative volume and CRM outcomes fed back to Meta"],
+  ["/what-we-do/follow-up-systems", "WhatsApp marketing for real estate", "first reply inside a minute, qualification before the dial, opt-in broadcasts within WhatsApp's template rules"],
+  ["/real-estate-marketing-agency-bangalore", "Real estate marketing in Bengaluru", "corridor-level Meta and Google campaigns for Bangalore developers, RERA Karnataka in the creative; run from Coimbatore"],
   ["/what-we-do/google-ads-real-estate", "Google Ads for real estate", "keyword architecture by locality and configuration, brand protection, Performance Max and offline conversions"],
   ["/pricing", "Pricing", "published engagement pricing: ₹75,000 audit, ₹60,000–₹2,50,000 monthly retainer, ₹1.5L/month minimum media spend"],
   ["/work", "Work", "what each account looked like when we found it and what we rebuilt it into, without client dashboards"],

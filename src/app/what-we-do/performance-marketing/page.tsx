@@ -66,7 +66,7 @@ export default function Page() {
           },
           {
             href: "/what-we-do/follow-up-systems",
-            label: "Speed-to-lead and WhatsApp follow-up",
+            label: "WhatsApp marketing and speed to lead",
             note: "Where most of the value of a lead is won or lost, in the first minutes after it arrives.",
           },
         ]}

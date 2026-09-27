@@ -53,7 +53,7 @@ const DEEP_DIVES: Record<string, { href: string; label: string }[]> = {
     { href: "/what-we-do/google-ads-real-estate", label: "Google Ads for real estate" },
     { href: "/what-we-do/creative-engine", label: "Creative engine" },
   ],
-  "Follow-Up": [{ href: "/what-we-do/follow-up-systems", label: "Follow-up systems" }],
+  "Follow-Up": [{ href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing & follow-up" }],
   Retargeting: [{ href: "/what-we-do/tracking-attribution", label: "Tracking & attribution" }],
   Conversion: [{ href: "/what-we-do/ai-search-visibility", label: "AI search visibility" }],
 };

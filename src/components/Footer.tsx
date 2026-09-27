@@ -12,7 +12,7 @@ const COLUMNS = [
       { href: "/what-we-do/google-ads-real-estate", label: "Google Ads" },
       { href: "/what-we-do/creative-engine", label: "Creative engine" },
       { href: "/what-we-do/tracking-attribution", label: "Tracking & attribution" },
-      { href: "/what-we-do/follow-up-systems", label: "Follow-up systems" },
+      { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing" },
       { href: "/what-we-do/ai-search-visibility", label: "AI search visibility" },
     ],
   },
@@ -21,6 +21,7 @@ const COLUMNS = [
     links: [
       { href: "/who-we-help", label: "All segments" },
       { href: "/who-we-help/real-estate", label: "Real estate" },
+      { href: "/real-estate-marketing-agency-bangalore", label: "Bengaluru developers" },
       { href: "/who-we-help/senior-living", label: "Senior living" },
       { href: "/who-we-help/interiors", label: "Interiors" },
     ],

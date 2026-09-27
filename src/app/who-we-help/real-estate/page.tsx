@@ -84,6 +84,13 @@ export default function RealEstatePage() {
             </Link>{" "}
             is the rest of this page.
           </p>
+          <p className="text-lg text-graphite">
+            Marketing a project in Bangalore? The corridor-level detail is on our{" "}
+            <Link href="/real-estate-marketing-agency-bangalore" className="text-signal hover:underline">
+              Bengaluru real estate marketing
+            </Link>{" "}
+            page.
+          </p>
         </section>
 
         <section>
@@ -159,6 +166,8 @@ export default function RealEstatePage() {
             "good-cost-per-lead-real-estate",
             "rera-approval-status-lead-quality",
             "channel-partner-vs-direct-leads",
+            "portal-leads-vs-own-ads-real-estate",
+            "pre-launch-marketing-real-estate",
           ]}
         />
       </div>

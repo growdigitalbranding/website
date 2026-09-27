@@ -37,7 +37,7 @@ export default function Page() {
             "Not every angle needs to be a full shoot. Most are recuts and re-copies of the same 3-4 raw assets, tested against different buyer motivations. Volume comes from variation, not from 20 separate production days.",
         }}
         answer="Fifteen to twenty distinct creatives a month, because that is what the arithmetic requires rather than what sounds generous. Frequency accrues at weekly impressions over weekly reach, our refresh triggers at 2.8 for metro real-estate audiences, and holding that line needs roughly twelve creatives live at any moment."
-        reading={["how-many-ad-creatives-real-estate", "rera-approval-status-lead-quality"]}
+        reading={["how-many-ad-creatives-real-estate", "rera-approval-status-lead-quality", "pre-launch-marketing-real-estate"]}
       />
     </>
   );

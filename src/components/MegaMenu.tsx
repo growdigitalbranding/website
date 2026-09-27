@@ -41,7 +41,7 @@ const PANELS: Record<string, Column[]> = {
         { href: "/what-we-do/performance-marketing", label: "Lead generation" },
         { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook & Meta ads" },
         { href: "/what-we-do/google-ads-real-estate", label: "Google Ads" },
-        { href: "/what-we-do/follow-up-systems", label: "WhatsApp follow-up" },
+        { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing" },
         { href: "/what-we-do/tracking-attribution", label: "Tracking & CAPI" },
       ],
     },
@@ -51,6 +51,7 @@ const PANELS: Record<string, Column[]> = {
       heading: "Sectors",
       items: [
         { href: "/who-we-help/real-estate", label: "Real estate" },
+        { href: "/real-estate-marketing-agency-bangalore", label: "Bengaluru developers" },
         { href: "/who-we-help/senior-living", label: "Senior living" },
         { href: "/who-we-help/interiors", label: "Interiors" },
       ],

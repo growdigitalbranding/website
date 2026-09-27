@@ -40,6 +40,7 @@ const organization = {
     "Real estate lead generation",
     "Facebook and Instagram advertising for real estate",
     "Google Ads for real estate",
+    "WhatsApp marketing for real estate",
     "Cost per booking",
     "Meta Conversions API",
     "Server-side Google Tag Manager",

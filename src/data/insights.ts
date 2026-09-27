@@ -374,6 +374,7 @@ export const ARTICLES: Article[] = [
       },
       { href: "/who-we-help/real-estate", label: "How we work with builders and developers" },
       { href: "/what-we-do/creative-engine", label: "Creative volume as a production system" },
+      { href: "/insights/pre-launch-marketing-real-estate", label: "What to do during the approval window" },
       { href: "/the-loop", label: "The methodology behind this" },
     ],
   },
@@ -520,6 +521,7 @@ export const ARTICLES: Article[] = [
       },
     ],
     related: [
+      { href: "/insights/portal-leads-vs-own-ads-real-estate", label: "The same comparison for property portal leads" },
       {
         href: "/insights/good-cost-per-lead-real-estate",
         label: "Where the 80 leads per booking figure comes from",
@@ -1155,6 +1157,260 @@ export const ARTICLES: Article[] = [
         label: "An example of the kind of specificity that gets quoted",
       },
       { href: "/the-loop", label: "Where this sits in the loop" },
+    ],
+  },
+
+  {
+    slug: "portal-leads-vs-own-ads-real-estate",
+    title: "Are property portal leads cheaper than your own ads?",
+    shortTitle: "Portal leads vs your own ads",
+    kind: "Economics",
+    dek: "A portal package is a fixed cost that buys a variable number of enquiries. Your own ads are a variable cost that can learn. Here is how to put both in cost per booking, and the three things the headline number misses.",
+    description:
+      "How to compare property portal leads from 99acres, MagicBricks and Housing.com with your own Meta and Google leads on cost per booking, with the arithmetic.",
+    published: "2026-09-27",
+    updated: "2026-09-27",
+    answer:
+      "Sometimes, and you cannot tell from cost per lead. A portal enquiry often costs less than a lead from your own ads, but the only fair comparison is cost per booking over the same period: each channel's total cost divided by the bookings it produced. A portal is cheaper per booking exactly when its cost-per-lead advantage is larger than its booking-rate disadvantage. Before trusting the answer, remove buyers who enquired through both channels, and remember that only one of the two gets better the longer you run it.",
+    blocks: [
+      { kind: "h2", text: "Put both channels in the same unit" },
+      {
+        kind: "p",
+        text: "Property portals such as 99acres, MagicBricks and Housing.com mostly sell visibility on a listing, as a package for a period. That makes the portal's cost per lead an output, not a price: the package divided by however many enquiries the listing happened to attract. Your own Meta and Google campaigns work the other way round, a variable spend whose cost per lead moves with the auction and the creative.",
+      },
+      {
+        kind: "table",
+        head: ["", "Portal package", "Your own ads"],
+        rows: [
+          ["Unit of cost", "A fixed package for a listing and a period", "Media spend, plus agency, sales desk and tooling"],
+          ["When you commit", "Up front, for the package period", "Month by month, and you can stop"],
+          ["What drives volume", "The portal's traffic and your listing's position", "Your budget, the auction and the creative"],
+          ["What else the buyer sees", "Competing listings on the same page", "Your ad on its own"],
+          ["Who learns from your bookings", "Your listing is not optimised on them", "The ad account, if you send them back"],
+        ],
+      },
+      { kind: "h2", text: "A worked comparison" },
+      {
+        kind: "p",
+        text: "Take the same ₹3,00,000 spent over a quarter in each channel. The rates below are illustrative, chosen to show the mechanism, not our measured results; the direct booking rate matches the one used in our channel-partner comparison, 80 leads per booking.",
+      },
+      {
+        kind: "table",
+        caption: "₹3,00,000 per channel over one quarter. Illustrative inputs, not measured results.",
+        head: ["Channel", "Leads", "Cost per lead", "Booking rate", "Bookings", "Cost per booking"],
+        rows: [
+          ["Your own ads", "200", "₹1,500", "1.25%", "2.5", "₹1,20,000"],
+          ["Portal, stronger case", "400", "₹750", "0.8%", "3.2", "₹93,750"],
+          ["Portal, weaker case", "400", "₹750", "0.5%", "2", "₹1,50,000"],
+        ],
+      },
+      {
+        kind: "p",
+        text: "The portal leads cost half as much in both portal rows. Whether they are cheaper per booking depends entirely on whether they book at more or less than half the rate of your own leads. At 0.8% they win; at 0.5% they lose by more than the lower cost per lead saved. The break-even here is 0.625%, exactly half of 1.25%.",
+      },
+      {
+        kind: "formula",
+        expression: "Portal is cheaper per booking when: portal CPL ÷ your CPL < portal booking rate ÷ your booking rate",
+        note: "Half the cost per lead is only a saving if the booking rate is more than half. Put your own four numbers in.",
+      },
+      { kind: "h2", text: "Three things the per-booking number misses" },
+      {
+        kind: "p",
+        lead: "Shared attention.",
+        text: "A portal enquiry is made on a page that lists your competitors beside you, and the buyer may have enquired on several of them in the same sitting. The enquiry signals real intent, and it also means the first developer to reach that buyer usually has the advantage. A slow follow-up desk costs you more on portal leads than on almost any other source.",
+      },
+      {
+        kind: "p",
+        lead: "Double counting.",
+        text: "The same buyer often enquires on a portal and through your own ad in the same fortnight. Without removing duplicates by phone number, both channels claim the booking and whichever reports first looks better. Decide the rule before you compare: most teams credit first touch, and whichever rule you choose has to apply to both channels.",
+      },
+      {
+        kind: "p",
+        lead: "What each channel learns.",
+        text: "Bookings uploaded back to Meta and Google as offline conversions make next month's targeting better, so the direct channel's cost per booking can fall over time. A portal listing is not optimised on which of your enquiries booked, so its cost per booking tends to move with the market rather than with your data. And the buyers who came through your own ads are an audience you keep for the next launch; the portal's buyers are the portal's.",
+      },
+      { kind: "h2", text: "How to run the comparison on your own numbers" },
+      {
+        kind: "ol",
+        items: [
+          "Tag every lead with its exact source at the moment it enters the CRM: which portal, which campaign.",
+          "Remove duplicates by phone number and apply one credit rule, first touch or last, to every channel alike.",
+          "Wait a full sales cycle before judging, typically 30 to 60 days for the ticket sizes we work with. A quarter is better.",
+          "Divide each channel's total cost for the period, the package or media plus its share of fees, by the bookings credited to it.",
+          "Compare site-visit rate alongside bookings. A quarter produces few bookings per channel, and site visits give you enough events to see a real difference.",
+        ],
+      },
+      { kind: "h2", text: "When each one is the right call" },
+      {
+        kind: "ul",
+        items: [
+          "Portals, when the inventory is the kind buyers shop by comparing listings side by side, when it is your first project in a micro-market with no ad data to learn from, or when you need enquiries inside a quarter and have no creative pipeline yet.",
+          "Your own ads, from the second project onward in the same micro-market, when your desk can contact a lead inside the hour, and when the ticket is high enough that an audience you own for the next launch is worth building.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "Most builders do not need to choose. They need to run both into the same CRM, remove duplicates, and let cost per booking decide how the next quarter's budget splits.",
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "Compare on cost per booking over the same period, never on cost per lead.",
+          "A portal is cheaper per booking only if its cost-per-lead advantage beats its booking-rate disadvantage.",
+          "Remove duplicates by phone number before comparing, or both channels claim the same buyer.",
+          "Portal buyers are comparing you with every listing on the page, so speed of first contact matters more.",
+          "Only your own ads learn from your bookings, and only if you send the bookings back.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Are portal leads better quality than Facebook leads?",
+        answer:
+          "Often higher intent, because the buyer searched for a listing rather than tapping an ad in a feed, and also more contested, because they are comparing you with every other listing on the page. Which produces cheaper bookings for a given project is a measurement, not a rule: compare booking rate and cost per booking over a full sales cycle.",
+      },
+      {
+        question: "Should a builder stop using 99acres or MagicBricks?",
+        answer:
+          "Not on cost per lead alone. Run portal and paid leads into the same CRM for a full sales cycle, remove duplicates by phone number, and compare cost per booking. If the portal's booking rate is more than its cost-per-lead discount, it is paying its way.",
+      },
+      {
+        question: "How do you stop counting the same buyer twice?",
+        answer:
+          "Remove duplicates by phone number when leads enter the CRM, and apply one credit rule, usually first touch, to every source. Without that, a buyer who enquired on a portal and through your ad inflates both channels and makes the cheaper-looking one look better than it is.",
+      },
+    ],
+    related: [
+      {
+        href: "/insights/channel-partner-vs-direct-leads",
+        label: "The same comparison for channel partners",
+      },
+      { href: "/insights/good-cost-per-lead-real-estate", label: "Where the cost-per-booking formula comes from" },
+      { href: "/tools/cpl-calculator", label: "Run your own channels through the calculator" },
+      { href: "/what-we-do/performance-marketing", label: "Real estate lead generation, measured in bookings" },
+    ],
+  },
+
+  {
+    slug: "pre-launch-marketing-real-estate",
+    title: "How do you market a real estate project before launch?",
+    shortTitle: "Pre-launch marketing",
+    kind: "Tactical",
+    dek: "Pre-launch is two windows with different rules: before registration, when the project itself cannot be advertised, and between registration and launch, when the campaign you run decides launch week.",
+    description:
+      "Pre-launch marketing for a real estate project: what can run before RERA registration, what to build in the approval window, and how to size the list.",
+    published: "2026-09-27",
+    updated: "2026-09-27",
+    answer:
+      "In two stages. Before the project is registered, where the RERA Act applies, the project itself cannot be advertised, so the work is everything around it: measurement, audiences, the developer's brand, the creative bank and the follow-up desk. After registration and before sales open, the job is to arrive at launch day with a qualified list big enough for the inventory you need to move, and an ad account that has already finished learning. Most launch-week cost-per-lead problems are pre-launch problems that surfaced late.",
+    blocks: [
+      { kind: "h2", text: "Two windows, two sets of rules" },
+      {
+        kind: "table",
+        head: ["Window", "Where the project stands", "The marketing job"],
+        rows: [
+          [
+            "Approval window",
+            "Applied for registration and approvals, not yet registered",
+            "No advertising of the project where the Act applies. Build measurement, audiences, developer brand, content and the creative bank.",
+          ],
+          [
+            "Pre-launch",
+            "Registered, price list set, sales not yet open",
+            "Capture and qualify expressions of interest, let the ad account learn, brief channel partners.",
+          ],
+          [
+            "Launch",
+            "Sales open",
+            "Convert the list first, then buy volume on top of it.",
+          ],
+        ],
+      },
+      {
+        kind: "p",
+        text: "The line between the first two windows is the registration. Under the Real Estate (Regulation and Development) Act, 2016, a project within its scope has to be registered before it is advertised, marketed, booked or offered for sale. Collecting expressions of interest with money attached is booking by another name, and belongs after registration, not before.",
+      },
+      {
+        kind: "p",
+        lead: "This is marketing guidance, not legal advice.",
+        text: "Thresholds and exemptions vary by state and change by circular. Have counsel confirm what applies to a specific project before anything goes live.",
+      },
+      { kind: "h2", text: "What to do in the approval window" },
+      {
+        kind: "ol",
+        items: [
+          "Put the measurement in first: the pixel, the Conversions API, server-side tagging, source tagging in the CRM and the offline conversion upload. Attribution cannot be added to a launch after it happens; the launch data is simply lost.",
+          "Build audiences without project claims: past-project enquirers, website visitors, and people engaging with developer or locality content.",
+          "Publish on the developer and the micro-market: track record, the locality's infrastructure, how to check any project's approvals. This is what earns search and assistant visibility, and it takes months to compound.",
+          "Produce the launch creative bank now. An account needs a steady supply of new creative, and launch week is the worst time to discover you have three ads.",
+          "Set up the follow-up: WhatsApp templates approved, telecaller response targets agreed, CRM stages defined. Launch-week volume arriving at a desk sized for a normal week is how contact rate collapses.",
+        ],
+      },
+      { kind: "h2", text: "How big the pre-launch list needs to be" },
+      {
+        kind: "p",
+        text: "Work backwards from the inventory, not forwards from the budget. Decide how many bookings launch month has to produce, then divide by the two rates between a lead and a booking.",
+      },
+      {
+        kind: "formula",
+        expression: "Leads needed = target bookings ÷ (qualification rate × booking rate of qualified leads)",
+        note: "Put your own rates in. The example below is illustrative.",
+      },
+      {
+        kind: "p",
+        text: "Say launch month has to move 40 units, qualified expressions of interest book at 10%, and 40% of leads qualify. You need 400 qualified people on the list, which means about 1,000 leads over the pre-launch period. If the campaign is on track for 600, you know that weeks before launch rather than during it.",
+      },
+      { kind: "h2", text: "Why the ad account should start before launch" },
+      {
+        kind: "p",
+        text: "Meta's published guidance is roughly 50 optimisation events per ad set in a seven-day window before an ad set leaves the learning phase. An account switched on on launch day spends launch week learning, on cold audiences, at the moment inventory is most valuable. Pre-launch leads are what the account learns from, so by launch day it already knows what an interested buyer for this project looks like.",
+      },
+      { kind: "h2", text: "What usually goes wrong" },
+      {
+        kind: "ul",
+        items: [
+          "The ads start on launch day, so launch week is spent in the learning phase paying auction prices for cold traffic.",
+          "Pre-launch is judged on lead count rather than qualified expressions of interest, so the list looks large and books small.",
+          "Creative promises launch pricing that does not match the registered price list. Prices in advertising have to match what is registered.",
+          "The follow-up desk is sized for a normal week and meets launch-week volume, so contact rate falls exactly when every lead is most valuable.",
+          "Channel partners are briefed after the public campaign starts, and end up competing with it for the same buyers.",
+        ],
+      },
+      {
+        kind: "callout",
+        label: "The short version",
+        items: [
+          "No advertising of the project before registration, where the Act applies. Confirm specifics with counsel.",
+          "Use the approval window for measurement, audiences, brand, content, creative and the follow-up desk.",
+          "Size the list backwards from the inventory: target bookings divided by qualification rate times booking rate.",
+          "Start the ad account in pre-launch so it has finished learning by launch day.",
+          "Judge pre-launch on qualified expressions of interest, not on leads.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can you advertise a real estate project before RERA registration?",
+        answer:
+          "Where the Real Estate (Regulation and Development) Act, 2016 applies, a project has to be registered before it is advertised, marketed, booked or offered for sale. Before registration the work is developer and locality brand building, audience building without project claims, content, measurement and preparation. Thresholds and exemptions vary by state, so confirm the specifics with counsel.",
+      },
+      {
+        question: "How long should a pre-launch campaign run?",
+        answer:
+          "Long enough for two things: the ad account leaving the learning phase, and the list reaching the size the inventory needs, which you can calculate as target bookings divided by qualification rate times booking rate. The approval window before it should be used for groundwork, however long it turns out to be.",
+      },
+      {
+        question: "Should pre-launch pricing be advertised?",
+        answer:
+          "Only once the project is registered, only at prices that match the registered price list, and only if the pricing really is time-limited. Urgency that turns out to be invented costs you trust with the buyers most likely to come back for a second visit.",
+      },
+    ],
+    related: [
+      { href: "/insights/rera-approval-status-lead-quality", label: "What RERA requires in the ad itself" },
+      { href: "/insights/how-many-ad-creatives-real-estate", label: "How big the launch creative bank needs to be" },
+      { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing and follow-up, set up before launch" },
+      { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook and Meta ads for real estate" },
     ],
   },
 ];

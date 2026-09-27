@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { DirectAnswer } from "@/components/DirectAnswer";

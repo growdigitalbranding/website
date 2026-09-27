@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { FadeIn } from "@/components/loop/ui";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
 import {

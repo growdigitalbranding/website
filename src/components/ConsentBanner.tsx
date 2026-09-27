@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 
 /**
  * Consent banner, shown only where prior consent is the expectation.

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/Link";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";

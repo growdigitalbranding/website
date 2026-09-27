@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero } from "@/components/PageHero";
 import { SourceList } from "@/components/SourceList";

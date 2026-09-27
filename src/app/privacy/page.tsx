@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { PageHero } from "@/components/PageHero";
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 import { getGtmContainerId } from "@/lib/settings";

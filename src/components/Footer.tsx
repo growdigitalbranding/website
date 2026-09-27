@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { Logo } from "@/components/Logo";
 import { PHONE, PHONE_DISPLAY, SOCIAL } from "@/lib/contact";
 import { ConsentReset } from "@/components/ConsentBanner";

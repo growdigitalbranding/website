@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { ARTICLES_BY_DATE } from "@/data/insights";
 
 /**

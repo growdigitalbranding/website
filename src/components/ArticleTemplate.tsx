@@ -1,6 +1,6 @@
 import { SourceList } from "@/components/SourceList";
 import { resolveSources } from "@/data/sources";
-import Link from "next/link";
+import Link from "@/components/Link";
 import type { Article, Block } from "@/data/insights";
 import { CTABand } from "@/components/PageHero";
 import { faqJsonLd, ORG_ID } from "@/lib/schema/jsonld";

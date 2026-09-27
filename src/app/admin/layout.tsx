@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { SignOutButton } from "./SignOutButton";
 import type { Profile } from "@/lib/supabase/types";

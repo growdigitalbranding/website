@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { FadeIn } from "@/components/loop/ui";
 import { CREATIVE_TICKER, PILLARS } from "@/data/capability";
 import { CreativeTicker } from "./CreativeTicker";

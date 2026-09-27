@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const TILES = [

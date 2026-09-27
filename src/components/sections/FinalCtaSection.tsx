@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoopGlyph } from "@/components/loop/LoopGlyph";
 import { FadeIn, PrimaryCta } from "@/components/loop/ui";

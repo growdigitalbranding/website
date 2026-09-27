@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { createClient } from "@/lib/supabase/server";
 import { StatusPill } from "./StatusPill";
 import { LEAD_STATUS_ORDER, type Lead, type LeadStatus } from "@/lib/supabase/types";

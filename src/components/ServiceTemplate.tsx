@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { FurtherReading } from "@/components/FurtherReading";
 import { SourceList } from "@/components/SourceList";
 import type { SourceKey } from "@/data/sources";

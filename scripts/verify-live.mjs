@@ -22,7 +22,7 @@ const baseFlag = args.indexOf("--base");
 const BASE = (baseFlag !== -1 ? args[baseFlag + 1] : "https://growdigitalbranding.com").replace(/\/$/, "");
 
 const INDEXNOW_KEY = "53c7b409475b8560ff641f37c1297377";
-const MIN_SITEMAP_URLS = 36;
+const MIN_SITEMAP_URLS = 42;
 const EXPECTED_ARTICLES = [
   "good-cost-per-lead-real-estate",
   "rera-approval-status-lead-quality",

@@ -13,6 +13,7 @@ const NAV = [
   { href: "/who-we-help", label: "Who we help" },
   { href: "/work", label: "Work" },
   { href: "/insights", label: "Insights" },
+  { href: "/training", label: "Training" },
 ];
 
 export function Header() {

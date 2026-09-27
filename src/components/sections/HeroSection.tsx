@@ -96,6 +96,7 @@ const NAV = [
   { href: "/what-we-do", label: "What we do" },
   { href: "/work", label: "Work" },
   { href: "/insights", label: "Insights" },
+  { href: "/training", label: "Training" },
   { href: "/contact", label: "Contact" },
 ];
 

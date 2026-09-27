@@ -37,6 +37,17 @@ const COLUMNS = [
     ],
   },
   {
+    title: "Training",
+    links: [
+      { href: "/training", label: "AI digital marketing course" },
+      { href: "/training/students", label: "For students" },
+      { href: "/training/job-switchers", label: "For job switchers" },
+      { href: "/training/business-owners", label: "For business owners" },
+      { href: "/training/housewives", label: "For homemakers" },
+      { href: "/training/careers-in-digital-marketing", label: "Careers guide" },
+    ],
+  },
+  {
     title: "Tools",
     links: [
       { href: "/tools", label: "All tools" },
@@ -53,7 +64,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-mist bg-paper-2">
-      <div className="mx-auto max-w-[1440px] px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-[1440px] px-6 py-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {COLUMNS.map((col) => (
           <div key={col.title}>
             <p className="mono-label text-graphite mb-4">{col.title}</p>

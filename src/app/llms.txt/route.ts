@@ -1,6 +1,7 @@
 import { ARTICLES_BY_DATE, type Article, type Block } from "@/data/insights";
 import { resolveSources } from "@/data/sources";
 import { BRAND } from "@/lib/brand";
+import { AUDIENCES, PROGRAMME } from "@/data/training";
 
 /**
  * /llms.txt, generated rather than hand-maintained.
@@ -101,6 +102,24 @@ function body(full: boolean): string {
   L.push("## Key pages");
   L.push("");
   for (const [path, title, note] of KEY_PAGES) L.push(`- [${title}](${SITE}${path}): ${note}`);
+  L.push("");
+  L.push("## Training");
+  L.push("");
+  // Stated as the start rule, not as dates: this file is not regenerated on a
+  // schedule, and a stale "next batch" date is worse than none.
+  const { weekday, weekend } = PROGRAMME.batches;
+  L.push(
+    `${PROGRAMME.name}: a ${PROGRAMME.mode.toLowerCase()} course in ${PROGRAMME.city}, ` +
+      `${PROGRAMME.duration}, ${PROGRAMME.feeLabel}, at most ${PROGRAMME.batchSize} trainees per batch. ` +
+      `${weekday.label}: ${weekday.hoursPerDay} hours a day, starting ${weekday.startsOn}. ` +
+      `${weekend.label}: ${weekend.hoursPerDay} hours a day, starting ${weekend.startsOn}. ` +
+      "Includes live projects on real accounts, placement assistance (not a job guarantee), " +
+      "an internship with us on merit, and a certificate of completion."
+  );
+  L.push("");
+  L.push(`- [AI digital marketing course in Coimbatore](${SITE}/training): fee, batches, next start dates, week-by-week curriculum`);
+  for (const a of AUDIENCES) L.push(`- [${a.title}](${SITE}${a.path}): ${a.description}`);
+  L.push(`- [Careers in digital marketing: a guide for trainees](${SITE}/training/careers-in-digital-marketing): roles, skills, how AI changes them, how to research pay from live listings, portfolio checklist`);
   L.push("");
   L.push("## Published articles");
   L.push("");

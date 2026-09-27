@@ -47,6 +47,7 @@ const organization = {
     "Offline conversion uploads",
     "Speed to lead",
     "Creative fatigue and refresh cadence",
+    "AI digital marketing training",
     "RERA and DTCP approval status in advertising",
     "AI search visibility",
   ],

@@ -137,6 +137,26 @@ export const SOURCES = {
     publisher: "llmstxt.org",
     url: "https://llmstxt.org/",
   },
+  googleAdsCertification: {
+    label: "About Google Ads certifications",
+    publisher: "Google Ads Help",
+    url: "https://support.google.com/google-ads/answer/9702955?hl=en",
+  },
+  skillshopCertifications: {
+    label: "Certifications for Skillshop Google Ads, GMP and GA",
+    publisher: "Skillshop Help (Google)",
+    url: "https://support.google.com/skillshop/answer/14744470?hl=en",
+  },
+  metaCertification: {
+    label: "Meta Certification: professional certificate exams",
+    publisher: "Meta for Business",
+    url: "https://www.facebook.com/business/learn/certification",
+  },
+  metaDigitalMarketingAssociate: {
+    label: "100-101: Meta Certified Digital Marketing Associate exam",
+    publisher: "Meta for Business",
+    url: "https://www.facebook.com/business/learn/certification/exams/100-101-exam",
+  },
 } as const;
 
 export type SourceKey = keyof typeof SOURCES;

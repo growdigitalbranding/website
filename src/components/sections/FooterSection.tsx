@@ -36,6 +36,17 @@ const COLUMNS = [
       { href: "/pricing", label: "Pricing" },
     ],
   },
+  {
+    title: "Training",
+    links: [
+      { href: "/training", label: "AI digital marketing course" },
+      { href: "/training/students", label: "For students" },
+      { href: "/training/job-switchers", label: "For job switchers" },
+      { href: "/training/business-owners", label: "For business owners" },
+      { href: "/training/housewives", label: "For homemakers" },
+      { href: "/training/careers-in-digital-marketing", label: "Careers guide" },
+    ],
+  },
 ];
 
 export function FooterSection() {
@@ -43,7 +54,7 @@ export function FooterSection() {
 
   return (
     <footer className="on-ink bg-ink text-paper border-t border-paper/10 px-5 sm:px-8 md:px-10 pt-20 pb-8 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {COLUMNS.map((col) => (
           <div key={col.title}>
             <p className="mono-label text-paper/[0.55] mb-4">{col.title}</p>

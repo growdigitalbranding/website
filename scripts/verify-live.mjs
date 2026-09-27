@@ -41,9 +41,39 @@ function record(name, ok, detail = "") {
   console.log(`${ok ? "  ok  " : " FAIL "} ${name}${detail ? "  " + detail : ""}`);
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Paced, and patient with 429.
+ *
+ * The checker fetches every sitemap URL plus the assets, one after another.
+ * At 36 URLs that stayed under the host's rate limit; at 42 it did not, and
+ * the pages at the end of the run (the new training pages) came back 429.
+ * That is the host throttling this script, not a fault in those pages, but it
+ * failed the run and so also blocked the IndexNow submission behind it.
+ *
+ * So: a short gap between requests, and on 429 wait (Retry-After if the host
+ * sends one, else 5s, 10s, 20s) and try again. Only a 429 that survives all
+ * three waits is reported.
+ */
+const GAP_MS = 400;
+let throttled = 0;
+
 async function get(path) {
-  const res = await fetch(BASE + path, { headers: { "User-Agent": "verify-live" }, redirect: "follow" });
-  return { status: res.status, type: res.headers.get("content-type") || "", body: await res.text() };
+  for (let attempt = 0; ; attempt++) {
+    await sleep(GAP_MS);
+    const res = await fetch(BASE + path, { headers: { "User-Agent": "verify-live" }, redirect: "follow" });
+    if (res.status === 429 && attempt < 3) {
+      throttled++;
+      const retryAfter = Number(res.headers.get("retry-after"));
+      const wait = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 5000 * 2 ** attempt;
+      console.log(`  ...  ${path} rate-limited by the host (429), waiting ${Math.round(wait / 1000)}s`);
+      await res.body?.cancel();
+      await sleep(wait);
+      continue;
+    }
+    return { status: res.status, type: res.headers.get("content-type") || "", body: await res.text() };
+  }
 }
 
 console.log(`Verifying ${BASE}\n`);
@@ -178,6 +208,13 @@ for (const url of sitemapUrls) {
 }
 
 record(`all ${sitemapUrls.length} sitemap URLs return 200`, bad200.length === 0, bad200.join(", "));
+if (throttled) console.log(`        host returned 429 ${throttled} time(s); retried after waiting`);
+if (bad200.some((b) => b.endsWith("-> 429"))) {
+  console.log(
+    "        429 is the host rate-limiting this checker, not a broken page. Wait a few\n" +
+      "        minutes and re-run; if a browser also gets 429, see the host's rate-limit settings."
+  );
+}
 record("every page canonicalises to itself", badCanonical.length === 0, badCanonical.slice(0, 5).join(", "));
 record("no stale brand spelling", staleBrand.length === 0, staleBrand.slice(0, 5).join(", "));
 

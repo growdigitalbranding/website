@@ -645,3 +645,10 @@ html[data-consent-open] .sticky-mobile-cta {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+/* The scroll-path packet label. Its text lives in CSS rather than the DOM:
+   it is decoration, and as DOM text it put "PACKET: IMPRESSION" into the
+   extractable content of all thirty interior pages. */
+.packet-readout::before {
+  content: "PACKET: " attr(data-stage);
+}

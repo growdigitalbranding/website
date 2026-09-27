@@ -23,7 +23,10 @@ const SITE = "https://growdigitalbranding.com";
 const KEY_PAGES: [path: string, title: string, note: string][] = [
   ["/the-loop", "The loop", "the methodology in depth: the diagnosis, the four stations, and what skipping each one costs"],
   ["/who-we-help/real-estate", "Real estate", "lead quality benchmarks by ticket size, RERA constraints, channel partner against direct leads"],
-  ["/what-we-do", "What we do", "the five services that make up the loop, as a full directory"],
+  ["/what-we-do", "What we do", "the services that make up the loop, as a full directory"],
+  ["/what-we-do/performance-marketing", "Lead generation for real estate", "real estate lead generation on Meta and Google, judged on cost per booking rather than cost per lead"],
+  ["/what-we-do/facebook-ads-real-estate", "Facebook and Meta ads for real estate", "lead form strategy, learning-phase arithmetic, creative volume and CRM outcomes fed back to Meta"],
+  ["/what-we-do/google-ads-real-estate", "Google Ads for real estate", "keyword architecture by locality and configuration, brand protection, Performance Max and offline conversions"],
   ["/pricing", "Pricing", "published engagement pricing: ₹75,000 audit, ₹60,000–₹2,50,000 monthly retainer, ₹1.5L/month minimum media spend"],
   ["/work", "Work", "what each account looked like when we found it and what we rebuilt it into, without client dashboards"],
   ["/tracking-setup", "Our tracking setup", "the exact measurement stack running on this site"],

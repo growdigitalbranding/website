@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
@@ -7,9 +8,9 @@ import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
-  title: "Real estate marketing agency, Tamil Nadu",
+  title: "Digital marketing for real estate developers",
   description:
-    "Performance marketing for builders and developers across Tamil Nadu and Karnataka. Project launches, sustenance campaigns and site-visit economics.",
+    "Digital marketing for real estate developers in Tamil Nadu and Karnataka: Meta and Google Ads, lead quality by ticket size, RERA-safe creative, site visits.",
 });
 
 // Benchmark ranges below are typical ranges observed across managed accounts,
@@ -49,11 +50,42 @@ export default function RealEstatePage() {
       />
       <PageHero
         eyebrow="WHO WE HELP / REAL ESTATE"
-        title="Performance marketing for builders and developers"
+        title="Digital marketing for real estate developers"
         subtitle="₹40L-₹5Cr ticket sizes, 1-4 live projects, an in-house sales team of 2-15, and a CRM you don't fully trust yet. This is the deepest page on our site because it's the business we know best."
       />
 
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-14">
+        <section className="flex flex-col gap-4">
+          <h2 className="text-h3 font-display font-bold">
+            What does digital marketing for real estate actually involve?
+          </h2>
+          <p className="text-lg text-graphite">
+            Four jobs, run as one system. Paid media that finds buyers, on{" "}
+            <Link href="/what-we-do/facebook-ads-real-estate" className="text-signal hover:underline">
+              Facebook and Instagram through Meta
+            </Link>{" "}
+            before they search and on{" "}
+            <Link href="/what-we-do/google-ads-real-estate" className="text-signal hover:underline">
+              Google Ads
+            </Link>{" "}
+            while they do. Creative at the volume those platforms need to keep learning.
+            Tracking that tells them which leads became site visits. And{" "}
+            <Link href="/what-we-do/follow-up-systems" className="text-signal hover:underline">
+              follow-up fast enough
+            </Link>{" "}
+            that the lead is still interested when someone calls.
+          </p>
+          <p className="text-lg text-graphite">
+            Most real estate marketing is bought one job at a time, from whoever sells that
+            job, and reported on cost per lead because that is the only number each of them
+            controls. The difference between that and{" "}
+            <Link href="/what-we-do/performance-marketing" className="text-signal hover:underline">
+              real estate lead generation measured in bookings
+            </Link>{" "}
+            is the rest of this page.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-h3 font-display font-bold mb-4">
             Project launch vs. sustenance. Different campaigns, different math

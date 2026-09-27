@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useMediaQuery } from "@/lib/motion/useMediaQuery";
 import { useReducedMotion } from "@/lib/motion/useReducedMotion";
-import { PILLARS, PROPERTY_TYPES, STAGES } from "@/data/capability";
+import { PILLARS, PROPERTY_TYPES } from "@/data/capability";
 
 /**
  * Hover-triggered panel on fine pointers, tap-to-expand on touch.
@@ -36,8 +36,14 @@ const PANELS: Record<string, Column[]> = {
       items: PROPERTY_TYPES.map((t) => ({ href: "/what-we-do#property-types", label: t.label })),
     },
     {
-      heading: "Project stages",
-      items: STAGES.map((s) => ({ href: "/what-we-do#stages", label: s.label })),
+      heading: "Channels",
+      items: [
+        { href: "/what-we-do/performance-marketing", label: "Lead generation" },
+        { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook & Meta ads" },
+        { href: "/what-we-do/google-ads-real-estate", label: "Google Ads" },
+        { href: "/what-we-do/follow-up-systems", label: "WhatsApp follow-up" },
+        { href: "/what-we-do/tracking-attribution", label: "Tracking & CAPI" },
+      ],
     },
   ],
   "Who we help": [

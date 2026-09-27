@@ -44,8 +44,8 @@ export function OperatorSection() {
 
           <FadeIn y={18} delay={0.08}>
             <p className="text-graphite leading-[1.6] mt-6 max-w-[52ch] text-base sm:text-lg">
-              Grow is based in Coimbatore, working with builders across Tamil Nadu and
-              Karnataka. We started it because every real estate account we inherited had
+              Grow is a real estate marketing agency based in Coimbatore, working with
+              builders across Tamil Nadu and Karnataka. We started it because every real estate account we inherited had
               the same three problems: a media buyer reporting cost per lead with no idea
               what happened to those leads afterward, a tracking setup that had not been
               touched since the pixel was first installed, and a follow-up process that

@@ -10,7 +10,9 @@ const SITE = "https://growdigitalbranding.com";
  */
 const LABELS: Record<string, string> = {
   "/what-we-do": "What we do",
-  "/what-we-do/performance-marketing": "Performance marketing",
+  "/what-we-do/performance-marketing": "Real estate lead generation",
+  "/what-we-do/facebook-ads-real-estate": "Facebook & Meta ads for real estate",
+  "/what-we-do/google-ads-real-estate": "Google Ads for real estate",
   "/what-we-do/creative-engine": "Creative engine",
   "/what-we-do/tracking-attribution": "Tracking & attribution",
   "/what-we-do/follow-up-systems": "Follow-up systems",

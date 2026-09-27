@@ -48,7 +48,9 @@ const SECTIONS = [
 /** The existing deep-dive pages, surfaced from the pillar they belong to. */
 const DEEP_DIVES: Record<string, { href: string; label: string }[]> = {
   "Lead Generation": [
-    { href: "/what-we-do/performance-marketing", label: "Performance marketing" },
+    { href: "/what-we-do/performance-marketing", label: "Real estate lead generation" },
+    { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook & Meta ads for real estate" },
+    { href: "/what-we-do/google-ads-real-estate", label: "Google Ads for real estate" },
     { href: "/what-we-do/creative-engine", label: "Creative engine" },
   ],
   "Follow-Up": [{ href: "/what-we-do/follow-up-systems", label: "Follow-up systems" }],

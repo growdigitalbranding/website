@@ -219,7 +219,7 @@ export const ARTICLES: Article[] = [
         label: "The same arithmetic applied to channel partners versus direct",
       },
       { href: "/the-loop", label: "The four stations that move cost per booking" },
-      { href: "/what-we-do/performance-marketing", label: "How we buy media against cost per booking" },
+      { href: "/what-we-do/performance-marketing", label: "Real estate lead generation, measured in bookings" },
     ],
   },
 
@@ -840,6 +840,7 @@ export const ARTICLES: Article[] = [
       },
     ],
     related: [
+      { href: "/what-we-do/facebook-ads-real-estate", label: "How we run Facebook and Meta ads for real estate" },
       { href: "/what-we-do/tracking-attribution", label: "The signal layer, in practice" },
       { href: "/tools/tracking-health-check", label: "Check what your tracking is actually sending" },
       {
@@ -986,6 +987,7 @@ export const ARTICLES: Article[] = [
     ],
     related: [
       { href: "/what-we-do/creative-engine", label: "How we run creative as a production line" },
+      { href: "/what-we-do/facebook-ads-real-estate", label: "Where that creative runs: Meta ads for real estate" },
       {
         href: "/tools/creative-fatigue-estimator",
         label: "Estimate your own fatigue point",

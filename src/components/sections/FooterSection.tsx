@@ -7,7 +7,9 @@ const COLUMNS = [
   {
     title: "What we do",
     links: [
-      { href: "/what-we-do/performance-marketing", label: "Performance marketing" },
+      { href: "/what-we-do/performance-marketing", label: "Real estate lead generation" },
+      { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook & Meta ads" },
+      { href: "/what-we-do/google-ads-real-estate", label: "Google Ads" },
       { href: "/what-we-do/creative-engine", label: "Creative engine" },
       { href: "/what-we-do/tracking-attribution", label: "Tracking & attribution" },
       { href: "/what-we-do/follow-up-systems", label: "Follow-up systems" },

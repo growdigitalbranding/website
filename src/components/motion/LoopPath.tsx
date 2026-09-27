@@ -163,8 +163,10 @@ export function LoopPath() {
 
 function PacketReadout({ stage }: { stage: string }) {
   return (
-    <div className="fixed bottom-4 left-4 z-10 font-mono text-[10px] tracking-[0.14em] text-graphite/70 hidden md:block">
-      PACKET: {stage}
-    </div>
+    <div
+      aria-hidden="true"
+      data-stage={stage}
+      className="packet-readout fixed bottom-4 left-4 z-10 font-mono text-[10px] tracking-[0.14em] text-graphite/70 hidden md:block"
+    />
   );
 }

@@ -15,11 +15,14 @@ import { BRAND } from "@/lib/brand";
 export const metadata: Metadata = {
   metadataBase: new URL("https://growdigitalbranding.com"),
   title: {
-    default: `Performance marketing for real estate developers | ${BRAND}`,
+    // The homepage owns the agency queries: "real estate marketing agency
+    // Coimbatore" and "marketing agency for real estate". It is the page a
+    // Google Business Profile will link to, so the city belongs in its title.
+    default: `Real estate marketing agency in Coimbatore | ${BRAND}`,
     template: `%s | ${BRAND}`,
   },
   description:
-    "Most agencies stop at the lead. Grow runs the whole loop. Creative volume, clean signal, and follow-up that actually closes. Real estate first.",
+    "Real estate marketing agency in Coimbatore. Facebook, Meta and Google Ads for developers across Tamil Nadu and Karnataka, measured in cost per booking.",
   alternates: { canonical: "/" },
   // Lets anyone, including npm run verify, tell in one request whether the
   // running server is serving the commit that was pushed. Not secret: the

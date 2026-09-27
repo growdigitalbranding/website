@@ -164,16 +164,20 @@ export function HeroSection() {
 
       <div className="relative z-[1] flex-1 grid lg:grid-cols-[0.95fr_1.05fr] items-center gap-8 lg:gap-14 px-6 md:px-10 py-6 md:py-8">
         <div className="min-w-0 max-w-[42ch]">
-          <FadeIn y={14} delay={0.06}>
-            <p className="mono-label mb-4 md:mb-5" style={{ color: "var(--signal-bright)" }}>
-              Every hundred leads you buy
-            </p>
-          </FadeIn>
-
           <h1
             className="font-display font-extrabold lowercase track-display leading-[0.93] text-paper overflow-x-clip overflow-y-visible"
             style={{ fontSize: "clamp(2.2rem, min(5.6vw, 8.2vh), 5rem)" }}
           >
+            <FadeIn y={14} delay={0.06}>
+              <span
+                className="mono-label block font-normal leading-normal mb-4 md:mb-5"
+                style={{ color: "var(--signal-bright)" }}
+              >
+                Real estate marketing agency, Coimbatore
+              </span>
+            </FadeIn>
+            {/* Read aloud and extracted as two sentences, not one run-on. */}
+            <span className="sr-only">. </span>
             <FadeIn y={28} delay={0.14}>
               <span className="block">watch where</span>
             </FadeIn>
@@ -194,8 +198,9 @@ export function HeroSection() {
               className="text-paper/65 leading-[1.55] mt-5 md:mt-6 max-w-[44ch]"
               style={{ fontSize: "clamp(0.95rem,1.5vw,1.3rem)" }}
             >
-              Your cost per lead is the top band. Everything underneath it is the part
-              nobody reports on, and the part that decides what a booking costs you.
+              Your cost per lead is the top band of every hundred leads you buy.
+              Everything underneath it is the part nobody reports on, and the part that
+              decides what a booking costs you.
             </p>
           </FadeIn>
 

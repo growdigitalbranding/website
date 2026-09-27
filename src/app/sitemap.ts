@@ -11,6 +11,8 @@ const ROUTES: [route: string, source: string][] = [
   ["/the-loop", "src/app/the-loop/page.tsx"],
   ["/what-we-do", "src/app/what-we-do/page.tsx"],
   ["/what-we-do/performance-marketing", "src/app/what-we-do/performance-marketing/page.tsx"],
+  ["/what-we-do/facebook-ads-real-estate", "src/app/what-we-do/facebook-ads-real-estate/page.tsx"],
+  ["/what-we-do/google-ads-real-estate", "src/app/what-we-do/google-ads-real-estate/page.tsx"],
   ["/what-we-do/creative-engine", "src/app/what-we-do/creative-engine/page.tsx"],
   ["/what-we-do/tracking-attribution", "src/app/what-we-do/tracking-attribution/page.tsx"],
   ["/what-we-do/follow-up-systems", "src/app/what-we-do/follow-up-systems/page.tsx"],

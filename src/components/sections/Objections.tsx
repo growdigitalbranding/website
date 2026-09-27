@@ -35,6 +35,11 @@ const FAQS = [
     answer:
       "You keep it. The sGTM container, CAPI setup, and CRM webhooks are provisioned under your own accounts and domains from day one, not ours. We hand over admin access on request, no lock-in.",
   },
+  {
+    question: "Where are you based, and do you only work with Coimbatore developers?",
+    answer:
+      "We are a real estate marketing agency in Coimbatore, and we work with builders across Tamil Nadu and Karnataka. The loop runs the same way wherever the project is. What changes by state is the regulatory detail in the creative, RERA registration and planning approvals, so the creative checklist is built per state before the first ad runs.",
+  },
 ];
 
 export function Objections() {

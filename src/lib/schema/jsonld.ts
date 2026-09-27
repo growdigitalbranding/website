@@ -36,6 +36,10 @@ const organization = {
   // which is the only reason to claim it.
   knowsAbout: [
     "Performance marketing for real estate developers",
+    "Digital marketing for real estate",
+    "Real estate lead generation",
+    "Facebook and Instagram advertising for real estate",
+    "Google Ads for real estate",
     "Cost per booking",
     "Meta Conversions API",
     "Server-side Google Tag Manager",

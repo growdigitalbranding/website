@@ -37,7 +37,7 @@ export default function Page() {
             "Automation doesn't replace your telecallers, it protects the window before they can act. A WhatsApp acknowledgement inside 60 seconds keeps the lead warm for the 20-40 minutes it realistically takes a human to get to the phone.",
         }}
         answer="First touch inside 60 seconds, automated, then a human dial within minutes. Contact rate sits first in the chain that produces cost per booking, so it multiplies every rate after it: moving it from 60% to 85% and changing nothing else cuts cost per booking 29%, with cost per lead untouched."
-        reading={["speed-to-lead-real-estate"]}
+        reading={["speed-to-lead-real-estate", "why-meta-lead-ads-poor-quality"]}
       />
     </>
   );

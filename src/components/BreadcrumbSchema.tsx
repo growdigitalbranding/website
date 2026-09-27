@@ -23,6 +23,16 @@ const LABELS: Record<string, string> = {
   "/tools/cpl-calculator": "CPL calculator",
   "/tools/tracking-health-check": "Tracking health check",
   "/tools/creative-fatigue-estimator": "Creative fatigue estimator",
+  // Depth-1 routes. A two-level trail (Home > Page) is still a trail: it is
+  // what lets a SERP render the site path instead of a bare URL, and it is
+  // the node that ties each page back to the WebSite entity.
+  "/work": "Work",
+  "/pricing": "Pricing",
+  "/the-loop": "The loop",
+  "/insights": "Insights",
+  "/about": "About",
+  "/contact": "Contact",
+  "/tracking-setup": "Tracking setup",
 };
 
 /**

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
@@ -32,6 +33,7 @@ const TOOLS = [
 export default function ToolsPage() {
   return (
     <>
+      <BreadcrumbSchema path="/tools" />
       <PageHero
         eyebrow="TOOLS"
         title="Free tools. Real numbers, not gated results."

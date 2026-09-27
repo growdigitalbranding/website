@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { FurtherReading } from "@/components/FurtherReading";
 import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
@@ -25,7 +26,9 @@ export default function Page() {
         The same loop, with a longer window and more people in the room. The five rates between a lead and a booking still multiply, so the leverage is still contact rate and show-up rate rather than cost per lead. What changes is that the enquirer and the resident are often different people, so qualification has to survive being relayed.
       </DirectAnswer>
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-10">
-        <p className="text-lg text-graphite">
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h3 font-display font-bold">Who actually makes the senior living decision?</h2>
+          <p className="text-lg text-graphite">
           Senior living has one of the longest and most emotionally loaded sales cycles in
           high-consideration marketing. The adult children researching the decision are often a
           different demographic, on a different platform, with a different objection set than
@@ -33,19 +36,29 @@ export default function Page() {
           buying unit; creative that speaks only to the children can feel presumptuous about a
           parent's autonomy.
         </p>
-        <p className="text-lg text-graphite">
+        </section>
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h3 font-display font-bold">How do you write creative for two audiences at once?</h2>
+          <p className="text-lg text-graphite">
           Our approach runs two creative tracks against the same campaign. One addressed to
           adult children researching options for a parent, one addressed to prospective
           residents evaluating independence and community directly, and lets engagement data
           tell us which is working for which audience segment, rather than guessing.
         </p>
-        <p className="text-lg text-graphite">
+        </section>
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h3 font-display font-bold">Should follow-up here be as fast as real estate?</h2>
+          <p className="text-lg text-graphite">
           Follow-up here isn't speed-to-lead in the same aggressive sense as real estate. A
           60-second WhatsApp ping can read as pushy on a decision this sensitive. We tune the
           qualification flow and cadence specifically for this vertical, still automated, but
           paced differently.
         </p>
+        </section>
       </article>
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <FurtherReading label="Written for long-cycle categories" slugs={["speed-to-lead-real-estate", "good-cost-per-lead-real-estate"]} />
+      </div>
       <CTABand />
     </>
   );

@@ -100,6 +100,11 @@ export function CreativeMarqueeSection({ available = [] }: { available?: string[
   );
 }
 
+/** `c-01.webp` -> `c-01`, the stem the generated variants are named after. */
+function base(file: string) {
+  return file.replace(/\.[a-z0-9]+$/i, "");
+}
+
 function Row({
   x,
   tiles,
@@ -133,16 +138,36 @@ function Row({
           style={{ width: w, height: h }}
         >
           {t.file ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={`/creatives/${t.file}`}
-              alt={`${t.angle} ad creative`}
-              width={w}
-              height={h}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
+            // Responsive sources from scripts/optimize-creatives.mjs. The
+            // originals are 640x857 at ~90KB and the tile is at most 300 CSS
+            // px wide, so a phone was downloading the desktop asset: 1.7MB of
+            // creatives on a page whose interior siblings transfer 400KB. The
+            // 600w AVIF set is 635KB and the 300w set is 233KB; `sizes` lets
+            // the browser pick by its own density rather than us guessing.
+            //
+            // The original WebP stays as `src`, so a browser that takes
+            // neither AVIF nor srcset still renders the tile.
+            <picture>
+              <source
+                type="image/avif"
+                sizes="300px"
+                srcSet={`/creatives/opt/${base(t.file)}-300.avif 300w, /creatives/opt/${base(t.file)}-600.avif 600w`}
+              />
+              <source
+                type="image/webp"
+                sizes="300px"
+                srcSet={`/creatives/opt/${base(t.file)}-300.webp 300w, /creatives/opt/${base(t.file)}-600.webp 600w`}
+              />
+              <img
+                src={`/creatives/${t.file}`}
+                alt={`${t.angle} ad creative`}
+                width={w}
+                height={h}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </picture>
           ) : (
             // Still a --mist block naming the file, per the asset note, but
             // built as a spec frame rather than an empty div: crop marks, a

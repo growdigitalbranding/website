@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { TaxonomyNav } from "./TaxonomyNav";
 import {
   GEOGRAPHIES,
@@ -130,6 +131,7 @@ function Block({
 export default function WhatWeDoPage() {
   return (
     <>
+      <BreadcrumbSchema path="/what-we-do" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQS)) }}

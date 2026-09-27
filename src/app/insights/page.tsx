@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { ARTICLES_BY_DATE } from "@/data/insights";
 
 export const metadata: Metadata = pageMeta({
@@ -14,6 +15,7 @@ export const metadata: Metadata = pageMeta({
 export default function InsightsPage() {
   return (
     <>
+      <BreadcrumbSchema path="/insights" />
       <PageHero
         eyebrow="INSIGHTS"
         title="The working, shown."

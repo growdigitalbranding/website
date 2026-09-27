@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { offerCatalogJsonLd } from "@/lib/schema/jsonld";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
@@ -38,6 +40,11 @@ const PLANS = [
 export default function PricingPage() {
   return (
     <>
+      <BreadcrumbSchema path="/pricing" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(offerCatalogJsonLd(PLANS)) }}
+      />
       <PageHero
         eyebrow="PRICING"
         title="Real numbers. Not 'contact us for a quote.'"

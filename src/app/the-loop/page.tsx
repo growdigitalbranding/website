@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FurtherReading } from "@/components/FurtherReading";
 
 export const metadata: Metadata = pageMeta({
@@ -13,6 +14,7 @@ export const metadata: Metadata = pageMeta({
 export default function TheLoopPage() {
   return (
     <>
+      <BreadcrumbSchema path="/the-loop" />
       <PageHero
         eyebrow="THE METHODOLOGY"
         title="Most agencies stop at the lead. Here's why that's the whole problem."

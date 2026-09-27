@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
@@ -32,6 +33,7 @@ const VERTICALS = [
 export default function WhoWeHelpPage() {
   return (
     <>
+      <BreadcrumbSchema path="/who-we-help" />
       <PageHero
         eyebrow="WHO WE HELP"
         title="High-consideration purchases. Nothing shopped on price."

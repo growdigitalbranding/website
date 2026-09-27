@@ -110,3 +110,68 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
     })),
   };
 }
+
+/**
+ * Offer markup for the published engagement prices.
+ *
+ * /pricing states three real rupee figures in prose and in markup and declared
+ * none of them as structured data, so the one page on the site whose entire
+ * argument is "we publish our prices" was invisible as pricing to anything
+ * reading the markup. Every field below is copied from what the page already
+ * renders; nothing here asserts a price the reader cannot see.
+ *
+ * priceSpecification rather than a bare price on the retainer, because that
+ * one is a genuine range and a single `price` would be a claim the page does
+ * not make. The offers hang off the organisation @id so they consolidate onto
+ * the same entity as everything else rather than declaring a second seller.
+ */
+export function offerCatalogJsonLd(
+  plans: { name: string; price: string; unit: string; desc: string }[]
+) {
+  const rupees = (s: string) => s.replace(/[^\d-]/g, "").split("-").filter(Boolean);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "@id": `${SITE}/pricing#catalog`,
+    name: "Engagement pricing",
+    url: `${SITE}/pricing`,
+    provider: { "@id": ORG_ID },
+    itemListElement: plans.map((p, i) => {
+      const [low, high] = rupees(p.price);
+      const recurring = p.unit === "per month";
+      return {
+        "@type": "Offer",
+        "@id": `${SITE}/pricing#offer-${i + 1}`,
+        position: i + 1,
+        name: p.name,
+        description: p.desc,
+        priceCurrency: "INR",
+        category: recurring ? "Subscription" : "One-time",
+        availability: "https://schema.org/InStock",
+        seller: { "@id": ORG_ID },
+        url: `${SITE}/pricing`,
+        priceSpecification: high
+          ? {
+              "@type": "PriceSpecification",
+              priceCurrency: "INR",
+              minPrice: Number(low),
+              maxPrice: Number(high),
+              ...(recurring ? { billingDuration: 1, billingIncrement: 1 } : {}),
+            }
+          : {
+              "@type": "PriceSpecification",
+              priceCurrency: "INR",
+              price: Number(low),
+            },
+        itemOffered: {
+          "@type": "Service",
+          name: p.name,
+          description: p.desc,
+          provider: { "@id": ORG_ID },
+          areaServed: ["Tamil Nadu", "Karnataka"],
+        },
+      };
+    }),
+  };
+}

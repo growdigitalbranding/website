@@ -177,9 +177,11 @@ export function HeroSection() {
             <FadeIn y={28} delay={0.14}>
               <span className="block">watch where</span>
             </FadeIn>
+            {" "}
             <FadeIn y={28} delay={0.22}>
               <span className="block">the money</span>
             </FadeIn>
+            {" "}
             <FadeIn y={28} delay={0.3}>
               <span className="block" style={{ color: "var(--pulse)" }}>
                 actually goes.

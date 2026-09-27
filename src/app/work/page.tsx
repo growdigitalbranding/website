@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 import { PageHero, CTABand } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FurtherReading } from "@/components/FurtherReading";
 import { CASES } from "@/data/cases";
 
@@ -62,6 +63,7 @@ const CHECKABLE = [
 export default function WorkPage() {
   return (
     <>
+      <BreadcrumbSchema path="/work" />
       <PageHero
         eyebrow="WORK"
         title="What we can show you, and what we can't."

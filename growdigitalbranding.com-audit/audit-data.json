@@ -1,0 +1,97 @@
+{
+  "summary": {
+    "health_score": 81,
+    "business_type": "Local service / B2B agency (performance marketing for real-estate developers, Coimbatore TN)",
+    "scope_note": "Audited the local production build of commit c18988e. The public host was unreachable from the audit container, so live headers, TLS, CDN, CrUX/GSC field data and real-world CWV are NOT covered.",
+    "top_findings": [
+      "30 of 31 pages contain zero images",
+      "Zero outbound citations on a site whose argument is verifiability",
+      "21 of 31 titles exceed 60 characters and will truncate in SERPs",
+      "Homepage H1 extracts as run-together text: 'watch wherethe moneyactually goes.'",
+      "llms.txt fails the llmstxt.org/Lighthouse rule: no Markdown links"
+    ],
+    "quick_wins": [
+      "Rewrite llms.txt entries as Markdown links",
+      "Add spaces between the H1 span lines",
+      "Shorten the 8 article titles that run 70-85 chars",
+      "Add Offer/PriceSpecification schema to /pricing",
+      "Add H2 structure to /about, /who-we-help/interiors, /who-we-help/senior-living"
+    ]
+  },
+  "categories": [
+    {"name": "Technical SEO", "score": 92,
+     "what_works": ["robots.txt reachable, 18 groups, 11 named AI user agents", "Sitemap valid urlset, 31 URLs", "31/31 canonicals absolute, correct and unique", "Unknown URLs return a real 404", "Server-rendered: 2155 words present without JavaScript"],
+     "findings": [
+       {"title": "Live-server surface not audited", "severity": "Info", "description": "Egress policy blocked the public host, so HTTPS/HSTS, compression, cache headers and CDN behaviour were not checked.", "recommendation": "Re-run against https://growdigitalbranding.com once network access is widened."}
+     ]},
+    {"name": "Content Quality", "score": 78,
+     "what_works": ["QRG quality 84-91 across sampled pages", "filler_score 0 and ai_pattern_score 0 on every page sampled", "information_density 1.0 on 4 of 5 sampled pages"],
+     "findings": [
+       {"title": "Zero outbound citations site-wide", "severity": "High", "description": "Across all 7 articles and 24 other pages there is not one external link. The site repeatedly claims its numbers are 'a matter of public record' but never links the record (RERA portals, Meta/Google documentation, DTCP).", "recommendation": "Add 2-4 primary-source links per article to the documents each claim rests on."},
+       {"title": "Five pages under 300 words", "severity": "Medium", "description": "contact 65, terms 88, tools/creative-fatigue-estimator 128, tools/cpl-calculator 144, tracking-setup 154.", "recommendation": "tracking-setup is the one that matters commercially - it is a proof page with 6 H2s and 154 words. The calculators are interactive tools and are acceptable thin."},
+       {"title": "Articles are weakly linked internally", "severity": "Medium", "description": "Contextual inbound links per article: 3-12, against 29-30 for every other page (which is the global footer). get-cited-by-ai-assistants and rera-approval-status-lead-quality have 3 each.", "recommendation": "Cross-link articles from the service pages whose subject they support."}
+     ]},
+    {"name": "On-Page SEO", "score": 80,
+     "what_works": ["Exactly one H1 on all 31 pages", "Title and meta description present on all 31", "No heading-level jumps", "No generic anchor text anywhere", "No orphan pages"],
+     "findings": [
+       {"title": "21 of 31 titles exceed 60 characters", "severity": "Medium", "description": "The brand suffix '| growdigitalbranding' is 20 chars and pushes 8 article titles to 70-85. 'Channel partner leads vs direct leads: the real cost comparison | growdigitalbranding' is 85.", "recommendation": "Drop the brand suffix on article pages, or shorten the article titles to ~40 chars."},
+       {"title": "Homepage H1 extracts as run-together text", "severity": "Medium", "description": "The H1 is three display:block spans with no whitespace between them, so naive text extractors read 'watch wherethe moneyactually goes.' Browsers and Google render it correctly; plain-text extractors, which many AI crawlers use, do not.", "recommendation": "Add a space or newline between the span elements."},
+       {"title": "Four pages have no H2 at all", "severity": "Low", "description": "/about, /terms, /who-we-help/interiors, /who-we-help/senior-living.", "recommendation": "The two who-we-help pages are ~280 words of unstructured prose; give each 2-3 question-shaped H2s."}
+     ]},
+    {"name": "Schema / Structured Data", "score": 85,
+     "what_works": ["@graph with stable @id on all 31 pages; no duplicate or conflicting entity declarations", "sameAs now present (Instagram, LinkedIn, Facebook)", "BlogPosting + BreadcrumbList + FAQPage on all 7 articles", "Service schema on /what-we-do", "No validation errors found"],
+     "findings": [
+       {"title": "No Offer or PriceSpecification on /pricing", "severity": "Medium", "description": "The page publishes three real prices in prose and markup but declares no Offer, so it cannot win a price-related rich result or be quoted as structured pricing.", "recommendation": "Add Offer/PriceSpecification nodes for the three tiers, referencing the existing Service @ids."},
+       {"title": "No BreadcrumbList on depth-1 pages", "severity": "Low", "description": "Present on all depth-2 pages; absent on /work, /pricing, /the-loop, /insights, /tools, /what-we-do, /who-we-help, /about.", "recommendation": "Add a two-level trail (Home > Page) to the eight depth-1 routes."},
+       {"title": "No Google Business Profile in sameAs", "severity": "Medium", "description": "For a Coimbatore agency this is the single highest-value entity link and it is absent.", "recommendation": "Claim the listing and add its URL."}
+     ]},
+    {"name": "Performance (CWV)", "score": 72,
+     "what_works": ["CLS 0.0007 on the homepage and 0.0000 on the other three pages measured", "All 57 images carry explicit width and height", "All 57 lazy-loaded natively", "Interior pages transfer ~400-500KB over ~30 requests"],
+     "findings": [
+       {"title": "Homepage transfers 2.2MB over 49 requests", "severity": "High", "description": "Lab measurement on localhost: homepage 2195KB / 49 requests / LCP 1756ms, against 401-501KB / 30-33 requests / LCP 128-148ms for interior pages. The delta is the 19 creative WebPs (1.7MB on disk) in the marquee. LCP in absolute terms is meaningless on loopback, but the payload is real and on an Indian 4G connection it is the difference between a good and a poor LCP.", "recommendation": "Serve the marquee creatives responsively, and consider loading a subset above the fold."},
+       {"title": "next/image is not used anywhere", "severity": "Medium", "description": "Zero imports across the codebase. Every image is a raw <img> at a single 640x857 intrinsic size, so a 390px phone downloads the same asset a desktop does - no srcset, no AVIF negotiation, no automatic sizing.", "recommendation": "Move the marquee to next/image, or hand-write srcset/sizes with AVIF sources."},
+       {"title": "Field data unavailable", "severity": "Info", "description": "No CrUX or GSC access from this container, and the origin may have no CrUX sample yet at current traffic.", "recommendation": "Connect Search Console and re-check once traffic accrues."}
+     ]},
+    {"name": "AI Search Readiness", "score": 80,
+     "what_works": ["All three P0 agent-readiness checks pass", "robots.txt names 11 AI user agents deliberately (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, CCBot) with no search crawler blocked at root", "Content is fully server-rendered", "Unknown URLs return a real 404 rather than a soft 200", "Direct-answer blocks and question-shaped H2s on most pages"],
+     "findings": [
+       {"title": "llms.txt fails the llmstxt.org rule Lighthouse checks", "severity": "Medium", "description": "The file is 2737 bytes and well written, but every entry is a bare path ('- /the-loop - the methodology') rather than a Markdown link. The spec requires Markdown links; Lighthouse scores it as fail.", "recommendation": "Rewrite each entry as '- [Title](https://growdigitalbranding.com/path): description'."},
+       {"title": "No /llms-full.txt", "severity": "Low", "description": "Returns 404. Optional in the spec.", "recommendation": "Optional; consider once the article set is stable."},
+       {"title": "Lead form is not annotated for WebMCP", "severity": "Low", "description": "One form on the homepage, zero annotated. Forward-looking, not a current ranking factor.", "recommendation": "Backlog."}
+     ]},
+    {"name": "Images", "score": 65,
+     "what_works": ["57 of 57 images have alt text - no missing alt anywhere on the site", "All carry width and height, which is why CLS is ~0", "WebP throughout", "Intrinsic 640x857 against a 260x325 slot is a sane ~2x DPR"],
+     "findings": [
+       {"title": "30 of 31 pages contain zero images", "severity": "High", "description": "The homepage holds all 57 image instances (19 unique client ad creatives). /work, /about, /pricing, /the-loop and all 7 articles have none. No image can rank in Google Images, no article has a lead visual for social or Discover, and the pages that carry the trust argument show nothing.", "recommendation": "This is a production task, not a code one: a portrait for /about, artefact photography for /work, and one diagram or chart per article."},
+       {"title": "No per-page OG images", "severity": "Medium", "description": "Every page shares the single /og.png. Seven articles with distinct titles all render an identical social card.", "recommendation": "Generate per-article OG images from the article title."}
+     ]}
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Quick wins", "timeframe": "Week 1", "items": [
+        "Rewrite llms.txt entries as Markdown links",
+        "Add whitespace between the homepage H1 span lines",
+        "Shorten the 8 article titles running 70-85 chars, or drop the brand suffix on articles",
+        "Add H2 structure to /who-we-help/interiors and /who-we-help/senior-living"
+      ]},
+      {"name": "Phase 2: High-impact", "timeframe": "Weeks 2-3", "items": [
+        "Add 2-4 primary-source outbound citations per article",
+        "Add Offer/PriceSpecification schema to /pricing",
+        "Claim the Google Business Profile and add it to sameAs",
+        "Move the marquee creatives to responsive images and cut the 2.2MB homepage payload"
+      ]},
+      {"name": "Phase 3: Content and authority", "timeframe": "Month 2", "items": [
+        "Photography: portrait for /about, artefacts for /work, one visual per article",
+        "Per-article OG images",
+        "Cross-link articles from the service pages whose subject they support",
+        "Expand /tracking-setup beyond 154 words"
+      ]},
+      {"name": "Phase 4: Monitoring", "timeframe": "Ongoing", "items": [
+        "Connect Search Console and GA4; re-run this audit against the live host",
+        "Capture a seo-drift baseline so future deploys are diffed",
+        "Re-check CrUX once the origin has a field-data sample"
+      ]}
+    ]
+  },
+  "artifacts": {"findings_dir": "findings/", "screenshots_dir": "screenshots/"}
+}

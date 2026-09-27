@@ -28,6 +28,13 @@ export async function generateMetadata({
       title: article.title,
       description: article.description,
     }),
+    // The question is the right <title> here: it matches the query verbatim,
+    // which is the whole point of writing them as questions. What pushed these
+    // to 70-85 characters was the root template appending the brand, costing
+    // 20 characters and truncating the end of the question in the SERP.
+    // `absolute` opts this route out of the template. og:title keeps the brand,
+    // because a shared card with no attribution is a different problem.
+    title: { absolute: article.title },
     openGraph: {
       type: "article",
       siteName: "growdigitalbranding",
@@ -37,7 +44,16 @@ export async function generateMetadata({
       description: article.description,
       publishedTime: article.published,
       modifiedTime: article.updated,
-      images: [{ url: "/og.png", width: 2400, height: 1260, alt: article.title }],
+      // No `images` here on purpose. opengraph-image.tsx in this segment
+      // generates a card per article and Next injects it; an explicit
+      // `images` would win and put every article back on the shared /og.png.
+    },
+    // Same reason: pageMeta's twitter block hard-codes /og.png, and the
+    // generated card feeds twitter:image too once nothing overrides it.
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
     },
   };
 }

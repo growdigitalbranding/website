@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = pageMeta({
@@ -13,6 +14,7 @@ export const metadata: Metadata = pageMeta({
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbSchema path="/contact" />
       <PageHero
         eyebrow="CONTACT"
         title="Three fields. That's it."

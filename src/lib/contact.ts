@@ -27,3 +27,24 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 export function whatsappUrlWith(message: string) {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * The public profiles, in one place.
+ *
+ * Two jobs. They are the `sameAs` array on the organization entity, which is
+ * how an answer engine corroborates that the Grow it reads here is the same
+ * Grow it has seen elsewhere — without it the entity stays unlinked and every
+ * mention has to stand on its own. And they are the outbound links in both
+ * footers.
+ *
+ * Order matters a little: put the profile you keep most current first.
+ * Anything added here has to be a profile this company actually controls; a
+ * `sameAs` pointing at a page we do not own is worse than none.
+ */
+export const SOCIAL = [
+  { label: "Instagram", url: "https://www.instagram.com/growdigitalbranding/" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/company/growdigitalbranding/" },
+  { label: "Facebook", url: "https://www.facebook.com/growdigitalbranding" },
+] as const;
+
+export const SOCIAL_URLS = SOCIAL.map((s) => s.url);

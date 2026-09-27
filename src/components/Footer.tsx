@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
-import { PHONE, PHONE_DISPLAY } from "@/lib/contact";
+import { PHONE, PHONE_DISPLAY, SOCIAL } from "@/lib/contact";
 import { ConsentReset } from "@/components/ConsentBanner";
 
 const COLUMNS = [
@@ -77,6 +77,20 @@ export function Footer() {
                 {PHONE_DISPLAY}
               </a>
             </p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-1 mt-2">
+              {SOCIAL.map((s) => (
+                <li key={s.url}>
+                  <a
+                    href={s.url}
+                    rel="me noopener"
+                    target="_blank"
+                    className="hover:text-signal"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           <nav className="flex flex-wrap gap-6">
             <Link href="/privacy" className="hover:text-signal">

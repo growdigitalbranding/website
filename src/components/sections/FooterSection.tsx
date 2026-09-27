@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PHONE, PHONE_DISPLAY, EMAIL, WHATSAPP_URL } from "@/lib/contact";
+import { PHONE, PHONE_DISPLAY, EMAIL, WHATSAPP_URL, SOCIAL } from "@/lib/contact";
 import { BRAND } from "@/lib/brand";
 import { ConsentReset } from "@/components/ConsentBanner";
 
@@ -74,6 +74,20 @@ export function FooterSection() {
                 WhatsApp
               </a>
             </li>
+          </ul>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-paper/85 mt-5 pt-5 border-t border-paper/10">
+            {SOCIAL.map((s) => (
+              <li key={s.url}>
+                <a
+                  href={s.url}
+                  rel="me noopener"
+                  target="_blank"
+                  className="hover:text-paper transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

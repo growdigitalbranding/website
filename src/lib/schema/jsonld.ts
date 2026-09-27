@@ -1,4 +1,4 @@
-import { EMAIL, PHONE } from "@/lib/contact";
+import { EMAIL, PHONE, SOCIAL_URLS } from "@/lib/contact";
 import { BRAND } from "@/lib/brand";
 
 const SITE = "https://growdigitalbranding.com";
@@ -61,10 +61,11 @@ const organization = {
     addressRegion: "Tamil Nadu",
     addressCountry: "IN",
   },
-  // sameAs is the missing piece: it is how an answer engine corroborates that
-  // this entity is the same one it has seen elsewhere. Add the real profile
-  // URLs (LinkedIn, Google Business Profile, Instagram) and nothing else in
-  // this file needs to change.
+  // How an answer engine corroborates that this entity is the same one it has
+  // seen elsewhere. The list lives in lib/contact.ts because both footers link
+  // the same profiles. A Google Business Profile belongs here too once the
+  // listing is claimed.
+  sameAs: SOCIAL_URLS,
 };
 
 const website = {

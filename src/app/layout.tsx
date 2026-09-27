@@ -34,6 +34,19 @@ export const metadata: Metadata = {
   // favicon.ico, icon.svg and apple-icon.png are picked up from src/app by
   // file convention; the manifest is the one that has to be declared.
   manifest: "/site.webmanifest",
+  // Search Console and Bing Webmaster Tools ownership, set from the server's
+  // environment so verifying a property never needs a code change. Build-time
+  // values: set them, then rebuild. Unset, no tag is emitted.
+  //   GOOGLE_SITE_VERIFICATION=<content value from Search Console's HTML tag>
+  //   BING_SITE_VERIFICATION=<content value from Bing's msvalidate.01 tag>
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.BING_SITE_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }
+      : {}),
+  },
   // Without these every shared link renders as a blank card, which is most of
   // how this site actually gets seen: pasted into WhatsApp and email.
   // metadataBase above resolves the relative path, so this stays correct on

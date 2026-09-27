@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import type { MetadataRoute } from "next";
+import { getArticle } from "@/data/insights";
 
 /**
  * Route, plus the source file whose history stands in for "when did this page
@@ -67,9 +68,21 @@ function lastCommit(source: string): Date | undefined {
   }
 }
 
+/**
+ * Articles share one source file, so git history would move every article's
+ * lastmod whenever any one of them is edited, and IndexNow (which submits by
+ * lastmod) would resubmit all of them. Each article carries its own editorial
+ * `updated` date; that is the more accurate signal for it.
+ */
+function articleDate(route: string): Date | undefined {
+  const m = route.match(/^\/insights\/(.+)$/);
+  const updated = m ? getArticle(m[1])?.updated : undefined;
+  return updated ? new Date(`${updated}T00:00:00+05:30`) : undefined;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map(([route, source]) => {
-    const lastModified = lastCommit(source);
+    const lastModified = articleDate(route) ?? lastCommit(source);
     return {
       url: `https://growdigitalbranding.com${route}`,
       ...(lastModified ? { lastModified } : {}),

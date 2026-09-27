@@ -51,3 +51,5 @@ echo "commit:   $(git rev-parse HEAD)"
 echo
 echo "NOT LIVE YET. Restart the Node app in hPanel now."
 echo "Then confirm with:  npm run verify"
+echo "(verify submits changed URLs to IndexNow automatically once the live"
+echo " server is proven to be on this commit, so Bing and Copilot pick them up.)"

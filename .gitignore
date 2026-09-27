@@ -24,3 +24,7 @@ next-env.d.ts
 # deploy pull for nothing. The files stay on disk; git just stops carrying
 # them.
 /.agents/
+
+# IndexNow submission history for this server. Describes what was sent,
+# not the code, so it stays out of git.
+/.indexnow-state.json

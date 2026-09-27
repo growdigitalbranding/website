@@ -22,6 +22,10 @@
  * Usage:
  *
  *   npm run indexnow                 submit every URL in the live sitemap
+ *   npm run indexnow -- --changed    submit only URLs whose <lastmod> moved, or
+ *                                    that were never submitted, since the last
+ *                                    successful run (what `npm run verify`
+ *                                    calls automatically after a good deploy)
  *   npm run indexnow -- --dry-run    print the payload, send nothing
  *   npm run indexnow -- <url> <url>  submit only these (must be on HOST)
  *   npm run indexnow -- --sitemap http://localhost:3000/sitemap.xml
@@ -32,6 +36,7 @@
  */
 
 import { argv, exit } from "node:process";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const HOST = "growdigitalbranding.com";
 const ORIGIN = `https://${HOST}`;
@@ -49,6 +54,22 @@ const ENDPOINT = "https://api.indexnow.org/IndexNow";
 
 const args = argv.slice(2);
 const dryRun = args.includes("--dry-run");
+const changedOnly = args.includes("--changed");
+
+/**
+ * What was last submitted, so a routine deploy pings only what changed.
+ * Resubmitting unchanged URLs on every deploy is what the protocol asks you
+ * not to do, and it teaches the crawler that your pings mean nothing.
+ * Gitignored: it describes this server's history, not the code.
+ */
+const STATE_FILE = ".indexnow-state.json";
+function readState() {
+  try {
+    return JSON.parse(readFileSync(STATE_FILE, "utf8"));
+  } catch {
+    return { submittedAt: null, urls: [] };
+  }
+}
 const sitemapFlag = args.indexOf("--sitemap");
 const sitemapUrl =
   sitemapFlag !== -1 ? args[sitemapFlag + 1] : `${ORIGIN}/sitemap.xml`;
@@ -74,9 +95,21 @@ async function urlsFromSitemap(url) {
   if (!res.ok) fail(`sitemap returned HTTP ${res.status} from ${url}`);
 
   const xml = await res.text();
-  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
-  if (locs.length === 0) fail(`no <loc> entries found in ${url}`);
-  return locs;
+  const entries = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => ({
+    loc: m[1].match(/<loc>([^<]+)<\/loc>/)?.[1]?.trim(),
+    lastmod: m[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1]?.trim() ?? null,
+  })).filter((e) => e.loc);
+  if (entries.length === 0) fail(`no <loc> entries found in ${url}`);
+  return entries;
+}
+
+/** Changed since the last successful submission, or never submitted at all. */
+function onlyChanged(entries, state) {
+  const since = state.submittedAt ? Date.parse(state.submittedAt) : 0;
+  const seen = new Set(state.urls);
+  return entries
+    .filter((e) => !seen.has(e.loc) || !e.lastmod || Date.parse(e.lastmod) > since)
+    .map((e) => e.loc);
 }
 
 /** The endpoint rejects the whole batch if any URL is off-host, so catch it here. */
@@ -113,7 +146,20 @@ function explain(status) {
   }
 }
 
-const urls = explicit.length ? explicit : await urlsFromSitemap(sitemapUrl);
+const state = readState();
+let allSitemapUrls = [];
+let urls;
+if (explicit.length) {
+  urls = explicit;
+} else {
+  const entries = await urlsFromSitemap(sitemapUrl);
+  allSitemapUrls = entries.map((e) => e.loc);
+  urls = changedOnly ? onlyChanged(entries, state) : allSitemapUrls;
+}
+if (urls.length === 0) {
+  console.log(`indexnow: nothing changed since ${state.submittedAt}. Nothing sent.`);
+  exit(0);
+}
 checkHost(urls);
 
 const payload = {
@@ -150,4 +196,15 @@ const body = (await res.text()).trim();
 if (body) console.log(body);
 
 // 200 and 202 are both successes. Anything else should fail a deploy script.
-exit(res.status === 200 || res.status === 202 ? 0 : 1);
+const ok = res.status === 200 || res.status === 202;
+if (ok && !explicit.length) {
+  writeFileSync(
+    STATE_FILE,
+    JSON.stringify(
+      { submittedAt: new Date().toISOString(), urls: [...new Set([...state.urls, ...allSitemapUrls])] },
+      null,
+      2,
+    ),
+  );
+}
+exit(ok ? 0 : 1);

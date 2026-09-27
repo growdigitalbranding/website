@@ -1,3 +1,5 @@
+import { SourceList } from "@/components/SourceList";
+import { resolveSources } from "@/data/sources";
 import Link from "next/link";
 import type { Article, Block } from "@/data/insights";
 import { CTABand } from "@/components/PageHero";
@@ -162,8 +164,15 @@ export function ArticleTemplate({ article }: { article: Article }) {
     inLanguage: "en-IN",
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
-    image: `${SITE}/og.png`,
+    // The article's own generated card, not the site-wide one.
+    image: `${url}/opengraph-image`,
     about: "Performance marketing for real estate developers",
+    // The primary sources the piece's public-record claims rest on. An
+    // answer engine deciding whether a claim is safe to repeat can follow
+    // these; a reader can too.
+    ...(article.sources?.length
+      ? { citation: resolveSources(article.sources).map((c) => ({ "@type": "CreativeWork", name: c.label, url: c.url, publisher: { "@type": "Organization", name: c.publisher } })) }
+      : {}),
   };
 
   const breadcrumb = {
@@ -240,6 +249,8 @@ export function ArticleTemplate({ article }: { article: Article }) {
             ))}
           </dl>
         </section>
+
+        <SourceList keys={article.sources} className="mt-4 pt-10 border-t border-mist" />
 
         <section className="flex flex-col gap-4 mt-4 pt-10 border-t border-mist">
           <h2 className="mono-label text-graphite">Read next</h2>

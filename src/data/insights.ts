@@ -28,6 +28,8 @@ export type Block =
   | { kind: "formula"; expression: string; note?: string }
   | { kind: "callout"; label: string; items: string[] };
 
+import type { SourceKey } from "@/data/sources";
+
 export type Article = {
   slug: string;
   /** H1. Phrased as the question it answers wherever that reads naturally. */
@@ -48,6 +50,9 @@ export type Article = {
   blocks: Block[];
   faq: { question: string; answer: string }[];
   related: { href: string; label: string }[];
+  /** Primary sources for the public-record claims in the piece. Keys into
+   *  src/data/sources.ts. Pure-arithmetic pieces may have none. */
+  sources?: SourceKey[];
 };
 
 export const ARTICLES: Article[] = [
@@ -60,7 +65,7 @@ export const ARTICLES: Article[] = [
     description:
       "Cost per lead means nothing without the five funnel rates underneath it. The cost-per-booking formula, a worked example, and why CPL rises with ticket size.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "There is no good cost per lead in isolation. A ₹1,200 lead that books at 1% costs you ₹1,20,000 a booking. A ₹2,500 lead that books at 4% costs you ₹62,500. The second one is half the price at twice the cost per lead. The number worth holding an agency to is cost per booking, and it depends on five rates that sit between the form fill and the signed application. Work those out and you can stop negotiating CPL targets in the dark.",
     blocks: [
@@ -221,6 +226,7 @@ export const ARTICLES: Article[] = [
       { href: "/the-loop", label: "The four stations that move cost per booking" },
       { href: "/what-we-do/performance-marketing", label: "Real estate lead generation, measured in bookings" },
     ],
+    sources: ["metaInstantFormTypes"],
   },
 
   {
@@ -232,7 +238,7 @@ export const ARTICLES: Article[] = [
     description:
       "Why putting RERA registration and approval status in the creative raises cost per lead, lowers cost per booking, and where the trade breaks even exactly.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "Approval status is the first filter a serious buyer applies and the last thing an unserious one cares about. Put it in the creative and fewer people click, so your cost per lead rises. The people who do click have already self-selected on the thing that kills most deals late, so qualification and site visit rates rise with it. The trade is worth making whenever the qualification-rate gain is proportionally larger than the cost-per-lead loss, and it usually is, because the two effects are not the same size.",
     blocks: [
@@ -377,6 +383,7 @@ export const ARTICLES: Article[] = [
       { href: "/insights/pre-launch-marketing-real-estate", label: "What to do during the approval window" },
       { href: "/the-loop", label: "The methodology behind this" },
     ],
+    sources: ["reraAct", "tnrera"],
   },
 
   {
@@ -388,7 +395,7 @@ export const ARTICLES: Article[] = [
     description:
       "Brokerage against media cost per booking, worked at a Rs 75L ticket, plus the three asymmetries that decide it once you run more than one project.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "Priced per booking on a single project, channel partners are frequently competitive and sometimes cheaper than running your own media. The number that comparison misses is direction. Brokerage per booking is flat forever and rises with ticket value, while direct cost per booking falls as the ad account learns, but only if booking data flows back into it. A channel partner booking is a transaction. A direct booking is a transaction plus a training example. Most builders compare the first project and conclude direct does not work, having never run the mechanism that makes it work.",
     blocks: [
@@ -530,6 +537,7 @@ export const ARTICLES: Article[] = [
       { href: "/tools/cpl-calculator", label: "Work out your own cost per booking" },
       { href: "/who-we-help/real-estate", label: "How we work with builders and developers" },
     ],
+    sources: ["metaConversionLeads", "googleOci"],
   },
   {
     slug: "speed-to-lead-real-estate",
@@ -540,7 +548,7 @@ export const ARTICLES: Article[] = [
     description:
       "Why contact rate is the cheapest rate to move, a 29% cut in cost per booking from that one rate, and how to build your own decay curve from call logs.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "Inside a minute if you can staff it, inside five if you cannot. A lead you never reach converts at zero no matter how good the rest of your process is, and contact rate sits first in the chain that produces cost per booking, so it multiplies every rate after it. On the worked funnel from our cost-per-lead article, moving contact rate from 60% to 85% and changing nothing else cuts cost per booking 29%, from ₹2,16,450 to ₹1,52,788. No new creative, no new targeting, no change in cost per lead.",
     blocks: [
@@ -700,6 +708,7 @@ export const ARTICLES: Article[] = [
       { href: "/what-we-do/follow-up-systems", label: "How we build the follow-up loop" },
       { href: "/tools/cpl-calculator", label: "Run your own funnel through the calculator" },
     ],
+    sources: ["waServiceWindow", "waTemplates"],
   },
 
   {
@@ -711,7 +720,7 @@ export const ARTICLES: Article[] = [
     description:
       "Meta optimises toward the event you selected and cannot see anything after the form. The three levels of feedback, and the trap most people hit next.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "Because the system is working correctly against the wrong objective. Meta does not know which of your leads bought. It knows which of them submitted a form, because that is the only outcome you told it about. Ask for form fills and it will find the people most likely to fill a form and least likely to buy, since those are the cheapest people in the auction to reach. This is not a targeting failure to be fixed with better audiences. It is a feedback failure, and the fix is telling the platform what a good outcome actually was.",
     blocks: [
@@ -850,6 +859,7 @@ export const ARTICLES: Article[] = [
         label: "Why cost per lead comparisons mislead",
       },
     ],
+    sources: ["metaInstantFormTypes", "metaConversionLeads", "metaCapi", "metaLearningPhase"],
   },
 
   {
@@ -861,7 +871,7 @@ export const ARTICLES: Article[] = [
     description:
       "Derive creative volume from frequency accrual, winner lifespan and your hit rate. A worked example landing between 12 and 29 new creatives a month.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "Enough to keep frequency below the point where your cost per lead starts climbing with nothing else changed. That is derivable rather than a matter of opinion: divide your fatigue frequency by your weekly frequency accrual to get how long a set of creatives lasts, multiply up to find how many have to be live, then divide by your hit rate to find how many you must produce to get them. On the worked example below it lands between 12 and 23 new creatives a month, which is why our own standard is 15 to 20.",
     blocks: [
@@ -999,6 +1009,7 @@ export const ARTICLES: Article[] = [
         label: "What rising cost per lead does to cost per booking",
       },
     ],
+    sources: ["metaLearningPhase"],
   },
   {
     slug: "get-cited-by-ai-assistants",
@@ -1009,7 +1020,7 @@ export const ARTICLES: Article[] = [
     description:
       "Why assistants synthesise rather than rank, the three tests that decide whether you appear in an answer, and what nobody can honestly promise.",
     published: "2026-09-22",
-    updated: "2026-09-22",
+    updated: "2026-09-27",
     answer:
       "You cannot buy it, submit for it, or optimise a keyword into it. An assistant composes an answer from sources it can parse, attribute to a consistent organisation, and safely quote, so those three properties are the whole job. Most sites fail the first for technical reasons, the second because their own name is inconsistent across their own markup, and the third because everything specific they know is kept back for a sales call. Fix all three and you become eligible. Nobody, us included, can promise more than eligible.",
     blocks: [
@@ -1099,8 +1110,8 @@ export const ARTICLES: Article[] = [
           "One correct canonical URL per page. We found every page on our own site declaring the homepage as its canonical, inherited from a single line in a layout file. A crawler reads that as a site of duplicates, and it is silent: nothing looks wrong in a browser.",
           "schema.org as a graph with a stable @id, not a loose object repeated per page, so the publisher and author references resolve to one node.",
           "FAQPage markup on real questions, and never the same question on two URLs. Duplicated FAQ markup means neither page gets the result.",
-          "An llms.txt naming what the site actually answers, which is the file an assistant reads to orient itself.",
-          "A robots.txt that names the answer engines. Note that Google-Extended and Applebot-Extended are separate tokens governing AI grounding rather than classic search, so allowing Googlebot does not allow them.",
+          "An llms.txt naming what the site actually answers, as an orientation file for assistants and agents that use one. Google says its own AI features in Search need no such file.",
+          "A robots.txt that names the answer engines. Google-Extended and Applebot-Extended are separate tokens: Google-Extended governs use in Gemini Apps and Vertex AI, not Google Search, so AI Overviews and AI Mode follow Googlebot. Allow each token deliberately rather than assuming one covers the other.",
         ],
       },
       {
@@ -1142,7 +1153,7 @@ export const ARTICLES: Article[] = [
       {
         question: "What is llms.txt and does it matter?",
         answer:
-          "It is a plain text file at the root of your site describing what the site covers and which pages answer what, intended as an orientation file for AI crawlers the way robots.txt is for search crawlers. It is cheap to add and helps an assistant find the right page, but it is orientation rather than a ranking mechanism. It will not compensate for content a crawler cannot read or an entity it cannot resolve.",
+          "It is a plain text file at the root of your site describing what the site covers and which pages answer what, intended as an orientation file for AI crawlers the way robots.txt is for search crawlers. It is cheap to add and helps assistants that read it find the right page, but it is orientation rather than a ranking mechanism, and Google has said its AI features in Search need no special file. It will not compensate for content a crawler cannot read or an entity it cannot resolve.",
       },
       {
         question: "Can an agency guarantee you will appear in AI search results?",
@@ -1158,6 +1169,7 @@ export const ARTICLES: Article[] = [
       },
       { href: "/the-loop", label: "Where this sits in the loop" },
     ],
+    sources: ["googleAiFeatures", "googleCrawlers", "llmsTxt"],
   },
 
   {
@@ -1290,6 +1302,7 @@ export const ARTICLES: Article[] = [
       { href: "/tools/cpl-calculator", label: "Run your own channels through the calculator" },
       { href: "/what-we-do/performance-marketing", label: "Real estate lead generation, measured in bookings" },
     ],
+    sources: ["metaConversionLeads", "googleOci", "googleEcLeads"],
   },
 
   {
@@ -1412,6 +1425,7 @@ export const ARTICLES: Article[] = [
       { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing and follow-up, set up before launch" },
       { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook and Meta ads for real estate" },
     ],
+    sources: ["reraAct", "tnrera", "reraKarnataka", "metaLearningPhase", "waTemplates", "waOptIn"],
   },
 ];
 

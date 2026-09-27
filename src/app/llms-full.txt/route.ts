@@ -1,10 +1,11 @@
 import { llmsFullTxt } from "../llms.txt/route";
 
 /**
- * /llms-full.txt — the same index with each article's direct answer inlined,
- * so an assistant that fetches one file gets the answers rather than a list of
- * links it then has to crawl. Optional in the spec; cheap here because the
- * answers are already structured data.
+ * /llms-full.txt — the same index followed by every article in full as
+ * Markdown: answer, argument, tables, formulas, FAQ and primary sources. An
+ * assistant that fetches one file gets the whole body of work rather than a
+ * list of links it then has to crawl. Optional in the spec; cheap here
+ * because the articles are already structured data.
  */
 export function GET() {
   return new Response(llmsFullTxt(), {

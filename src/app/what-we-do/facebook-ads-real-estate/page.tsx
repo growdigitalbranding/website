@@ -129,6 +129,7 @@ export default function Page() {
             note: "The measurement layer that lets either platform learn which leads actually booked.",
           },
         ]}
+        sources={["metaLearningPhase", "metaInstantFormTypes", "metaConversionLeads", "metaCapi", "metaDedup", "metaClickToWhatsApp"]}
         reading={["why-meta-lead-ads-poor-quality", "how-many-ad-creatives-real-estate", "speed-to-lead-real-estate"]}
       />
     </>

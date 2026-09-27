@@ -5,6 +5,7 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { faqJsonLd } from "@/lib/schema/jsonld";
 import { FurtherReading } from "@/components/FurtherReading";
+import { SourceList } from "@/components/SourceList";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
@@ -170,6 +171,7 @@ export default function RealEstatePage() {
             "pre-launch-marketing-real-estate",
           ]}
         />
+        <SourceList keys={["reraAct", "tnrera", "reraKarnataka"]} className="mt-12" />
       </div>
 
       <CTABand />

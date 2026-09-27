@@ -22,6 +22,7 @@ const baseFlag = args.indexOf("--base");
 const BASE = (baseFlag !== -1 ? args[baseFlag + 1] : "https://growdigitalbranding.com").replace(/\/$/, "");
 
 const INDEXNOW_KEY = "53c7b409475b8560ff641f37c1297377";
+const MIN_SITEMAP_URLS = 36;
 const EXPECTED_ARTICLES = [
   "good-cost-per-lead-real-estate",
   "rera-approval-status-lead-quality",
@@ -30,6 +31,8 @@ const EXPECTED_ARTICLES = [
   "why-meta-lead-ads-poor-quality",
   "how-many-ad-creatives-real-estate",
   "get-cited-by-ai-assistants",
+  "portal-leads-vs-own-ads-real-estate",
+  "pre-launch-marketing-real-estate",
 ];
 
 const results = [];
@@ -92,7 +95,9 @@ try {
   record("sitemap 200", s.status === 200, `HTTP ${s.status}`);
   record("sitemap is application/xml", s.type.includes("xml"), s.type);
   sitemapUrls = [...s.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  record("sitemap lists 31 URLs", sitemapUrls.length === 31, `${sitemapUrls.length} found`);
+  // A floor, not an exact count: a hard-coded total failed every deploy that
+  // added a page. Shrinking below it is what signals a route went missing.
+  record(`sitemap lists at least ${MIN_SITEMAP_URLS} URLs`, sitemapUrls.length >= MIN_SITEMAP_URLS, `${sitemapUrls.length} found`);
   const lastmods = (s.body.match(/<lastmod>/g) || []).length;
   record(
     "sitemap carries lastmod",
@@ -180,7 +185,7 @@ record("no stale brand spelling", staleBrand.length === 0, staleBrand.slice(0, 5
 const missingArticles = EXPECTED_ARTICLES.filter(
   (slug) => !sitemapUrls.some((u) => u.endsWith("/insights/" + slug)),
 );
-record("all 7 articles in the sitemap", missingArticles.length === 0, missingArticles.join(", "));
+record(`all ${EXPECTED_ARTICLES.length} articles in the sitemap`, missingArticles.length === 0, missingArticles.join(", "));
 
 try {
   const home = await get("/");
@@ -197,4 +202,21 @@ if (failed.length) {
   console.log("\nFailed:");
   for (const f of failed) console.log(`  ${f.name}${f.detail ? "  " + f.detail : ""}`);
 }
+// --- IndexNow ---------------------------------------------------------------
+// Only once the live server is proven to be serving HEAD. Pinging a crawler
+// about URLs that still carry the old build is worse than not pinging: it
+// arrives, finds nothing new, and learns to come back less often. Pass
+// --no-indexnow to skip, or run `npm run indexnow` by hand.
+const liveIsHead = results.some((r) => r.name === "server is running the commit you pushed" && r.ok);
+if (!args.includes("--no-indexnow") && BASE === "https://growdigitalbranding.com") {
+  if (failed.length === 0 && liveIsHead) {
+    console.log("\nAll checks passed on the current commit. Submitting changed URLs to IndexNow...\n");
+    const { spawnSync } = await import("node:child_process");
+    const run = spawnSync(process.execPath, ["scripts/indexnow.mjs", "--changed"], { stdio: "inherit" });
+    if (run.status !== 0) console.log("\nIndexNow submission failed; the site itself is fine. Retry with: npm run indexnow -- --changed");
+  } else {
+    console.log("\nIndexNow not sent: fix the failures above first, so crawlers are not pinged about a stale build.");
+  }
+}
+
 exit(failed.length ? 1 : 0);

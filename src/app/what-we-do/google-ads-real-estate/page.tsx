@@ -54,7 +54,7 @@ export default function Page() {
           {
             heading: "How do you target buyers who do not live in the city?",
             body: [
-              "Through the location setting most accounts leave on its default. Google distinguishes between people physically in a location and people who have shown interest in it. For a project that sells to buyers relocating, investing from another city or buying from abroad, targeting interest in the project's area reaches them; for a project that sells almost entirely locally, presence alone keeps the budget where the buyers are.",
+              "Through a location setting most accounts never look at. Google distinguishes between people physically in or regularly in a location and people who have shown interest in it, and its default reaches both. For a project that sells to buyers relocating, investing from another city or buying from abroad, that default is doing useful work and should be left on deliberately. For a project that sells almost entirely locally, switching to presence only keeps the budget where the buyers are.",
             ],
           },
           {
@@ -120,6 +120,7 @@ export default function Page() {
             note: "The measurement layer that lets either platform learn which leads actually booked.",
           },
         ]}
+        sources={["googleEcLeads", "googleOci", "googleBrandExclusions", "googleLocationOptions", "googleTrademarks"]}
         reading={["good-cost-per-lead-real-estate", "channel-partner-vs-direct-leads", "speed-to-lead-real-estate"]}
       />
     </>

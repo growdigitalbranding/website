@@ -70,6 +70,7 @@ export default function Page() {
             note: "Where most of the value of a lead is won or lost, in the first minutes after it arrives.",
           },
         ]}
+        sources={["metaConversionLeads", "googleOci", "metaLearningPhase"]}
         reading={["good-cost-per-lead-real-estate", "channel-partner-vs-direct-leads", "rera-approval-status-lead-quality"]}
       />
     </>

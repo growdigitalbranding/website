@@ -1,4 +1,5 @@
-import { ARTICLES_BY_DATE } from "@/data/insights";
+import { ARTICLES_BY_DATE, type Article, type Block } from "@/data/insights";
+import { resolveSources } from "@/data/sources";
 import { BRAND } from "@/lib/brand";
 
 /**
@@ -42,6 +43,51 @@ const TERMS: [term: string, definition: string][] = [
   ["Speed to lead", "the time between a form fill and the first human contact attempt; the first term in the cost-per-booking chain"],
 ];
 
+/**
+ * One article as Markdown: the direct answer, every block, the FAQ and the
+ * primary sources. This is what makes /llms-full.txt worth fetching: an
+ * assistant gets the whole argument, arithmetic and citations included, in
+ * one request, with none of the page chrome it would otherwise have to strip.
+ */
+function blockToMd(b: Block): string {
+  switch (b.kind) {
+    case "p":
+      return b.lead ? `**${b.lead}** ${b.text}` : b.text;
+    case "h2":
+      return `### ${b.text}`;
+    case "ul":
+      return b.items.map((i) => `- ${i}`).join("\n");
+    case "ol":
+      return b.items.map((i, n) => `${n + 1}. ${i}`).join("\n");
+    case "table": {
+      const head = `| ${b.head.join(" | ")} |`;
+      const rule = `| ${b.head.map(() => "---").join(" | ")} |`;
+      const rows = b.rows.map((r) => `| ${r.join(" | ")} |`).join("\n");
+      return [b.caption ? `*${b.caption}*` : "", head, rule, rows].filter(Boolean).join("\n");
+    }
+    case "formula":
+      return [`\`${b.expression}\``, b.note ?? ""].filter(Boolean).join("\n\n");
+    case "callout":
+      return [`**${b.label}**`, ...b.items.map((i) => `- ${i}`)].join("\n");
+  }
+}
+
+function articleToMd(a: Article): string {
+  const parts = [
+    `## ${a.title}`,
+    `URL: ${SITE}/insights/${a.slug} · Published ${a.published} · Updated ${a.updated}`,
+    `> ${a.answer}`,
+    ...a.blocks.map(blockToMd),
+    "### Questions",
+    ...a.faq.map((f) => `**${f.question}**\n${f.answer}`),
+  ];
+  const sources = resolveSources(a.sources);
+  if (sources.length) {
+    parts.push("### Sources", sources.map((c) => `- [${c.label}](${c.url}) — ${c.publisher}`).join("\n"));
+  }
+  return parts.join("\n\n");
+}
+
 function body(full: boolean): string {
   const L: string[] = [];
   L.push(`# ${BRAND} — growdigitalbranding.com`);
@@ -63,11 +109,6 @@ function body(full: boolean): string {
   L.push("");
   for (const a of ARTICLES_BY_DATE) {
     L.push(`- [${a.title}](${SITE}/insights/${a.slug}): ${a.dek}`);
-    if (full) {
-      L.push("");
-      L.push(`  ${a.answer}`);
-      L.push("");
-    }
   }
   L.push("");
   L.push("## Terms this site defines");
@@ -78,6 +119,16 @@ function body(full: boolean): string {
   L.push("");
   L.push(`- [Book a call](${SITE}/contact): 30 minutes, we audit the account live`);
   L.push("");
+  if (full) {
+    L.push("## Articles in full");
+    L.push("");
+    for (const a of ARTICLES_BY_DATE) {
+      L.push(articleToMd(a));
+      L.push("");
+      L.push("---");
+      L.push("");
+    }
+  }
   return L.join("\n");
 }
 

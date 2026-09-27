@@ -4,6 +4,7 @@ import { PageHero, CTABand } from "@/components/PageHero";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { DirectAnswer } from "@/components/DirectAnswer";
 import { FurtherReading } from "@/components/FurtherReading";
+import { SourceList } from "@/components/SourceList";
 
 export const metadata: Metadata = pageMeta({
   path: "/tracking-setup",
@@ -27,7 +28,7 @@ const ITEMS = [
     detail:
       "Runs on its own subdomain with a proper cookie lifespan, ahead of the browser container.",
     why:
-      "A browser-set cookie on Safari expires in seven days, so a buyer who clicks an ad and returns a fortnight later arrives as a new person and the ad that found them gets no credit. Setting it server-side from your own subdomain is what makes the attribution window match the length of a real property decision rather than the length of a browser policy.",
+      "Safari deletes cookies set by JavaScript after seven days without a visit, so a buyer who clicks an ad and returns a fortnight later arrives as a new person and the ad that found them gets no credit. Setting it server-side from your own subdomain is what makes the attribution window match the length of a real property decision rather than the length of a browser policy.",
   },
   {
     name: "Meta Conversions API",
@@ -122,6 +123,11 @@ export default function TrackingSetupPage() {
             "good-cost-per-lead-real-estate",
             "get-cited-by-ai-assistants",
           ]}
+        />
+
+        <SourceList
+          keys={["webkitTrackingPrevention", "metaCapi", "metaDedup", "googleEcLeads", "googleOci", "googleConsentMode"]}
+          className="border-t border-mist pt-10"
         />
       </div>
 

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { FurtherReading } from "@/components/FurtherReading";
+import { SourceList } from "@/components/SourceList";
+import type { SourceKey } from "@/data/sources";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { faqJsonLd } from "@/lib/schema/jsonld";
 
@@ -18,6 +20,7 @@ export function ServiceTemplate({
   faqs = [],
   heroTitle,
   links = [],
+  sources = [],
 }: {
   eyebrow: string;
   title: string;
@@ -48,6 +51,8 @@ export function ServiceTemplate({
    *  the one relevance signal an internal link carries, so these say what
    *  the target page is about rather than "learn more". */
   links?: { href: string; label: string; note: string }[];
+  /** Primary sources for the page's platform and regulatory claims. */
+  sources?: SourceKey[];
 }) {
   return (
     <>
@@ -152,6 +157,8 @@ export function ServiceTemplate({
         ))}
 
         <FurtherReading slugs={reading} className="border-t border-mist pt-10" />
+
+        <SourceList keys={sources} className="border-t border-mist pt-10" />
 
         <p className="text-sm text-graphite">
           See how this fits the rest of the system on{" "}

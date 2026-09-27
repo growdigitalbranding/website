@@ -24,9 +24,11 @@ const ANSWER_AND_SEARCH_AGENTS = [
   // Perplexity
   "PerplexityBot",
   "Perplexity-User",
-  // Google. Google-Extended is a separate token governing Gemini grounding
-  // and AI Overviews; disallowing it does not affect classic Search ranking,
-  // and allowing it is the only way into those surfaces.
+  // Google. Googlebot covers Search, including AI Overviews and AI Mode.
+  // Google-Extended is a separate token governing whether content is used
+  // for Gemini Apps and Vertex AI (training and grounding); per Google's
+  // crawler documentation it does not affect inclusion or ranking in Search.
+  // An earlier version of this comment said it gated AI Overviews. It does not.
   "Googlebot",
   "Google-Extended",
   // Microsoft Copilot answers from the Bing index

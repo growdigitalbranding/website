@@ -5,6 +5,7 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { PageHero, CTABand } from "@/components/PageHero";
 import { DirectAnswer } from "@/components/DirectAnswer";
 import { FurtherReading } from "@/components/FurtherReading";
+import { SourceList } from "@/components/SourceList";
 import { faqJsonLd, ORG_ID } from "@/lib/schema/jsonld";
 
 /**
@@ -213,6 +214,11 @@ export default function BangalorePage() {
             "portal-leads-vs-own-ads-real-estate",
             "channel-partner-vs-direct-leads",
           ]}
+          className="border-t border-mist pt-10"
+        />
+
+        <SourceList
+          keys={["reraAct", "reraKarnataka", "googleLocationOptions", "metaLearningPhase"]}
           className="border-t border-mist pt-10"
         />
       </article>

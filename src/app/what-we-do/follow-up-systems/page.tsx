@@ -122,6 +122,7 @@ export default function Page() {
             note: "How bookings get back to the ad account once the conversation has done its job.",
           },
         ]}
+        sources={["waOptIn", "waServiceWindow", "waTemplates", "waQuality", "waPolicy", "metaClickToWhatsApp"]}
         reading={["speed-to-lead-real-estate", "rera-approval-status-lead-quality", "why-meta-lead-ads-poor-quality"]}
       />
     </>

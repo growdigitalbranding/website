@@ -1,12 +1,14 @@
-# Fonts for generated Open Graph images
+# Fonts
 
-These are here for `next/og` only. The site itself loads Bricolage Grotesque,
-Inter Tight and JetBrains Mono through `next/font`, which fetches and subsets
-woff2 at build time; satori (what `ImageResponse` runs on) cannot read woff2,
-so the OG image route needs a TTF on disk.
+The site bundles its production fonts locally through `next/font/local` so builds do
+not depend on Google Fonts being reachable from the hosting build worker. The same
+font files are also used by `next/og` for generated Open Graph images where satori
+needs TTF files on disk.
 
-Both families are SIL Open Font License 1.1. The licence text ships beside
-each file, as the OFL requires when the font is redistributed.
+All families are distributed under the SIL Open Font License 1.1; the license text
+ships beside each family as required by the OFL.
 
-- `BricolageGrotesque-Bold.ttf` — the display face, for the headline
-- `JetBrainsMono-Regular.ttf` — the mono face, for the eyebrow and the domain
+- `BricolageGrotesque-Bold.ttf` — display face, used for the headline (600/700/800 declarations share this supplied bold file)
+- `InterTight-Regular.ttf` — body face, weight 400
+- `InterTight-Medium.ttf` — body face, weight 500
+- `JetBrainsMono-Regular.ttf` — mono face, used for labels (400/500 declarations share this supplied regular file)

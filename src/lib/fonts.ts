@@ -1,22 +1,35 @@
-import { Bricolage_Grotesque, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-export const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
+/**
+ * Fonts are bundled locally so production builds do not depend on Google Fonts
+ * being reachable from the hosting build worker. The supplied font files are
+ * licensed and kept in assets/fonts.
+ */
+export const bricolage = localFont({
+  src: "../../assets/fonts/BricolageGrotesque-Bold.ttf",
   variable: "--font-bricolage",
   display: "swap",
-  weight: ["600", "700", "800"],
 });
 
-export const interTight = Inter_Tight({
-  subsets: ["latin"],
+export const interTight = localFont({
+  src: [
+    {
+      path: "../../assets/fonts/InterTight-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../assets/fonts/InterTight-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
   variable: "--font-inter-tight",
   display: "swap",
-  weight: ["400", "500"],
 });
 
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+export const jetbrainsMono = localFont({
+  src: "../../assets/fonts/JetBrainsMono-Regular.ttf",
   variable: "--font-jetbrains",
   display: "swap",
-  weight: ["400", "500"],
 });

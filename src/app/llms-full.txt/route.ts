@@ -1,4 +1,4 @@
-import { llmsFullTxt } from "../llms.txt/route";
+import { llmsFullTxt } from "@/lib/llms";
 
 /**
  * /llms-full.txt — the same index followed by every article in full as

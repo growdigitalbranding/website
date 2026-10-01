@@ -44,7 +44,20 @@ npm ci --include=dev || die "npm ci failed."
 
 say "Building"
 # Shared plans run out of memory here before they run out of anything else.
-NODE_OPTIONS="--max-old-space-size=2048" npm run build || die "build failed. Scroll up for the first error; everything after it is noise."
+#
+# Webpack, not Turbopack, on the server. Turbopack runs PostCSS (Tailwind) in
+# a separate child process, and on the shared plan that process was killed by
+# the host's process/memory limits: the build died in globals.css with "child
+# process exited unexpectedly". Webpack runs PostCSS inside the main process,
+# so there is no worker for the host to kill. Same output, a few seconds
+# slower. BUILD_BUNDLER=turbopack bash scripts/deploy.sh to try Turbopack.
+if [ "${BUILD_BUNDLER:-webpack}" = "turbopack" ]; then
+  BUILD_SCRIPT=build
+else
+  BUILD_SCRIPT=build:webpack
+fi
+echo "bundler: ${BUILD_BUNDLER:-webpack}"
+NODE_OPTIONS="--max-old-space-size=2048" npm run "$BUILD_SCRIPT" || die "build failed. Scroll up for the first error; everything after it is noise."
 
 say "Built"
 echo "commit:   $(git rev-parse HEAD)"

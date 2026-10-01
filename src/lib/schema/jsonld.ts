@@ -175,7 +175,7 @@ export function offerCatalogJsonLd(
           name: p.name,
           description: p.desc,
           provider: { "@id": ORG_ID },
-          areaServed: ["Tamil Nadu", "Karnataka"],
+          areaServed: ["Coimbatore", "Tamil Nadu", "Karnataka"],
         },
       };
     }),

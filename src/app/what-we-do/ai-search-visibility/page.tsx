@@ -30,14 +30,13 @@ export default function Page() {
           "Content rewritten to open with a direct, quotable answer",
         ]}
         tooling={["Schema.org JSON-LD", "Google Business Profile", "Google Search Console", "llms.txt"]}
-        miniCase="A senior living operator had three different phone numbers listed across Google Business Profile, Justdial, and their own footer. Fixing entity consistency plus adding FAQPage schema got them cited in ChatGPT's answer for a category query inside eight weeks."
         objection={{
           question:
             "How do you even measure this? There's no 'AI rank tracker' that means anything yet.",
           answer:
             "We track it the way you'd expect an operator to: direct prompts against major assistants on your target queries, tracked monthly, plus referral traffic tagged from assistant citations where it's detectable. It's directional, not a vanity metric, and we say so.",
         }}
-        answer="Three things decide whether an assistant cites you: whether a crawler can read the page without JavaScript, whether your company resolves to one entity, and whether you have published anything specific enough to quote. This site measures 97 to 100% of its content present in raw HTML before any script runs, which is the test most sites fail without ever finding out."
+        answer="Three things decide whether an assistant can cite you: whether a crawler can read the page without JavaScript, whether your company resolves to one consistent entity, and whether you have published something specific enough to quote. The practical work is ordinary technical SEO plus clear answer blocks, visible sources, named expertise, original data and independent mentions; no AI engine can honestly be promised a citation on a fixed timetable."
         sources={["googleAiFeatures", "googleCrawlers", "llmsTxt"]}
         reading={["get-cited-by-ai-assistants", "good-cost-per-lead-real-estate"]}
       />

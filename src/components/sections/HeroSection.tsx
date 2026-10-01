@@ -174,7 +174,7 @@ export function HeroSection() {
                 className="mono-label block font-normal leading-normal mb-4 md:mb-5"
                 style={{ color: "var(--signal-bright)" }}
               >
-                Real estate marketing agency, Coimbatore
+                Real estate marketing agency in Coimbatore
               </span>
             </FadeIn>
             {/* Read aloud and extracted as two sentences, not one run-on. */}
@@ -199,9 +199,9 @@ export function HeroSection() {
               className="text-paper/65 leading-[1.55] mt-5 md:mt-6 max-w-[44ch]"
               style={{ fontSize: "clamp(0.95rem,1.5vw,1.3rem)" }}
             >
-              Your cost per lead is the top band of every hundred leads you buy.
-              Everything underneath it is the part nobody reports on, and the part that
-              decides what a booking costs you.
+              Real estate lead generation for Coimbatore developers is not finished when a
+              form is filled. Your cost per lead is the top band of every hundred leads you
+              buy; everything underneath it decides what a booking costs you.
             </p>
           </FadeIn>
 

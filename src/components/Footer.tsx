@@ -7,12 +7,12 @@ const COLUMNS = [
   {
     title: "What we do",
     links: [
-      { href: "/what-we-do/performance-marketing", label: "Real estate lead generation" },
-      { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook & Meta ads" },
-      { href: "/what-we-do/google-ads-real-estate", label: "Google Ads" },
+      { href: "/what-we-do/performance-marketing", label: "Real estate lead generation in Coimbatore" },
+      { href: "/what-we-do/facebook-ads-real-estate", label: "Facebook Ads for real estate" },
+      { href: "/what-we-do/google-ads-real-estate", label: "Google Ads for real estate" },
       { href: "/what-we-do/creative-engine", label: "Creative engine" },
       { href: "/what-we-do/tracking-attribution", label: "Tracking & attribution" },
-      { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing" },
+      { href: "/what-we-do/follow-up-systems", label: "WhatsApp marketing for real estate" },
       { href: "/what-we-do/ai-search-visibility", label: "AI search visibility" },
     ],
   },
@@ -20,7 +20,7 @@ const COLUMNS = [
     title: "Who we help",
     links: [
       { href: "/who-we-help", label: "All segments" },
-      { href: "/who-we-help/real-estate", label: "Real estate" },
+      { href: "/who-we-help/real-estate", label: "Digital marketing for real estate in Coimbatore" },
       { href: "/real-estate-marketing-agency-bangalore", label: "Bengaluru developers" },
       { href: "/who-we-help/senior-living", label: "Senior living" },
       { href: "/who-we-help/interiors", label: "Interiors" },
@@ -39,7 +39,7 @@ const COLUMNS = [
   {
     title: "Training",
     links: [
-      { href: "/training", label: "AI digital marketing course" },
+      { href: "/training", label: "AI digital marketing training in Coimbatore" },
       { href: "/training/students", label: "For students" },
       { href: "/training/job-switchers", label: "For job switchers" },
       { href: "/training/business-owners", label: "For business owners" },

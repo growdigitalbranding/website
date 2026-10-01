@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND}`,
   },
   description:
-    "Real estate marketing agency in Coimbatore. Facebook, Meta and Google Ads for developers across Tamil Nadu and Karnataka, measured in cost per booking.",
+    "Real estate marketing agency in Coimbatore for developers: real estate lead generation, Meta and Google Ads, and digital marketing measured in cost per booking.",
   alternates: { canonical: "/" },
   // Lets anyone, including npm run verify, tell in one request whether the
   // running server is serving the commit that was pushed. Not secret: the

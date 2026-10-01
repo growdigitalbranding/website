@@ -7,9 +7,9 @@ import { DirectAnswer } from "@/components/DirectAnswer";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help",
-  title: "Builders, senior living and interior firms",
+  title: "Digital marketing agency in Coimbatore",
   description:
-    "Builders and developers first, then senior living operators and premium interior firms. Three segments that share a long, trust-first buying cycle.",
+    "Digital marketing agency in Coimbatore for builders and developers first, then senior living operators and premium interior firms with long, trust-first buying cycles.",
 });
 
 const VERTICALS = [
@@ -36,8 +36,8 @@ export default function WhoWeHelpPage() {
       <BreadcrumbSchema path="/who-we-help" />
       <PageHero
         eyebrow="WHO WE HELP"
-        title="High-consideration purchases. Nothing shopped on price."
-        subtitle="Not for ecommerce dropshippers, sub-₹25k/month budgets, or anyone shopping on price."
+        title="Digital marketing agency in Coimbatore for high-consideration businesses"
+        subtitle="Real estate developers first, then senior living and premium interior firms. Not for ecommerce dropshippers, sub-₹25k/month budgets, or anyone shopping purely on price."
         variant="split"
       />
 

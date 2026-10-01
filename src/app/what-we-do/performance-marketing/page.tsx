@@ -5,9 +5,9 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do/performance-marketing",
-  title: "Lead generation for real estate developers",
+  title: "Real estate lead generation in Coimbatore",
   description:
-    "Real estate lead generation on Meta and Google Ads, measured in cost per booking, so a cheap lead that never books is counted as the loss it is.",
+    "Real estate lead generation in Coimbatore for developers on Meta and Google Ads, measured in cost per booking so cheap leads that never book are counted as the loss they are.",
 });
 
 export default function Page() {
@@ -17,8 +17,8 @@ export default function Page() {
       <ServiceTemplate
         eyebrow="WHAT WE DO / 00"
         title="Campaign architecture that stops competing with itself"
-        heroTitle="Lead generation for real estate, measured in bookings"
-        subtitle="Advantage+ and PMax do the structural buying work now. The value is in structure, budget discipline, and not letting three ad sets bid against each other for the same buyer."
+        heroTitle="Real estate lead generation in Coimbatore, measured in bookings"
+        subtitle="Meta and Google lead generation for Coimbatore developers and projects across Tamil Nadu and Karnataka. Advantage+ and PMax do the structural buying work now; the value is in structure, budget discipline, and not letting three ad sets bid against each other for the same buyer."
         whoFor={[
           "Builders running 1-4 live projects on Meta and Google",
           "Teams whose account has grown into 6+ overlapping campaigns with no one auditing structure",

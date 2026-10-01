@@ -19,7 +19,7 @@ export const metadata: Metadata = pageMeta({
   path: "/what-we-do/google-ads-real-estate",
   title: "Google Ads for real estate developers",
   description:
-    "Google Ads for real estate developers: keywords by locality and configuration, brand protection, Performance Max done safely, and offline conversions.",
+    "Google Ads for real estate developers in Coimbatore: keywords by locality and configuration, brand protection, Performance Max done safely, and offline conversions.",
 });
 
 export default function Page() {
@@ -28,8 +28,8 @@ export default function Page() {
       <BreadcrumbSchema path="/what-we-do/google-ads-real-estate" />
       <ServiceTemplate
         eyebrow="WHAT WE DO / GOOGLE"
-        title="Google Ads for real estate developers"
-        subtitle="Search reaches the buyer at the moment they are looking. That makes the intent higher than anywhere else, the volume smaller, and the keyword list the whole game."
+        title="Google Ads for real estate developers in Coimbatore"
+        subtitle="Search reaches a Coimbatore property buyer at the moment they are looking. That makes the intent higher than anywhere else, the volume smaller, and the keyword list the whole game."
         answer="Google Ads reaches a property buyer while they are searching: for a locality, a configuration, a project or a developer. The intent is higher than on Meta and the volume is capped by how many people actually search, so the keyword architecture decides almost everything. We run Google Ads for real estate developers search-first, add Performance Max only once the account is feeding it qualified outcomes, and measure every campaign in cost per booking."
         sections={[
           {

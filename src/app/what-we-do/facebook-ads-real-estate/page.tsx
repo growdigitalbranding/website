@@ -18,9 +18,9 @@ import { ServiceTemplate } from "@/components/ServiceTemplate";
 
 export const metadata: Metadata = pageMeta({
   path: "/what-we-do/facebook-ads-real-estate",
-  title: "Facebook & Meta ads for real estate",
+  title: "Facebook Ads for real estate developers",
   description:
-    "Facebook and Instagram (Meta) ads for real estate developers, run against cost per booking: lead form strategy, CRM data fed back to Meta, creative at volume.",
+    "Facebook and Meta Ads for real estate developers in Coimbatore: lead-form strategy, CRM data fed back to Meta, creative at volume, and cost-per-booking measurement.",
 });
 
 export default function Page() {
@@ -30,8 +30,8 @@ export default function Page() {
       <ServiceTemplate
         eyebrow="WHAT WE DO / META"
         title="Facebook & Meta ads for real estate"
-        heroTitle="Facebook and Meta ads for real estate developers"
-        subtitle="Meta will find you leads. The work is making it find you buyers: the right form, the right optimisation event, and the booking data it never sees unless you send it."
+        heroTitle="Facebook Ads for real estate developers in Coimbatore"
+        subtitle="Meta will find Coimbatore real-estate leads. The work is making it find you buyers: the right form, the right optimisation event, and the booking data it never sees unless you send it."
         answer="Facebook and Instagram ads, bought through Meta, reach a property buyer before they start searching, which is why they generate volume that Google cannot. The catch is that Meta optimises toward whoever completes the event you give it, and if that event is a form fill, it gets very good at finding people who fill in forms. We run Meta ads for real estate developers against cost per booking instead: server-side conversion data, CRM outcomes fed back into the ad account, and enough creative that the algorithm has something to learn from."
         sections={[
           {

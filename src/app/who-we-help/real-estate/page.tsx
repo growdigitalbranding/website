@@ -9,9 +9,9 @@ import { SourceList } from "@/components/SourceList";
 
 export const metadata: Metadata = pageMeta({
   path: "/who-we-help/real-estate",
-  title: "Digital marketing for real estate developers",
+  title: "Digital marketing for real estate in Coimbatore",
   description:
-    "Digital marketing for real estate developers in Tamil Nadu and Karnataka: Meta and Google Ads, lead quality by ticket size, RERA-safe creative, site visits.",
+    "Digital marketing for real estate developers in Coimbatore, Tamil Nadu and Karnataka: Meta and Google Ads, lead quality by ticket size, RERA-safe creative, and site visits.",
 });
 
 // Benchmark ranges below are typical ranges observed across managed accounts,
@@ -39,6 +39,11 @@ const FAQS = [
     answer:
       "RERA registration numbers must appear on every promotional creative in most states, possession dates can't be implied without the registered timeline, and pricing claims need to match the registered price list exactly. 'starting from' language is scrutinised. We build a creative approval checklist per state before the first ad goes live.",
   },
+  {
+    question: "How do I choose the best real estate marketing agency in Coimbatore?",
+    answer:
+      "Choose the agency that can show how it measures the full path from lead to site visit and booking, not only a low cost per lead. Ask whether it can run the Meta and Google campaigns, creative, tracking, and follow-up as one system; whether its pricing is clear; and whether it can explain what it does when lead quality drops. The right choice depends on your project, ticket size, sales process, and proof—not on a generic ranking claim.",
+  },
 ];
 
 export default function RealEstatePage() {
@@ -51,8 +56,8 @@ export default function RealEstatePage() {
       />
       <PageHero
         eyebrow="WHO WE HELP / REAL ESTATE"
-        title="Digital marketing for real estate developers"
-        subtitle="₹40L-₹5Cr ticket sizes, 1-4 live projects, an in-house sales team of 2-15, and a CRM you don't fully trust yet. This is the deepest page on our site because it's the business we know best."
+        title="Digital marketing for real estate in Coimbatore"
+        subtitle="Based in Coimbatore and working with developers across Tamil Nadu and Karnataka: ₹40L-₹5Cr ticket sizes, 1-4 live projects, an in-house sales team of 2-15, and a CRM you don't fully trust yet."
       />
 
       <article className="mx-auto max-w-3xl px-6 py-16 flex flex-col gap-14">

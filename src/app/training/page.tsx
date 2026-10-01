@@ -14,7 +14,7 @@ import { courseJsonLd } from "@/lib/schema/course";
 import { faqJsonLd } from "@/lib/schema/jsonld";
 
 /**
- * The training hub. Owns "AI digital marketing course in Coimbatore" and
+ * The training hub. Owns "AI digital marketing training in Coimbatore" and
  * "digital marketing course in Coimbatore"; the four audience pages each own
  * the "... for <audience>" variant and link back here.
  *
@@ -23,11 +23,11 @@ import { faqJsonLd } from "@/lib/schema/jsonld";
 export const revalidate = 3600;
 
 const DESCRIPTION =
-  "A 4-week classroom AI digital marketing course in Coimbatore: Meta and Google ads, SEO and AI search, a live project on a real account. ₹20,000, 8 per batch.";
+  "AI digital marketing training in Coimbatore: a 4-week classroom course covering Meta and Google Ads, SEO, AI search, and a live project on a real account. ₹20,000, 8 per batch.";
 
 export const metadata: Metadata = pageMeta({
   path: "/training",
-  title: "AI digital marketing course in Coimbatore",
+  title: "AI digital marketing training in Coimbatore",
   description: DESCRIPTION,
 });
 
@@ -49,8 +49,8 @@ export default function Page() {
       <PageHero
         variant="split"
         eyebrow="TRAINING"
-        title="AI digital marketing course in Coimbatore"
-        subtitle="Four weeks in a classroom with the team that runs campaigns for a living. You learn the tools, then you use them on a live account, with someone checking your work."
+        title="AI digital marketing training in Coimbatore"
+        subtitle="AI-powered digital marketing training for people who want practical Meta and Google Ads, SEO, AI search, and live campaign experience—not a certificate-only course."
         meta={PROGRAMME_META}
       />
 

@@ -29,7 +29,7 @@ const organization = {
     height: 648,
   },
   image: `${SITE}/logo.png`,
-  areaServed: ["Tamil Nadu", "Karnataka"],
+  areaServed: ["Coimbatore", "Tamil Nadu", "Karnataka"],
   slogan: "Most agencies stop at the lead. We run the loop.",
   // What this entity is about, in the terms a buyer and an assistant both
   // use. Every one of these is a subject the site actually covers in depth,

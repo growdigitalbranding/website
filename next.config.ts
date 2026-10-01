@@ -8,6 +8,25 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  /**
+   * Build in as few processes as possible. The shared host kills child
+   * processes it considers excess, which is how the Turbopack build died
+   * (its PostCSS worker exited before Turbopack could connect to it). The
+   * build script now uses Webpack, and these keep Webpack in-process too:
+   *
+   *   webpackBuildWorker false      compile in the main process, not a forked one
+   *   webpackMemoryOptimizations    trade a little build time for lower peak memory
+   *   cpus: 1                       prerender with one worker instead of
+   *                                 one per core. Typed in NextConfig but not
+   *                                 in the docs; it is what sets the worker
+   *                                 count in build/index.js. Re-check on
+   *                                 Next upgrades.
+   */
+  experimental: {
+    webpackBuildWorker: false,
+    webpackMemoryOptimizations: true,
+    cpus: 1,
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

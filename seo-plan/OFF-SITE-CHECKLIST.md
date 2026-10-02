@@ -37,38 +37,58 @@ the site the same day.
 
 ## 1. Google Business Profile — do this first
 
-This is the highest-value action in the whole plan. Every
-"real estate marketing agency Coimbatore" search shows the map pack above the
-organic results, and you are not in it.
+This is the highest-value action in the whole plan. Searches like "real estate
+marketing agency Coimbatore" and "digital marketing course in Coimbatore" show
+the map pack above the organic results, and you are not in it.
 
-**Setup** (business.google.com):
+### Step 1: create or claim the profile
 
-- **Business name:** `growdigitalbranding`, exactly. Do not add keywords to the
-  name. Google's guidelines prohibit it, and it is a common reason profiles get
-  suspended.
-- **Primary category:** Marketing agency
-- **Additional categories:** Internet marketing service, Advertising agency
-- **Location:** If clients do not visit you, set it up as a service-area
-  business and hide the address. If they do, show the address exactly as it
-  will appear everywhere else (see §3).
-- **Service areas:** Coimbatore, Tamil Nadu, Bengaluru, Karnataka
-- **Phone:** +91 70107 49648
-- **Website:** https://growdigitalbranding.com
-- **Hours:** your real hours
+Go to business.google.com and sign in with the Google account that should own
+the profile long term (a business account, not a personal one).
 
-**Description.** Paste as is; it is 644 characters, within the 750 limit:
+1. Search for `growdigitalbranding`. If a profile already exists, claim it.
+   Otherwise choose "Add your business".
+2. **Business name:** `growdigitalbranding`, exactly. Do not add keywords such
+   as "Digital Marketing Agency Coimbatore" to the name. Google's guidelines
+   prohibit it, and it is a common reason profiles get suspended.
+3. **Primary category:** Marketing agency
+4. **Location: show the address.** The classroom course means trainees come to
+   you, so this is a business customers visit, not a hidden service-area
+   business. Enter the street address exactly as it will appear everywhere else
+   (see §3), and place the map pin on the building.
+5. **Service areas** (in addition to the address): Coimbatore, Tamil Nadu and
+   Bengaluru, Karnataka.
+6. **Phone:** +91 70107 49648
+7. **Website:** https://growdigitalbranding.com
+8. **Verify.** Google decides the method. It is usually a video recording
+   showing the signboard, the inside of the office and something that proves you
+   operate there, such as the workspace or business documents. Have a sign with
+   the business name visible before you start. Verification can take a few days
+   and nothing shows publicly until it is done.
+
+### Step 2: complete the profile
+
+- **Additional categories:** Internet marketing service, Advertising agency, and
+  one training category. Type "training" in the category box and pick the
+  closest available, such as "Computer training school" or "Training centre".
+  Only add it because you actually teach there.
+- **Hours:** your real office hours. If classes run outside them (weekend
+  batches), add the class days to the hours, or the profile will show
+  "Closed" when trainees arrive.
+- **Description.** Paste as is; it is 646 characters, within the 750 limit:
 
 > growdigitalbranding is a performance marketing agency in Coimbatore for real
 > estate developers across Tamil Nadu and Karnataka. We run Facebook, Instagram
 > and Google Ads for builders and measure them in cost per booking, not cost per
-> lead: a cheaper lead that never books is counted as the loss it is. The work
-> covers campaign structure, ad creative at the volume the platforms need,
-> server-side tracking so Meta and Google learn which leads became site visits,
-> and WhatsApp follow-up inside the first minute. Our pricing is published on
-> our website, starting with a ₹75,000 tracking setup. Free calculators and our
-> working are on the site too.
+> lead. The work covers campaign structure, ad creative, server-side tracking so
+> Meta and Google learn which leads became site visits, and WhatsApp follow-up
+> inside the first minute. Our pricing is published on our website, starting
+> with a ₹75,000 tracking setup. We also run a four-week classroom AI digital
+> marketing course in Coimbatore: ₹20,000, eight trainees per batch, with a
+> live project on a real account.
 
-**Services.** Add each one as a service, with the page link in its description:
+- **Services.** Add each one as a service, with the page link in its
+  description:
 
 | Service | Page |
 |---|---|
@@ -79,11 +99,28 @@ organic results, and you are not in it.
 | Server-side tracking and Meta CAPI | /what-we-do/tracking-attribution |
 | Ad creative production | /what-we-do/creative-engine |
 | AI search visibility | /what-we-do/ai-search-visibility |
+| AI digital marketing course (₹20,000, 4 weeks) | /training |
 
-**Posts.** One a week. Each new article is a post: the direct-answer paragraph
-plus the link. Nine articles already exist, which is two months of posts.
+- **Photos.** Real ones only: the signboard, the office, the classroom with
+  trainees at work (with their permission), and the team. Add the logo and a
+  cover photo. No stock images.
+- **Messaging:** turn on chat if someone will answer within a few hours;
+  otherwise leave it off, because slow replies show on the profile.
+- **Booking link:** https://growdigitalbranding.com/contact
 
-**Then:** send me the profile URL and it goes into `sameAs`.
+### Step 3: keep it active
+
+- **Posts, one a week.** Alternate two kinds:
+  - **Article posts:** an article's direct-answer paragraph plus its link. Nine
+    articles already exist, which is two months of posts.
+  - **Batch posts, monthly:** before the 1st, post the next weekday and weekend
+    batch start dates with a link to /training. The dates are on that page.
+- **Reviews:** see §2. Ask trainees as well as clients, once their course or
+  project is finished.
+
+**Then:** send me the profile URL and the street address. The URL goes into
+`sameAs`, and the address goes into the site's schema, the footer and the
+training pages, which currently say the location is "shared on enquiry".
 
 ---
 

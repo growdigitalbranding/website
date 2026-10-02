@@ -51,7 +51,7 @@ export default function PricingPage() {
         subtitle="Publishing ranges filters out the wrong leads before they cost either of us a call."
         variant="ink"
         meta={[
-          { label: "Audit, one-off", value: "\u20b975,000" },
+          { label: "Setup, one-off", value: "From \u20b975,000" },
           { label: "Retainer, monthly", value: "\u20b960,000\u2013\u20b92,50,000" },
           { label: "Minimum media spend", value: "\u20b91.5L/month" },
         ]}

@@ -34,7 +34,7 @@ const KEY_PAGES: [path: string, title: string, note: string][] = [
   ["/real-estate-marketing-agency-bangalore", "Real estate marketing in Bengaluru", "corridor-level Meta and Google campaigns for Bangalore developers, RERA Karnataka in the creative; run from Coimbatore"],
   ["/what-we-do/google-ads-real-estate", "Google Ads for real estate developers", "Google Ads for real-estate developers in Coimbatore: keyword architecture by locality and configuration, brand protection, Performance Max and offline conversions"],
   ["/what-we-do/ai-search-visibility", "AI search visibility for real estate brands", "entity consistency, structured data, citable content and third-party presence for assistants and AI search"],
-  ["/pricing", "Pricing", "published engagement pricing: ₹75,000 audit, ₹60,000–₹2,50,000 monthly retainer, ₹1.5L/month minimum media spend"],
+  ["/pricing", "Pricing", "published engagement pricing: ₹75,000 one-time Signal Setup (tracking), ₹1,25,000 Audit & Rebuild, ₹60,000–₹2,50,000 monthly retainer, ₹1.5L/month minimum media spend"],
   ["/work", "Work", "what each account looked like when we found it and what we rebuilt it into, without client dashboards"],
   ["/tracking-setup", "Our tracking setup", "the exact measurement stack running on this site"],
   ["/tools/cpl-calculator", "Cost per booking calculator", "turns ad spend and funnel rates into cost per booking"],
